@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Calabonga.Commandex.Engine</Title>
+    <PackageId>Calabonga.Commandex.Engine</PackageId>
+    <Version>1.0.0-beta.7</Version>
+    <Authors>Calabonga</Authors>
+    <Company>Calabonga SOFT</Company>
+    <Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
+    <Copyright>Calabonga SOFT © 2024</Copyright>
+    <PackageTags>commandex;calabonga;wpf;appdefinitions;engine;core;</PackageTags>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
+    <PackageIcon>calabonga.ico</PackageIcon>
+    <RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <IncludeSymbols>True</IncludeSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="1.0.0-beta.9" />
+	  <PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
+	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+	  <PackageReference Include="Calabonga.Results" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="calabonga.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
