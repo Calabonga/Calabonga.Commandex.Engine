@@ -15,7 +15,6 @@
     <PackageTags>commandex;calabonga;wpf;appdefinitions;engine;core;</PackageTags>
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
-    <PackageIcon>calabonga.ico</PackageIcon>
     <RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <IncludeSymbols>True</IncludeSymbols>
@@ -30,11 +29,16 @@
 	  <PackageReference Include="Calabonga.Results" Version="1.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="calabonga.ico">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-</Project>
+	<ItemGroup>
+		<None Include="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup></Project>
