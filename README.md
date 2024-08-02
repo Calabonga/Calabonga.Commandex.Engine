@@ -28,6 +28,10 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.0.0-beta.9 2024-08-02
+
+* Добавлена возможность управлять типом `Window` при отображении модального окна.
+
 ### v1.0.0-beta.7 2024-07-31
 
 * Первая публичная сборка в nuget
