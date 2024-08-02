@@ -4,7 +4,7 @@
 /// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:51)
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public partial class DefaultDialogResult<T> : DefaultDialogViewModel
+public partial class DefaultDialogResult<T> : DefaultDialogResult
 {
     /// <summary>
     /// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:52)
