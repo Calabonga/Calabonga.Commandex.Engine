@@ -1,4 +1,7 @@
-﻿namespace Calabonga.Commandex.Engine.Commands;
+﻿using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.OperationResults;
+
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (CommandexCommand 2024-07-30 07:14)
@@ -54,25 +57,25 @@ public abstract class CommandexCommand<TDialogView, TDialogResult> : ICommandexC
     /// <summary>
     /// // Calabonga: Summary required (CommandexCommand 2024-07-31 07:49)
     /// </summary>
-    public Task ShowDialogAsync()
+    public OperationEmpty<OpenDialogException> ExecuteCommand()
     {
-        _dialogService.ShowDialog<TDialogView, TDialogResult>(result =>
+        var result1 = _dialogService.ShowDialog<TDialogView, TDialogResult>(result =>
         {
             if (IsPushToShellEnabled)
             {
-                SetResult(result);
+                OnClosingDialogCallback(result);
             }
         });
 
-        return Task.CompletedTask;
+        return result1;
     }
 
     /// <summary>
     /// // Calabonga: Summary required (CommandexCommand 2024-07-31 07:49)
     /// </summary>
-    protected virtual void SetResult(TDialogResult result)
+    protected virtual TDialogResult SetResult(TDialogResult result)
     {
-        Result = result;
+        return result;
     }
 
     /// <summary>
@@ -80,7 +83,7 @@ public abstract class CommandexCommand<TDialogView, TDialogResult> : ICommandexC
     /// </summary>
     private void OnClosingDialogCallback(TDialogResult result)
     {
-
+        Result = SetResult(result);
     }
 
     /// <summary>

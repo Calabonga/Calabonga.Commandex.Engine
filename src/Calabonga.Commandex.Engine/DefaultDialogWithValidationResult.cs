@@ -3,19 +3,15 @@
 namespace Calabonga.Commandex.Engine;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:51)
+/// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public partial class DefaultDialogResult<T> : DefaultDialogResult
+public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IDialogResult
 {
     /// <summary>
-    /// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:52)
+    /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:53)
     /// </summary>
-    public T? Result { get; set; }
-}
+    public abstract string DialogTitle { get; }
 
-public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
-{
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
     /// </summary>
@@ -31,8 +27,5 @@ public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
     /// </summary>
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
-    /// <summary>
-    /// Window instance that open this dialog
-    /// </summary>
-    public object? Owner { get; set; }
+    public object Owner { get; set; }
 }

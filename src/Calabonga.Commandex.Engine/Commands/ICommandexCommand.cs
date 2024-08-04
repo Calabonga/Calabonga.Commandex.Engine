@@ -1,4 +1,7 @@
-﻿namespace Calabonga.Commandex.Engine.Commands;
+﻿using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.OperationResults;
+
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 07:55)
@@ -33,7 +36,7 @@ public interface ICommandexCommand
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
     /// </summary>
-    Task ShowDialogAsync();
+    OperationEmpty<OpenDialogException> ExecuteCommand();
 
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)

@@ -10,7 +10,7 @@ public interface IDialogResult
     /// <summary>
     /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:53)
     /// </summary>
-    string DialogTitle { get; }
+    string Title { get; }
 
     /// <summary>
     /// // Calabonga: Summary required (IDialogResult 2024-08-02 10:09)
@@ -27,4 +27,5 @@ public interface IDialogResult
     /// </summary>
     WindowStyle WindowStyle { get; }
 
+    object Owner { get; set; }
 }

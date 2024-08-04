@@ -1,4 +1,7 @@
-﻿namespace Calabonga.Commandex.Engine.Commands;
+﻿using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.OperationResults;
+
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (EmptyCommandexCommand 2024-07-29 09:38)
@@ -18,7 +21,7 @@ public abstract class EmptyCommandexCommand<TResult> : ICommandexCommand
 
     public abstract string Version { get; }
 
-    public abstract Task ShowDialogAsync();
+    public abstract OperationEmpty<OpenDialogException> ExecuteCommand();
 
     protected abstract TResult? Result { get; set; }
 
