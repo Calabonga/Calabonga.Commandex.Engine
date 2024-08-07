@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine;
 
 /// <summary>
-/// // Calabonga: Summary required (CommandexAppDefinition 2024-08-04 06:44)
+/// // Calabonga: Summary required (NugetDependency 2024-08-07 10:19)
 /// </summary>
 public class NugetDependency
 {
