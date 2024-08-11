@@ -15,10 +15,7 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
 {
     private readonly IDialogService _dialogService;
 
-    protected DialogCommandexCommand(IDialogService dialogService)
-    {
-        _dialogService = dialogService;
-    }
+    protected DialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
 
     /// <summary>
     /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
@@ -82,16 +79,10 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// <summary>
     /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
     /// </summary>
-    private void OnClosingDialogCallback(TDialogResult result)
-    {
-        Result = SetResult(result);
-    }
+    private void OnClosingDialogCallback(TDialogResult result) => Result = SetResult(result);
 
     /// <summary>
     /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
     /// </summary>
-    public object? GetResult()
-    {
-        return IsPushToShellEnabled ? Result : null;
-    }
+    public object? GetResult() => IsPushToShellEnabled ? Result : null;
 }

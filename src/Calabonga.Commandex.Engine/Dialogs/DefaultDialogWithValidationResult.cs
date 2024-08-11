@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using Calabonga.Commandex.Engine.Base;
+using System.Windows;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
 /// </summary>
-public abstract class DefaultDialogWithValidationResult : Base.ViewModelWithValidatorBase, IDialogResult
+public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IDialogResult
 {
     /// <summary>
     /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:53)
