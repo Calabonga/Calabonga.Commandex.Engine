@@ -1,4 +1,5 @@
-﻿using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
@@ -24,8 +25,8 @@ public interface IDialogService
     /// <typeparam name="TViewModel"></typeparam>
     /// <param name="onClosingDialogCallback"></param>
     OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
-        where TView : IDialogView
-        where TViewModel : IDialogResult;
+        where TView : IView
+        where TViewModel : IResult;
 
     /// <summary>
     /// Opens notification dialog
