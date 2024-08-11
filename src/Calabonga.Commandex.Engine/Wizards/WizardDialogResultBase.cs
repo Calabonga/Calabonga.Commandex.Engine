@@ -10,20 +10,27 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// // Calabonga: Summary required (WizardDialogResultBase 2024-08-11 01:55)
 /// </summary>
-public abstract partial class WizardDialogResultBase : ViewModelBase, IWizardDialogResult
+public abstract partial class WizardDialogResultBase<TWizardStepView, TWizardStepViewModel>
+    : ViewModelBase, IWizardDialogResult
+    where TWizardStepViewModel : IWizardStepViewModel
+    where TWizardStepView : IWizardStepView
 {
     protected WizardDialogResultBase()
     {
-        Steps = new ObservableCollection<IWizardStep>();
-        InitializeStepList();
+        Steps = new ObservableCollection<IWizardStep<TWizardStepView, TWizardStepViewModel>>();
         ActivateStep();
     }
 
-    [ObservableProperty]
-    private ObservableCollection<IWizardStep> _steps;
+    protected void RegisterStep(IWizardStep<TWizardStepView, TWizardStepViewModel> step)
+    {
+        Steps.Add(step);
+    }
 
     [ObservableProperty]
-    private IWizardStep? _activeStep;
+    private ObservableCollection<IWizardStep<TWizardStepView, TWizardStepViewModel>> _steps;
+
+    [ObservableProperty]
+    private IWizardStep<TWizardStepView, TWizardStepViewModel>? _activeStep;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
@@ -37,8 +44,6 @@ public abstract partial class WizardDialogResultBase : ViewModelBase, IWizardDia
     public SizeToContent SizeToContent => SizeToContent.WidthAndHeight;
 
     public WindowStyle WindowStyle => WindowStyle.ToolWindow;
-
-    public abstract List<IWizardStep> ConfigureSteps();
 
     #region Commands
 
@@ -92,6 +97,11 @@ public abstract partial class WizardDialogResultBase : ViewModelBase, IWizardDia
             throw new WizardInvalidOperationException("Steps were not defined.");
         }
 
+        if (Steps.Count == 0)
+        {
+            return;
+        }
+
         if (index is > 0)
         {
             var stepIndex = index.Value;
@@ -102,14 +112,5 @@ public abstract partial class WizardDialogResultBase : ViewModelBase, IWizardDia
 
         CurrentIndex = 0;
         ActiveStep = Steps[0];
-    }
-
-    private void InitializeStepList()
-    {
-        var items = ConfigureSteps();
-        if (items.Any())
-        {
-            Steps = new ObservableCollection<IWizardStep>(items);
-        }
     }
 }
