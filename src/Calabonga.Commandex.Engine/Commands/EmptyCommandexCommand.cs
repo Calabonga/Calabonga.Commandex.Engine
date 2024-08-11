@@ -21,7 +21,7 @@ public abstract class EmptyCommandexCommand<TResult> : ICommandexCommand
 
     public abstract string Version { get; }
 
-    public abstract OperationEmpty<OpenDialogException> ExecuteCommand();
+    public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
     protected abstract TResult? Result { get; set; }
 

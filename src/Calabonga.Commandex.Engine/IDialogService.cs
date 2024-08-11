@@ -13,7 +13,7 @@ public interface IDialogService
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
-    OperationEmpty<OpenDialogException> ShowDialog<TView, TViewModel>()
+    OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>()
         where TView : IDialogView
         where TViewModel : IDialogResult;
 
@@ -23,7 +23,7 @@ public interface IDialogService
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <param name="onClosingDialogCallback"></param>
-    OperationEmpty<OpenDialogException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
+    OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
         where TView : IDialogView
         where TViewModel : IDialogResult;
 
@@ -31,17 +31,17 @@ public interface IDialogService
     /// Opens notification dialog
     /// </summary>
     /// <param name="message"></param>
-    OperationEmpty<OpenDialogException> ShowNotification(string message);
+    OperationEmpty<ExecuteCommandexCommandException> ShowNotification(string message);
 
     /// <summary>
     /// Opens warning dialog
     /// </summary>
     /// <param name="message"></param>
-    OperationEmpty<OpenDialogException> ShowWarning(string message);
+    OperationEmpty<ExecuteCommandexCommandException> ShowWarning(string message);
 
     /// <summary>
     /// Opens error dialog
     /// </summary>
     /// <param name="message"></param>
-    OperationEmpty<OpenDialogException> ShowError(string message);
+    OperationEmpty<ExecuteCommandexCommandException> ShowError(string message);
 }
