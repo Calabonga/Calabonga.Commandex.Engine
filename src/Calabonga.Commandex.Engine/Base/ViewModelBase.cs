@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
 /// // Calabonga: Summary required (ViewModelBase 2024-07-31 05:55)

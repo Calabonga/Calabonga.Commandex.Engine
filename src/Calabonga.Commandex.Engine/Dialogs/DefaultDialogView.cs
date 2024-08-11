@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// // Calabonga: Summary required (DefaultDialogView 2024-07-31 05:51)

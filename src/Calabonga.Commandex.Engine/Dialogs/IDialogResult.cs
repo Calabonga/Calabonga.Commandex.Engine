@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:52)

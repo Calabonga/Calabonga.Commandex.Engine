@@ -1,4 +1,4 @@
-﻿namespace Calabonga.Commandex.Engine;
+﻿namespace Calabonga.Commandex.Engine.Settings;
 
 /// <summary>
 /// Application settings loaded from environment file from the Shell instance

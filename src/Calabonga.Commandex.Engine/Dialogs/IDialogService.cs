@@ -1,7 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// // Calabonga: Summary required (IDialogService 2024-07-29 04:10)

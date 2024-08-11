@@ -1,4 +1,5 @@
-﻿using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Dialogs;
+using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
 namespace Calabonga.Commandex.Engine.Commands;

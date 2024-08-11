@@ -1,4 +1,4 @@
-﻿namespace Calabonga.Commandex.Engine;
+﻿namespace Calabonga.Commandex.Engine.NugetDependencies;
 
 public interface INugetDependency
 {

@@ -1,20 +1,11 @@
 ﻿using System.Windows;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:51)
+/// // Calabonga: Summary required (DefaultDialogResult 2024-08-11 10:33)
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public partial class DefaultDialogResult<T> : DefaultDialogResult
-{
-    /// <summary>
-    /// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:52)
-    /// </summary>
-    public T? Result { get; set; }
-}
-
-public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
+public abstract class DefaultDialogResult : Base.ViewModelBase, IDialogResult
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
