@@ -3,7 +3,7 @@
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardDialogResult 2024-08-11 01:38)
+/// // Calabonga: Summary required (IWizardViewModel 2024-08-11 01:38)
 /// </summary>
 public interface IResult
 {

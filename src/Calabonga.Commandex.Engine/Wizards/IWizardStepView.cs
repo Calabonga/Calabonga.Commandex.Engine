@@ -2,5 +2,5 @@
 
 public interface IWizardStepView
 {
-    
+    object? DataContext { get; set; }
 }

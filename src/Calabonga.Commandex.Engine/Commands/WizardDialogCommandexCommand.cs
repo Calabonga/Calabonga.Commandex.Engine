@@ -6,7 +6,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Commands;
 
 public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : ICommandexCommand
-    where TWizardDialogResult : IWizardDialogResult
+    where TWizardDialogResult : IWizardViewModel
 {
     private readonly IDialogService _dialogService;
 
@@ -19,6 +19,9 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// </summary>
     public string TypeName => GetType().Name;
 
+    /// <summary>
+    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// </summary>
     public abstract string DisplayName { get; }
 
     public abstract string Description { get; }
@@ -27,7 +30,7 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
 
     public Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync()
     {
-        var result = _dialogService.ShowDialog<IWizardDialogView, TWizardDialogResult>(result =>
+        var result = _dialogService.ShowDialog<IWizardView, TWizardDialogResult>(result =>
         {
             if (IsPushToShellEnabled)
             {
@@ -46,7 +49,7 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
     /// </summary>
-    private IWizardDialogResult? Result { get; set; }
+    private IWizardViewModel? Result { get; set; }
 
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
