@@ -1,5 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 
 namespace Calabonga.Commandex.Engine.Wizards;
@@ -9,8 +11,6 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepViewModel
 {
-    public event EventHandler<bool>? HasErrorsChanged;
-
     public bool HasErrors => Errors.Any();
 
     [ObservableProperty]
@@ -30,7 +30,7 @@ public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepVi
 
     protected virtual void OnHasErrorsChanged(bool hasErrors)
     {
-        HasErrorsChanged?.Invoke(this, hasErrors);
+        WeakReferenceMessenger.Default.Send(new StepErrorsChangedMessage(hasErrors));
     }
 
     public virtual bool CanGoBack { get; } = false;

@@ -2,6 +2,7 @@
 using Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -10,7 +11,9 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-11 01:55)
 /// </summary>
-public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelBase, IWizardViewModel
+public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelBase, IWizardViewModel,
+    IRecipient<StepErrorsChangedMessage>,
+    IRecipient<ManagerStepActivatedMessage>
     where TWizardPayload : class, new()
 {
     private readonly IWizardStepManager _manager;
@@ -20,7 +23,6 @@ public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelB
     {
         _wizardContext = new EmptyWizardContext();
         _manager = manager;
-        _manager.ManagerStepActivated += OnManagerStepActivated;
 
         InitializeWizard();
         _manager.ActivateStep(_wizardContext);
@@ -105,27 +107,32 @@ public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelB
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
     /// </summary>
-    private void InitializeWizard() => _wizardContext.Payload = InitializeContext();
+    private void InitializeWizard()
+    {
+        _wizardContext.Payload = InitializeContext();
+        WeakReferenceMessenger.Default.RegisterAll(this);
+    }
 
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
     /// </summary>
     public void Dispose()
     {
-        _manager.ManagerStepActivated -= OnManagerStepActivated;
+
     }
 
-    #region EventHandlers
-
-
-    private void OnManagerStepActivated(object? sender, ManagerStepActivatedArgs e)
+    public void Receive(StepErrorsChangedMessage message)
     {
-        HasErrors = e.ActiveStep!.HasErrors;
-        Steps = e.Steps;
-        ActiveStep = e.ActiveStep;
+        HasErrors = message.HasErrors;
         NextStepCommand.NotifyCanExecuteChanged();
         PreviousStepCommand.NotifyCanExecuteChanged();
     }
 
-    #endregion
+    public void Receive(ManagerStepActivatedMessage message)
+    {
+        Steps = message.Steps;
+        ActiveStep = message.ActiveStep;
+        NextStepCommand.NotifyCanExecuteChanged();
+        PreviousStepCommand.NotifyCanExecuteChanged();
+    }
 }

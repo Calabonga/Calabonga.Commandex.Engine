@@ -3,13 +3,14 @@
 namespace Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
 
 /// <summary>
-/// // Calabonga: Summary required (ManagerStatusChangedArgs 2024-08-13 08:18)
+/// // Calabonga: Summary required (StepErrorsChangedMessage 2024-08-13 08:18)
 /// </summary>
-public class ManagerStepActivatedArgs : EventArgs
+public class ManagerStepActivatedMessage
 {
-    public ManagerStepActivatedArgs(ObservableCollection<IWizardStep> steps, IWizardStep? activeStep)
+    public ManagerStepActivatedMessage(ObservableCollection<IWizardStep> steps, IWizardStep? activeStep)
     {
         Steps = steps;
+
         ActiveStep = activeStep;
     }
 

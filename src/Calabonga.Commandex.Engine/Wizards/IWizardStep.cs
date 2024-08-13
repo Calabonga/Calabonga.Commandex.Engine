@@ -45,10 +45,4 @@ public interface IWizardStep<out TWizardStepView, out TWizardStepViewModel> : IW
     /// </summary>
     /// <param name="content"></param>
     void Activate(object content);
-
-    /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20)
-    /// </summary>
-    /// <param name="value"></param>
-    void UpdateHasErrors(bool value);
 }
