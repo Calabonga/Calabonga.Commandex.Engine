@@ -13,6 +13,6 @@ public abstract class WizardContext<TPayload>
 /// <summary>
 /// // Calabonga: Summary required (WizardContext 2024-08-13 01:08)
 /// </summary>
-public class EmptyWizardContext : WizardContext<object>
+public class DefaultWizardContext<TPayload> : WizardContext<TPayload>
 {
 }

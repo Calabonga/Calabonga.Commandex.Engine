@@ -9,7 +9,7 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// // Calabonga: Summary required (WizardStepViewModel 2024-08-11 07:32)
 /// </summary>
-public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepViewModel
+public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWizardStepViewModel<TPayload>
 {
     public bool HasErrors => Errors.Any();
 
@@ -34,4 +34,9 @@ public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepVi
     }
 
     public virtual bool CanGoBack { get; } = false;
+
+    public virtual void Initialize(TPayload payload)
+    {
+
+    }
 }

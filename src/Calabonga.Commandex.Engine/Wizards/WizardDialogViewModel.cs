@@ -11,26 +11,26 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-11 01:55)
 /// </summary>
-public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelBase, IWizardViewModel,
+public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, IWizardViewModel,
     IRecipient<StepErrorsChangedMessage>,
     IRecipient<ManagerStepActivatedMessage>
-    where TWizardPayload : class, new()
+    where TPayload : class, new()
 {
-    private readonly IWizardStepManager _manager;
-    private readonly EmptyWizardContext _wizardContext;
+    private readonly IWizardManager<TPayload> _manager;
+    private readonly DefaultWizardContext<TPayload> _wizardContext;
 
-    protected WizardDialogViewModel(IWizardStepManager manager)
+    protected WizardDialogViewModel(IWizardManager<TPayload> manager)
     {
-        _wizardContext = new EmptyWizardContext();
+        _wizardContext = new DefaultWizardContext<TPayload>();
         _manager = manager;
 
         InitializeWizard();
         _manager.ActivateStep(_wizardContext);
     }
 
-    protected TWizardPayload Payload { get; private set; } = null!;
+    protected TPayload Payload { get; private set; } = null!;
 
-    protected virtual TWizardPayload InitializeContext() => new TWizardPayload();
+    protected virtual TPayload InitializeContext() => new TPayload();
 
     #region ObservableProperties
 
