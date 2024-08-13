@@ -2,13 +2,18 @@
 
 namespace Calabonga.Commandex.Engine.Wizards;
 
+/// <summary>
+/// // Calabonga: Summary required (IWizardStepViewModel 2024-08-13 07:26)
+/// </summary>
 public interface IWizardStepViewModel
 {
     string Title { get; }
 
-    bool CanLeave { get; }
-
     ObservableCollection<string> Errors { get; }
 
-    event EventHandler<bool>? CanLeaveChanged;
+    bool HasErrors { get; }
+
+    event EventHandler<bool>? HasErrorsChanged;
+
+    bool CanGoBack { get; }
 }

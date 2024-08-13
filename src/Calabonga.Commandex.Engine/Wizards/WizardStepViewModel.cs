@@ -9,9 +9,9 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepViewModel
 {
-    public event EventHandler<bool>? CanLeaveChanged;
+    public event EventHandler<bool>? HasErrorsChanged;
 
-    public bool CanLeave => !Errors.Any();
+    public bool HasErrors => !Errors.Any();
 
     [ObservableProperty]
     private ObservableCollection<string> _errors = [];
@@ -19,15 +19,17 @@ public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepVi
     protected void AddError(string errorMessage)
     {
         Errors.Add(errorMessage);
-        OnCanLeaveChanged(false);
+        OnHasErrorsChanged(false);
     }
 
     protected void ResetErrors()
     {
         Errors.Clear();
-        OnCanLeaveChanged(true);
+        OnHasErrorsChanged(true);
     }
 
+    protected virtual void OnHasErrorsChanged(bool e) => HasErrorsChanged?.Invoke(this, e);
 
-    protected virtual void OnCanLeaveChanged(bool e) => CanLeaveChanged?.Invoke(this, e);
+    public virtual bool CanGoBack { get; } = false;
+
 }

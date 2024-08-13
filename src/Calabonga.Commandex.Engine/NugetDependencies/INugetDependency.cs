@@ -1,8 +1,9 @@
-﻿namespace Calabonga.Commandex.Engine.NugetDependencies;
-
-public interface INugetDependency
+﻿namespace Calabonga.Commandex.Engine.NugetDependencies
 {
-    Type Type { get; }
+    public interface INugetDependency
+    {
+        Type Type { get; }
 
-    List<NugetDependency> Dependencies { get; }
+        List<NugetDependency> Dependencies { get; }
+    }
 }
