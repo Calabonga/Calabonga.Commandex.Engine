@@ -13,13 +13,14 @@ namespace Calabonga.Commandex.Engine.Extensions
         /// <typeparam name="TPayload"></typeparam>
         /// <param name="source"></param>
         /// <param name="stepName"></param>
-        public static void AddWizardStep<TStepView, TStepViewModel, TPayload>(this IServiceCollection source, string stepName)
+        /// <param name="orderIndex"></param>
+        public static void AddWizardStep<TStepView, TStepViewModel, TPayload>(this IServiceCollection source, string stepName, int orderIndex = 0)
             where TStepView : IWizardStepView
             where TStepViewModel : IWizardStepViewModel<TPayload>
         {
             source.AddTransient(typeof(TStepView));
             source.AddTransient(typeof(TStepViewModel));
-            var step = new WizardStep<TStepView, TStepViewModel>(stepName);
+            var step = new WizardStep<TStepView, TStepViewModel>(stepName, orderIndex);
             source.AddTransient(typeof(IWizardStep<IWizardStepView, IWizardStepViewModel<TPayload>>), _ => step);
         }
 

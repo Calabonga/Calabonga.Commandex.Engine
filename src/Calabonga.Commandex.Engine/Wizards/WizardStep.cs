@@ -12,9 +12,10 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     where TWizardStepView : IWizardStepView
     where TWizardStepViewModel : IWizardStepViewModel
 {
-    public WizardStep(string name)
+    public WizardStep(string name, int orderIndex)
     {
         Name = name;
+        OrderIndex = orderIndex;
     }
 
     /// <summary>
@@ -35,6 +36,11 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     public object? Content { get; private set; }
 
     /// <summary>
+    /// Step order index for sorting
+    /// </summary>
+    public int OrderIndex { get; }
+
+    /// <summary>
     /// // Calabonga: Summary required (IWizardStep 2024-08-12 07:58)
     /// </summary>
     public void Deactivate()
@@ -43,16 +49,13 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
         IsActive = false;
     }
 
-    // Calabonga: Summary required (IWizardStep 2024-08-12 07:59)
+    /// <summary>
+    /// // Calabonga: Summary required (IWizardStep 2024-08-12 07:59)
+    /// </summary>
+    /// <param name="content"></param>
     public void Activate(object content)
     {
         Content = content;
         IsActive = true;
     }
-
-    /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20)
-    /// </summary>
-    /// <param name="value"></param>
-    public void UpdateHasErrors(bool value) => HasErrors = value;
 }

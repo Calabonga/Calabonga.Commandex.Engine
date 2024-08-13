@@ -35,7 +35,12 @@ public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWi
 
     public virtual bool CanGoBack { get; } = false;
 
-    public virtual void Initialize(TPayload payload)
+    public virtual void OnEnter(TPayload payload)
+    {
+
+    }
+
+    public virtual void OnLeave(TPayload payload)
     {
 
     }

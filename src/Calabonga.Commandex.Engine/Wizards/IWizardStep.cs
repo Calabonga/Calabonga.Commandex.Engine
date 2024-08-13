@@ -24,6 +24,8 @@ public interface IWizardStep
     /// // Calabonga: Summary required (IWizardStep 2024-08-12 03:12)
     /// </summary>
     object Content { get; }
+
+    int OrderIndex { get; }
 }
 
 /// <summary>

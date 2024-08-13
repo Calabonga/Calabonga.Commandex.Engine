@@ -2,6 +2,9 @@
 
 namespace Calabonga.Commandex.Engine.Wizards;
 
+/// <summary>
+/// // Calabonga: Summary required (IWizardStepViewModel 2024-08-14 07:51)
+/// </summary>
 public interface IWizardStepViewModel
 {
     string Title { get; }
@@ -9,8 +12,6 @@ public interface IWizardStepViewModel
     ObservableCollection<string> Errors { get; }
 
     bool HasErrors { get; }
-
-    bool CanGoBack { get; }
 }
 
 /// <summary>
@@ -18,5 +19,7 @@ public interface IWizardStepViewModel
 /// </summary>
 public interface IWizardStepViewModel<in TPayload> : IWizardStepViewModel
 {
-    void Initialize(TPayload? payload);
+    void OnEnter(TPayload? payload);
+
+    void OnLeave(TPayload? payload);
 }
