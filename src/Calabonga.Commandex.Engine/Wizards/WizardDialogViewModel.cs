@@ -10,28 +10,34 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-11 01:55)
 /// </summary>
-public abstract partial class WizardDialogViewModel : ViewModelBase, IWizardViewModel
+public abstract partial class WizardDialogViewModel<TWizardPayload> : ViewModelBase, IWizardViewModel
+    where TWizardPayload : class, new()
 {
     private readonly IWizardStepManager _manager;
+    private readonly EmptyWizardContext _wizardContext;
 
     protected WizardDialogViewModel(IWizardStepManager manager)
     {
+        _wizardContext = new EmptyWizardContext();
         _manager = manager;
-        _manager.ManagerStatusChanged += OnManagerStatusChanged;
         _manager.ManagerStepActivated += OnManagerStepActivated;
 
-        ActivateStep(0);
+        InitializeWizard();
+        _manager.ActivateStep(_wizardContext);
     }
 
+    protected TWizardPayload Payload { get; private set; } = null!;
 
+    protected virtual TWizardPayload InitializeContext() => new TWizardPayload();
 
     #region ObservableProperties
 
     #region property IsValid
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
-    [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
-    private bool _isValid;
+    // [ObservableProperty]
+    //[NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
+    //[NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
+    // private bool _isValid;
+    public bool HasErrors { get; set; }
     #endregion
 
     #region property Steps
@@ -46,10 +52,10 @@ public abstract partial class WizardDialogViewModel : ViewModelBase, IWizardView
     #endregion
 
     #region  property CurrentIndex
-    [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
-    [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
-    [ObservableProperty]
-    private int _currentIndex;
+    // [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
+    // [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
+    // [ObservableProperty]
+    // private int _currentIndex;
     #endregion
 
     #endregion
@@ -65,53 +71,61 @@ public abstract partial class WizardDialogViewModel : ViewModelBase, IWizardView
     #region Commands
 
     #region PreviuosStepCommand
-    private bool CanPreviousStep() => IsValid && Steps.Any() && CurrentIndex > 0;
+    private bool CanPreviousStep() => !HasErrors && Steps.Any() && _wizardContext.StepIndex > 0;
     [RelayCommand(CanExecute = nameof(CanPreviousStep))]
     private void PreviousStep()
     {
-        var newIndex = CurrentIndex - 1;
-
-        if (newIndex < 0)
+        if (_wizardContext.StepIndex - 1 < 0)
         {
             return;
         }
 
-        ActivateStep(newIndex);
+        _wizardContext.StepIndex -= 1;
+        _manager.ActivateStep(_wizardContext);
     }
     #endregion
 
     #region NextStepCommand
-    private bool CanNextStep => IsValid && Steps.Any() && (CurrentIndex < Steps.Count - 1);
+    private bool CanNextStep => !HasErrors && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
     [RelayCommand(CanExecute = nameof(CanNextStep))]
     private void NextStep()
     {
-        var newIndex = CurrentIndex + 1;
-
-        if (newIndex >= Steps.Count)
+        if (_wizardContext.StepIndex + 1 >= Steps.Count)
         {
             return;
         }
 
-        ActivateStep(newIndex);
+        _wizardContext.StepIndex += 1;
+        _manager.ActivateStep(_wizardContext);
     }
     #endregion
 
     #endregion
 
-    private void ActivateStep(int index) => _manager.ActivateStep(index);
+    /// <summary>
+    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// </summary>
+    private void InitializeWizard() => _wizardContext.Payload = InitializeContext();
 
-    private void OnManagerStatusChanged(object? sender, ManagerStatusChangedArgs e) => IsValid = e.HasErrors;
+    /// <summary>
+    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// </summary>
+    public void Dispose()
+    {
+        _manager.ManagerStepActivated -= OnManagerStepActivated;
+    }
+
+    #region EventHandlers
+
 
     private void OnManagerStepActivated(object? sender, ManagerStepActivatedArgs e)
     {
+        HasErrors = e.ActiveStep!.HasErrors;
         Steps = e.Steps;
         ActiveStep = e.ActiveStep;
-        CurrentIndex = e.CurrentIndex;
+        NextStepCommand.NotifyCanExecuteChanged();
+        PreviousStepCommand.NotifyCanExecuteChanged();
     }
 
-    public void Dispose()
-    {
-        _manager.ManagerStatusChanged -= OnManagerStatusChanged;
-        _manager.ManagerStepActivated -= OnManagerStepActivated;
-    }
+    #endregion
 }

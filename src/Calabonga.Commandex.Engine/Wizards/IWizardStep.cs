@@ -18,7 +18,7 @@ public interface IWizardStep
     /// <summary>
     /// // Calabonga: Summary required (IWizardStep 2024-08-12 08:11)
     /// </summary>
-    bool HasErrors { get; }
+    bool HasErrors { get; set; }
 
     /// <summary>
     /// // Calabonga: Summary required (IWizardStep 2024-08-12 03:12)

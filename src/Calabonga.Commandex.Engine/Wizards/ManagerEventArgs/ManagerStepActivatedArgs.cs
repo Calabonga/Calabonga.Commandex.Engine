@@ -7,17 +7,13 @@ namespace Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
 /// </summary>
 public class ManagerStepActivatedArgs : EventArgs
 {
-    public ManagerStepActivatedArgs(ObservableCollection<IWizardStep> steps, IWizardStep? activeStep, int currentIndex)
+    public ManagerStepActivatedArgs(ObservableCollection<IWizardStep> steps, IWizardStep? activeStep)
     {
         Steps = steps;
         ActiveStep = activeStep;
-        CurrentIndex = currentIndex;
     }
 
     public ObservableCollection<IWizardStep> Steps { get; }
 
     public IWizardStep? ActiveStep { get; }
-
-    public int CurrentIndex { get; }
-
 }

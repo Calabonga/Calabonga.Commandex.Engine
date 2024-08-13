@@ -7,9 +7,7 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public interface IWizardStepManager
 {
-    void ActivateStep(int index);
-
-    event EventHandler<ManagerStatusChangedArgs>? ManagerStatusChanged;
+    void ActivateStep<T>(WizardContext<T> wizardContext);
 
     event EventHandler<ManagerStepActivatedArgs>? ManagerStepActivated;
 }

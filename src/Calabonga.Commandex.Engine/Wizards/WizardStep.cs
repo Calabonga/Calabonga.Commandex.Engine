@@ -27,7 +27,7 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     /// </summary>
     public bool IsActive { get; private set; }
 
-    public bool HasErrors { get; private set; }
+    public bool HasErrors { get; set; }
 
     /// <summary>
     /// // Calabonga: Summary required (IWizardStep 2024-08-12 03:13)

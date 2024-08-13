@@ -13,6 +13,7 @@ public interface IWizardStepViewModel
 
     bool HasErrors { get; }
 
+
     event EventHandler<bool>? HasErrorsChanged;
 
     bool CanGoBack { get; }

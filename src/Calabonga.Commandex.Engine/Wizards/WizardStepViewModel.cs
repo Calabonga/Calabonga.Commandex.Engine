@@ -11,7 +11,7 @@ public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepVi
 {
     public event EventHandler<bool>? HasErrorsChanged;
 
-    public bool HasErrors => !Errors.Any();
+    public bool HasErrors => Errors.Any();
 
     [ObservableProperty]
     private ObservableCollection<string> _errors = [];
@@ -19,17 +19,19 @@ public abstract partial class WizardStepViewModel : ViewModelBase, IWizardStepVi
     protected void AddError(string errorMessage)
     {
         Errors.Add(errorMessage);
-        OnHasErrorsChanged(false);
+        OnHasErrorsChanged(true);
     }
 
     protected void ResetErrors()
     {
         Errors.Clear();
-        OnHasErrorsChanged(true);
+        OnHasErrorsChanged(false);
     }
 
-    protected virtual void OnHasErrorsChanged(bool e) => HasErrorsChanged?.Invoke(this, e);
+    protected virtual void OnHasErrorsChanged(bool hasErrors)
+    {
+        HasErrorsChanged?.Invoke(this, hasErrors);
+    }
 
     public virtual bool CanGoBack { get; } = false;
-
 }
