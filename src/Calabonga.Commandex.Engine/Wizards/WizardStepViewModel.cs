@@ -1,5 +1,5 @@
 ﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
+using Calabonga.Commandex.Engine.Wizards.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
@@ -35,12 +35,12 @@ public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWi
 
     public virtual bool CanGoBack { get; } = false;
 
-    public virtual void OnEnter(TPayload payload)
+    public virtual void OnEnter(TPayload? payload)
     {
 
     }
 
-    public virtual void OnLeave(TPayload payload)
+    public virtual void OnLeave(TPayload? payload)
     {
 
     }

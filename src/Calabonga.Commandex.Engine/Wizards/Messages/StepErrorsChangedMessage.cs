@@ -1,4 +1,4 @@
-﻿namespace Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
+﻿namespace Calabonga.Commandex.Engine.Wizards.Messages;
 
 /// <summary>
 /// // Calabonga: Summary required (cs 2024-08-12 08:40)

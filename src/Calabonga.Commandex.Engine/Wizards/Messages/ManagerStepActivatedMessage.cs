@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
+namespace Calabonga.Commandex.Engine.Wizards.Messages;
 
 /// <summary>
 /// // Calabonga: Summary required (StepErrorsChangedMessage 2024-08-13 08:18)

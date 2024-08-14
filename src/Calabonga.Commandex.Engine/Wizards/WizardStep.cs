@@ -3,12 +3,22 @@
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStep 2024-08-12 11:03)
+/// // Calabonga: Summary required (WizardStep 2024-08-14 08:13)
+/// </summary>
+public class WizardStep : ObservableObject
+{
+    public bool IsLast { get; private set; }
+
+    public void SetLast(bool value) => IsLast = value;
+}
+
+/// <summary>
+///  // Calabonga: Summary required (IWizardStep 2024-08-12 11:03)
 /// </summary>
 /// <typeparam name="TWizardStepView"></typeparam>
 /// <typeparam name="TWizardStepViewModel"></typeparam>
 public class WizardStep<TWizardStepView, TWizardStepViewModel>
-    : ObservableObject, IWizardStep<TWizardStepView, TWizardStepViewModel>
+    : WizardStep, IWizardStep<TWizardStepView, TWizardStepViewModel>
     where TWizardStepView : IWizardStepView
     where TWizardStepViewModel : IWizardStepViewModel
 {

@@ -1,5 +1,5 @@
 ﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Wizards.ManagerEventArgs;
+using Calabonga.Commandex.Engine.Wizards.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -30,17 +30,11 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     protected TPayload Payload { get; private set; } = null!;
 
+    public bool HasErrors { get; set; }
+
     protected virtual TPayload InitializeContext() => new TPayload();
 
     #region ObservableProperties
-
-    #region property IsValid
-    // [ObservableProperty]
-    //[NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
-    //[NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
-    // private bool _isValid;
-    public bool HasErrors { get; set; }
-    #endregion
 
     #region property Steps
     [ObservableProperty]
@@ -50,6 +44,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #region property ActiveStep
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Steps))]
+    [NotifyPropertyChangedFor(nameof(IsNotLast))]
     private IWizardStep? _activeStep;
     #endregion
 
@@ -58,6 +53,33 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     // [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
     // [ObservableProperty]
     // private int _currentIndex;
+    #endregion
+
+    #region property IsLast and IsNotLast
+
+    public bool IsNotLast => !ActiveStep?.IsLast ?? false;
+
+    #endregion
+
+    #region property FinishButtonText
+
+    [ObservableProperty]
+    private string _finishButtonText = "Finish";
+
+    #endregion
+
+    #region property NextButtonText
+
+    [ObservableProperty]
+    private string _nextButtonText = "Next";
+
+    #endregion
+
+    #region property PreviuosButtonText
+
+    [ObservableProperty]
+    private string _previousButtonText = "Previous";
+
     #endregion
 
     #endregion
@@ -100,6 +122,14 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         _wizardContext.StepIndex += 1;
         _manager.ActivateStep(_wizardContext);
     }
+
+    [RelayCommand]
+    private void FinishWizard()
+    {
+        OnWizardFinishedExecute(_wizardContext.Payload);
+        ((Window)Owner!).Close();
+    }
+
     #endregion
 
     #endregion
@@ -118,7 +148,8 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// </summary>
     public void Dispose()
     {
-
+        _wizardContext.Payload = null;
+        WeakReferenceMessenger.Default.UnregisterAll(this);
     }
 
     public void Receive(StepErrorsChangedMessage message)
@@ -135,4 +166,6 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         NextStepCommand.NotifyCanExecuteChanged();
         PreviousStepCommand.NotifyCanExecuteChanged();
     }
+
+    public abstract void OnWizardFinishedExecute(TPayload? payload);
 }

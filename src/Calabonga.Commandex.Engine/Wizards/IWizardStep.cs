@@ -26,6 +26,8 @@ public interface IWizardStep
     object Content { get; }
 
     int OrderIndex { get; }
+
+    bool IsLast { get; }
 }
 
 /// <summary>
