@@ -27,8 +27,5 @@ public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 
     private void SetResult(TResult result) => Result = result;
 
-    public object GetResult()
-    {
-        return Result!;
-    }
+    public object GetResult() => Result ?? new object();
 }

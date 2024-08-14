@@ -82,8 +82,6 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #region Properties
 
-    protected TPayload Payload { get; private set; } = null!;
-
     public bool HasErrors { get; set; }
 
     public object? Owner { get; set; }
@@ -143,12 +141,12 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
     /// </summary>
-    public void Dispose()
-    {
-        _wizardContext.Payload = null;
-        WeakReferenceMessenger.Default.UnregisterAll(this);
-    }
+    public void Dispose() => WeakReferenceMessenger.Default.UnregisterAll(this);
 
+    /// <summary>
+    /// Receives a given <typeparamref name="TMessage" /> message instance.
+    /// </summary>
+    /// <param name="message">The message being received.</param>
     public void Receive(StepErrorsChangedMessage message)
     {
         HasErrors = message.HasErrors;
@@ -156,6 +154,10 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         PreviousStepCommand.NotifyCanExecuteChanged();
     }
 
+    /// <summary>
+    /// Receives a given <typeparamref name="TMessage" /> message instance.
+    /// </summary>
+    /// <param name="message">The message being received.</param>
     public void Receive(ManagerStepActivatedMessage message)
     {
         Steps = message.Steps;
@@ -172,4 +174,6 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         _wizardContext.Payload = InitializeContext();
         WeakReferenceMessenger.Default.RegisterAll(this);
     }
+
+    public object? GetPayload => _wizardContext.Payload;
 }

@@ -7,5 +7,5 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public interface IWizardViewModel : IResult
 {
-
+    object? GetPayload { get; }
 }

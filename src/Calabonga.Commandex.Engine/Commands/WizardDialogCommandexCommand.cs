@@ -68,5 +68,5 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
     /// </summary>
-    public object? GetResult() => IsPushToShellEnabled ? Result : null;
+    public object? GetResult() => IsPushToShellEnabled ? Result?.GetPayload : null;
 }
