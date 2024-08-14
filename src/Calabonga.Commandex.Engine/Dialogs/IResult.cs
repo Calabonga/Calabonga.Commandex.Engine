@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (IDialogResult 2024-07-31 05:52)
+/// // Calabonga: Summary required (IWizardViewModel 2024-08-11 01:38)
 /// </summary>
-public interface IDialogResult
+public interface IResult : IDisposable
 {
     /// <summary>
     /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:53)
@@ -27,5 +27,8 @@ public interface IDialogResult
     /// </summary>
     WindowStyle WindowStyle { get; }
 
-    object Owner { get; set; }
+    /// <summary>
+    /// Dialog instance
+    /// </summary>
+    object? Owner { get; set; }
 }

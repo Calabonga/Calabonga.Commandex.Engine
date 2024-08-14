@@ -36,7 +36,7 @@ public interface ICommandexCommand
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
     /// </summary>
-    OperationEmpty<OpenDialogException> ExecuteCommand();
+    Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)

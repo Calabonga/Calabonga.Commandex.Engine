@@ -1,19 +1,11 @@
-﻿using System.Windows;
+﻿using Calabonga.Commandex.Engine.Base;
+using System.Windows;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:51)
+/// // Calabonga: Summary required (DefaultDialogResult 2024-08-11 10:33)
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public partial class DefaultDialogResult<T> : DefaultDialogResult
-{
-    /// <summary>
-    /// // Calabonga: Summary required (DefaultDialogResult 2024-07-31 05:52)
-    /// </summary>
-    public T? Result { get; set; }
-}
-
 public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
 {
     /// <summary>
@@ -35,4 +27,7 @@ public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
     /// Window instance that open this dialog
     /// </summary>
     public object? Owner { get; set; }
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public abstract void Dispose();
 }

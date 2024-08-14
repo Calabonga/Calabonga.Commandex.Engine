@@ -1,6 +1,6 @@
 ﻿using DotNetEnv;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Settings;
 
 /// <summary>
 /// Environment Loaded for Command

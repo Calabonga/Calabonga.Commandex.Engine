@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using Calabonga.Commandex.Engine.Base;
+using System.Windows;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
@@ -27,5 +28,11 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     /// </summary>
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
-    public object Owner { get; set; }
+    /// <summary>
+    /// Dialog instance
+    /// </summary>
+    public object? Owner { get; set; }
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public abstract void Dispose();
 }

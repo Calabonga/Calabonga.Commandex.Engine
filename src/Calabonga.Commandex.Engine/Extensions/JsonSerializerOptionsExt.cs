@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Unicode;
 
-namespace Calabonga.Commandex.Engine;
+namespace Calabonga.Commandex.Engine.Extensions;
 
 /// <summary>
 /// JsonSerializer Options helper for Cyrillic settings
