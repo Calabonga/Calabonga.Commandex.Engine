@@ -23,4 +23,7 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
     public object? GetResult() => null;
+
+    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    public abstract void Dispose();
 }
