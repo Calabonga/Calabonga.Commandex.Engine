@@ -28,11 +28,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         _manager.ActivateStep(_wizardContext);
     }
 
-    protected TPayload Payload { get; private set; } = null!;
-
-    public bool HasErrors { get; set; }
-
-    protected virtual TPayload InitializeContext() => new TPayload();
+    protected abstract void OnWizardFinishedExecute(TPayload? payload);
 
     #region ObservableProperties
 
@@ -84,6 +80,12 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #endregion
 
+    #region Properties
+
+    protected TPayload Payload { get; private set; } = null!;
+
+    public bool HasErrors { get; set; }
+
     public object? Owner { get; set; }
 
     public ResizeMode ResizeMode => ResizeMode.NoResize;
@@ -91,6 +93,8 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     public SizeToContent SizeToContent => SizeToContent.WidthAndHeight;
 
     public WindowStyle WindowStyle => WindowStyle.ToolWindow;
+
+    #endregion
 
     #region Commands
 
@@ -134,14 +138,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #endregion
 
-    /// <summary>
-    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
-    /// </summary>
-    private void InitializeWizard()
-    {
-        _wizardContext.Payload = InitializeContext();
-        WeakReferenceMessenger.Default.RegisterAll(this);
-    }
+    protected virtual TPayload InitializeContext() => new TPayload();
 
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
@@ -167,5 +164,12 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         PreviousStepCommand.NotifyCanExecuteChanged();
     }
 
-    public abstract void OnWizardFinishedExecute(TPayload? payload);
+    /// <summary>
+    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// </summary>
+    private void InitializeWizard()
+    {
+        _wizardContext.Payload = InitializeContext();
+        WeakReferenceMessenger.Default.RegisterAll(this);
+    }
 }
