@@ -175,5 +175,9 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
         WeakReferenceMessenger.Default.RegisterAll(this);
     }
 
-    public object? GetPayload => _wizardContext.Payload;
+    /// <summary>
+    /// Returns payload model from wizard context.
+    /// </summary>
+    public object? Payload => _wizardContext.Payload;
+
 }

@@ -7,5 +7,8 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public interface IWizardViewModel : IResult
 {
-    object? GetPayload { get; }
+    /// <summary>
+    /// Returns payload model from wizard context.
+    /// </summary>
+    object? Payload { get; }
 }
