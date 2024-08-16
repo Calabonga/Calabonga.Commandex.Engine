@@ -86,6 +86,8 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result : null;
 
-    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-    public abstract void Dispose();
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose() { }
 }

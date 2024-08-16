@@ -29,5 +29,8 @@ public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 
     public object GetResult() => Result ?? new object();
 
-    public abstract void Dispose();
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose() { }
 }

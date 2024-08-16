@@ -70,5 +70,8 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
 
-    public abstract void Dispose();
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose() { }
 }

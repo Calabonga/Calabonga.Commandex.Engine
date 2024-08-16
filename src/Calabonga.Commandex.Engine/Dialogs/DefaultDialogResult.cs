@@ -28,6 +28,11 @@ public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
     /// </summary>
     public object? Owner { get; set; }
 
-    /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-    public abstract void Dispose();
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose()
+    {
+
+    }
 }
