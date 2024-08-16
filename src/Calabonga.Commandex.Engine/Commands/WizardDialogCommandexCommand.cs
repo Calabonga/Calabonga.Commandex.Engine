@@ -69,4 +69,9 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose() { }
 }

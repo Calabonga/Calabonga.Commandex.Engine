@@ -6,7 +6,7 @@ namespace Calabonga.Commandex.Engine.Commands;
 /// <summary>
 /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 07:55)
 /// </summary>
-public interface ICommandexCommand
+public interface ICommandexCommand : IDisposable
 {
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)

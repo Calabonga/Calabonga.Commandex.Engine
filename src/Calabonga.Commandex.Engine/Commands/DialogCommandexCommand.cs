@@ -85,4 +85,9 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result : null;
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public virtual void Dispose() { }
 }
