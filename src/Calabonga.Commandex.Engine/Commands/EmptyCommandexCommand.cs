@@ -4,7 +4,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (ResultCommandexCommand 2024-07-29 09:38)
+/// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
 /// </summary>
 public abstract class EmptyCommandexCommand : ICommandexCommand
 {

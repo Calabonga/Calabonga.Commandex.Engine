@@ -9,27 +9,32 @@ namespace Calabonga.Commandex.Engine.Commands;
 public interface ICommandexCommand : IDisposable
 {
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Current command type
+    /// </summary>
+    string TypeName => GetType().Name;
+
+    /// <summary>
+    /// Author or copyright information
     /// </summary>
     string CopyrightInfo { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    string TypeName { get; }
+    bool IsPushToShellEnabled { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Display command name in command list 
     /// </summary>
     string DisplayName { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Brief information about what command created for
     /// </summary>
     string Description { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Current command version info for identification
     /// </summary>
     string Version { get; }
 
@@ -37,11 +42,6 @@ public interface ICommandexCommand : IDisposable
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
     /// </summary>
     Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
-
-    /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
-    /// </summary>
-    bool IsPushToShellEnabled { get; }
 
     /// <summary>
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
