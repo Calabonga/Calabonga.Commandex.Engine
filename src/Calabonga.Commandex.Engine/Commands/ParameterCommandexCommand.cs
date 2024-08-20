@@ -1,5 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.Commandex.Engine.Extensions;
+using Calabonga.Commandex.Engine.Settings;
 using Calabonga.OperationResults;
 using System.Text;
 using System.Text.Json;
@@ -13,7 +15,14 @@ namespace Calabonga.Commandex.Engine.Commands;
 public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     where TParams : CommandexParameter
 {
+    private readonly string _parameterPath;
     private TParams? _parameter;
+
+    protected ParameterCommandexCommand(IAppSettings appSettings)
+    {
+        var file = typeof(TParams).Name.PascalToKebabCase() + ".prm";
+        _parameterPath = Path.Combine(appSettings.CommandsPath, file);
+    }
 
     /// <summary>
     /// Author or copyright information
@@ -66,10 +75,9 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
 
     private void ResetParameter()
     {
-        var path = "C:/Temp/TEMP.TMP";
-        if (File.Exists(path))
+        if (File.Exists(_parameterPath))
         {
-            File.Delete(path);
+            File.Delete(_parameterPath);
         }
     }
 
@@ -80,21 +88,20 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
             return;
         }
 
-        var path = "C:/Temp/TEMP.TMP";
         var data = JsonSerializer.SerializeToUtf8Bytes(_parameter);
         var base64 = Convert.ToBase64String(data);
-        File.WriteAllText(path, base64, Encoding.UTF8);
+        File.WriteAllText(_parameterPath, base64, Encoding.UTF8);
     }
 
     private TParams? GetParameter()
     {
-        var path = "C:/Temp/TEMP.TMP";
-        if (!File.Exists(path))
+
+        if (!File.Exists(_parameterPath))
         {
             return null;
         }
 
-        var parameter = File.ReadAllText(path);
+        var parameter = File.ReadAllText(_parameterPath);
         var s = Convert.FromBase64String(parameter);
         return JsonSerializer.Deserialize<TParams>(s);
     }
