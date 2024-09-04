@@ -1,7 +1,7 @@
-﻿using Calabonga.Commandex.Engine.Base;
+﻿using Calabonga.Commandex.Engine.Settings;
 using DotNetEnv;
 
-namespace Calabonga.Commandex.Engine.Settings;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
 /// Environment Loaded for Command
