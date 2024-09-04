@@ -8,12 +8,10 @@ public interface ISettingsReaderConfiguration
     /// <summary>
     /// Returns file name where settings stored
     /// </summary>
-    /// <returns></returns>
-    string GetEnvironmentFileName();
+    string GetEnvironmentFileName(Type type);
 
     /// <summary>
     /// Returns file extension name for file where settings stored
     /// </summary>
-    /// <returns></returns>
     string GetExtensionFileName();
 }
