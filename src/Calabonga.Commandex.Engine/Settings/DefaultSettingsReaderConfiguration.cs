@@ -11,9 +11,9 @@ public class DefaultSettingsReaderConfiguration : ISettingsReaderConfiguration
     /// Returns file name where settings stored
     /// </summary>
     /// <returns></returns>
-    public string GetEnvironmentFileName()
+    public string GetEnvironmentFileName(Type type)
         =>
-            GetType().Assembly.GetName().Name
+            type.Assembly.GetName().Name
             ?? throw new InvalidOperationException("ISettingsReaderConfiguration reader not configured properly.");
 
     /// <summary>
