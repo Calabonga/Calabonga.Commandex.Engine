@@ -1,4 +1,5 @@
-﻿using DotNetEnv;
+﻿using Calabonga.Commandex.Engine.Base;
+using DotNetEnv;
 
 namespace Calabonga.Commandex.Engine.Settings;
 
@@ -7,18 +8,17 @@ namespace Calabonga.Commandex.Engine.Settings;
 /// </summary>
 public abstract class SettingsBase
 {
-    protected SettingsBase(string commandsPath)
+    public IAppSettings ShellSettings { get; }
+
+    protected SettingsBase(IAppSettings shellSettings, ISettingsReaderConfiguration settingsReader)
     {
-        var path = commandsPath.EndsWith('/') ? commandsPath : $"{commandsPath}/";
-        var currentAssemblyName = GetCurrentSettings();
-        var environmentFileName = $"{path}{currentAssemblyName}.env";
+        ShellSettings = shellSettings;
+
+        var path = shellSettings.CommandsPath.EndsWith('/') ? shellSettings.CommandsPath : $"{shellSettings.CommandsPath}/";
+        var currentAssemblyName = settingsReader.GetEnvironmentFileName();
+        var defaultConfigurationFileExtension = settingsReader.GetExtensionFileName();
+        var environmentFileName = $"{path}{currentAssemblyName}{defaultConfigurationFileExtension}";
+
         Env.Load(environmentFileName);
     }
-
-    /// <summary>
-    /// Returns env-file name without extension.
-    /// </summary>
-    protected abstract string CurrentSettings();
-
-    private string GetCurrentSettings() => CurrentSettings();
 }
