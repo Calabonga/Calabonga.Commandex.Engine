@@ -3,27 +3,27 @@
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardViewModel 2024-08-11 01:38)
+/// Default generic interface for command result
 /// </summary>
 public interface IResult : IDisposable
 {
     /// <summary>
-    /// // Calabonga: Summary required (IDialogResult 2024-07-31 05:53)
+    /// Dialog result title
     /// </summary>
     string Title { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogResult 2024-08-02 10:09)
+    /// XAML Window ResizeMode
     /// </summary>
     ResizeMode ResizeMode { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogResult 2024-08-02 10:10)
+    /// XAML Window SizeToContent
     /// </summary>
     SizeToContent SizeToContent { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogResult 2024-08-02 10:11)
+    /// XAML Window WindowStyle
     /// </summary>
     WindowStyle WindowStyle { get; }
 
