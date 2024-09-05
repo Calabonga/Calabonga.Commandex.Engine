@@ -3,25 +3,25 @@
 namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
-/// // Calabonga: Summary required (ViewModelBase 2024-07-31 05:55)
+/// Default ViewModel for User Control Views with Title.
 /// </summary>
 public abstract partial class ViewModelBase : ObservableObject
 {
     /// <summary>
-    /// // Calabonga: Summary required (ViewModelBase 2024-07-31 05:55)
+    /// Current view model Title
     /// </summary>
     [ObservableProperty]
     private string _title = null!;
 
     /// <summary>
-    /// // Calabonga: Summary required (ViewModelBase 2024-07-31 05:55)
+    /// Indicates that current view model is busy and cannot respond to user requests.
     /// </summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     private bool _isBusy;
 
     /// <summary>
-    /// // Calabonga: Summary required (ViewModelBase 2024-07-31 05:55)
+    ///  Indicates that current view model is ready and can respond to user requests.
     /// </summary>
     public bool IsNotBusy => !IsBusy;
 }

@@ -39,7 +39,7 @@ public interface ICommandexCommand : IDisposable
     string Version { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Executes command
     /// </summary>
     Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 

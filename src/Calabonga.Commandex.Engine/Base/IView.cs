@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
-/// // Calabonga: Summary required (IView 2024-08-11 02:46)
+/// General view interface as abstraction
 /// </summary>
 public interface IView
 {
