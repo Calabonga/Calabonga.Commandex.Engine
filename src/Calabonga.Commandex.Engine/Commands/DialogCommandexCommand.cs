@@ -18,42 +18,42 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     protected DialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
     public virtual bool IsPushToShellEnabled => false;
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Current command type
     /// </summary>
     public string TypeName => GetType().Name;
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Author or copyright information
     /// </summary>
     public abstract string CopyrightInfo { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Display command name in command list 
     /// </summary>
     public abstract string DisplayName { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Brief information about what command created for
     /// </summary>
     public abstract string Description { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Current command version info for identification
     /// </summary>
     public abstract string Version { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Internal dialog result
     /// </summary>
     private IDialogResult? Result { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Executes command
     /// </summary>
     public Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync()
     {
@@ -69,20 +69,18 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Sets current command result for Shell or other command
     /// </summary>
-    protected virtual TDialogResult SetResult(TDialogResult result)
-    {
-        return result;
-    }
+    /// <param name="result"></param>
+    protected virtual TDialogResult SetResult(TDialogResult result) => result;
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Handler OnDialogClosed
     /// </summary>
     private void OnClosingDialogCallback(TDialogResult result) => Result = SetResult(result);
 
     /// <summary>
-    /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-31 07:49)
+    /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result : null;
 
