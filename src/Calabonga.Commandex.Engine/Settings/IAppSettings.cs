@@ -19,4 +19,9 @@ public interface IAppSettings
     /// Artifacts folder name
     /// </summary>
     string ArtifactsFolderName { get; }
+
+    /// <summary>
+    /// Nuget artifacts feed URL. Default: https://api.nuget.org/v3/index.json
+    /// </summary>
+    string NugetFeedUrl { get; }
 }
