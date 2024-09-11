@@ -10,6 +10,28 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 public interface IDialogService
 {
     /// <summary>
+    /// // Calabonga: Summary required (IDialogService 2024-09-11 05:54)
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="dialogParameter"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <returns></returns>
+    OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter, Action<TViewModel>? onClosingDialogCallback)
+        where TView : IView
+        where TViewModel : IResult;
+
+    /// <summary>
+    /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="dialogParameter"></param>
+    OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter)
+        where TView : IView
+        where TViewModel : IResult;
+
+    /// <summary>
     /// // Calabonga: Summary required (IDialogService 2024-08-03 07:56)
     /// </summary>
     /// <typeparam name="TView"></typeparam>

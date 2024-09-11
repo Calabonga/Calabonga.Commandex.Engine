@@ -28,7 +28,12 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
-## v1.0.0-rc.3 2024-08-14
+### v1.0.0-rc.11 2024-09-11
+
+* `ShoeDialog()` added override with special parameter for `ViewModel`
+* Nuget feed URL moved into configuration parameters
+
+### v1.0.0-rc.3 2024-08-14
 
 * Реализован новый тип команды Wizard для Commandex. Теперь можно формировать набор шагов, которые проходит команда при в выполнении. 
 

@@ -34,6 +34,11 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     public object? Owner { get; set; }
 
     /// <summary>
+    /// Custom dialog parameter for Developer needs
+    /// </summary>
+    public object? DialogParameter { get; set; }
+
+    /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>
     public virtual void Dispose()

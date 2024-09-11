@@ -5,5 +5,5 @@
 /// </summary>
 public interface IDialogResult : IResult
 {
-
+    object? DialogParameter { get; set; }
 }
