@@ -5,5 +5,9 @@
 /// </summary>
 public interface IDialogResult : IResult
 {
-    object? DialogParameter { get; set; }
+    /// <summary>
+    /// Set parameter from <see cref="IDialogService"/>
+    /// </summary>
+    /// <param name="parameter"></param>
+    void OnParameterSet(object? parameter);
 }

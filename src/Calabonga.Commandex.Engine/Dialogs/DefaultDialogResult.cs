@@ -24,7 +24,7 @@ public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
     /// <summary>
     /// Default value <see cref="WindowStyle.ToolWindow"/>
     /// </summary>
-    [JsonIgnore] 
+    [JsonIgnore]
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
     /// <summary>
@@ -32,6 +32,12 @@ public abstract class DefaultDialogResult : ViewModelBase, IDialogResult
     /// </summary>
     [JsonIgnore]
     public object? Owner { get; set; }
+
+    /// <summary>
+    /// // Calabonga: Summary required (DefaultDialogResult 2024-09-13 10:30)
+    /// </summary>
+    /// <param name="parameter"></param>
+    public virtual void OnParameterSet(object? parameter) { }
 
     /// <summary>
     /// Custom dialog parameter for Developer needs
