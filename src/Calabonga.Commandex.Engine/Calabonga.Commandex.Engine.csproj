@@ -1,45 +1,52 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>Calabonga.Commandex.Engine</Title>
-    <PackageId>Calabonga.Commandex.Engine</PackageId>
-    <Version>1.0.0-rc.12</Version>
-    <Authors>Calabonga</Authors>
-    <Company>Calabonga SOFT</Company>
-    <Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
-    <Copyright>Calabonga SOFT © 2024</Copyright>
-    <PackageTags>commandex;calabonga;wpf;appdefinitions;engine;core;</PackageTags>
-    <PackageReleaseNotes>OnParameterSet() created instead of DialogParameter</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageIcon>logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Calabonga.Commandex.Engine</Title>
+		<PackageId>Calabonga.Commandex.Engine</PackageId>
+		<Version>1.0.0-rc.13</Version>
+		<Authors>Calabonga</Authors>
+		<Company>Calabonga SOFT</Company>
+		<Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
+		<Copyright>Calabonga SOFT © 2024</Copyright>
+		<PackageTags>commandex;calabonga;wpf;appdefinitions;engine;core;</PackageTags>
+		<PackageReleaseNotes>Huge refactoring completed</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="1.0.0" />
-	  <PackageReference Include="CommunityToolkit.Common" Version="8.3.0" />
-	  <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.3.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-	  <PackageReference Include="DotNetEnv" Version="3.1.1" />
-	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
-	  <PackageReference Include="Calabonga.Results" Version="1.1.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="1.0.0" />
+		<PackageReference Include="CommunityToolkit.Common" Version="8.3.1" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.3.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.1" />
+		<PackageReference Include="DotNetEnv" Version="3.1.1" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+		<PackageReference Include="Calabonga.Results" Version="1.1.0" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="logo.png">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Dialogs\NotificationDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
 	</ItemGroup>
 
 </Project>
