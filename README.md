@@ -28,6 +28,15 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.0.0-rc.13 2024-09-13
+
+* Nugets versions updated
+* `OnSetParameter()` method created for `IDialogResult`
+* `DialogService` implementation moved into engine nuget
+* `NotificationDialog` implementation moved into engine nuget
+* `Wizard` component moved into engine nuget
+* `AppSettings` moved into engine nuget
+
 ### v1.0.0-rc.11 2024-09-11
 
 * `ShoeDialog()` added override with special parameter for `ViewModel`

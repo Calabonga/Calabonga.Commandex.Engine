@@ -3,6 +3,7 @@ using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.OperationResults;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 
