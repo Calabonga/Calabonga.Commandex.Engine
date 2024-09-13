@@ -34,9 +34,10 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     public object? Owner { get; set; }
 
     /// <summary>
-    /// Custom dialog parameter for Developer needs
+    /// // Calabonga: Summary required (DefaultDialogResult 2024-09-13 10:30)
     /// </summary>
-    public object? DialogParameter { get; set; }
+    /// <param name="parameter"></param>
+    public virtual void OnParameterSet(object? parameter) { }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
