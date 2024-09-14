@@ -34,7 +34,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #region property Steps
     [ObservableProperty]
-    private ObservableCollection<IWizardStep> _steps;
+    private ObservableCollection<IWizardStep>? _steps;
     #endregion
 
     #region property ActiveStep
@@ -97,7 +97,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #region Commands
 
     #region PreviuosStepCommand
-    private bool CanPreviousStep() => !HasErrors && Steps.Any() && _wizardContext.StepIndex > 0;
+    private bool CanPreviousStep() => Steps is not null && !HasErrors && Steps.Any() && _wizardContext.StepIndex > 0;
     [RelayCommand(CanExecute = nameof(CanPreviousStep))]
     private void PreviousStep()
     {
@@ -112,11 +112,11 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #endregion
 
     #region NextStepCommand
-    private bool CanNextStep => !HasErrors && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
+    private bool CanNextStep => Steps is not null && !HasErrors && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
     [RelayCommand(CanExecute = nameof(CanNextStep))]
     private void NextStep()
     {
-        if (_wizardContext.StepIndex + 1 >= Steps.Count)
+        if (_wizardContext.StepIndex + 1 >= Steps?.Count)
         {
             return;
         }
@@ -141,7 +141,11 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// <summary>
     /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
     /// </summary>
-    public void Dispose() => WeakReferenceMessenger.Default.UnregisterAll(this);
+    public void Dispose()
+    {
+        WeakReferenceMessenger.Default.UnregisterAll(this);
+        _manager.Dispose();
+    }
 
     /// <summary>
     /// Receives a given <typeparamref name="TMessage" /> message instance.
@@ -179,5 +183,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// Returns payload model from wizard context.
     /// </summary>
     public object? Payload => _wizardContext.Payload;
+
+
 
 }
