@@ -1,10 +1,26 @@
-﻿<Window x:Class="Calabonga.Commandex.Engine.Dialogs.DialogWindow"
+﻿<Window x:Name="dialogWindow" x:Class="Calabonga.Commandex.Engine.Dialogs.DialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen">
-    <Grid/>
+        WindowStartupLocation="CenterScreen"
+        MinWidth="640" Width="1024" Height="768" MinHeight="480">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard Storyboard.TargetName="dialogWindow">
+                    <DoubleAnimation Storyboard.TargetProperty="MinWidth" 
+                                     To="{Binding ElementName=dialogWindow, Path=ActualWidth}"/>
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard Storyboard.TargetName="dialogWindow">
+                    <DoubleAnimation Storyboard.TargetProperty="MinHeight" 
+                                     To="{Binding ElementName=dialogWindow, Path=ActualHeight}"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
     
 </Window>
