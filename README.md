@@ -28,7 +28,7 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
-### v1.0.0-rc.14 2024-09-15
+### v1.0.0-rc.15 2024-09-15
 
 * Restart Wizard command crash fixed.
 * NotificationDialog windows size fixed.
