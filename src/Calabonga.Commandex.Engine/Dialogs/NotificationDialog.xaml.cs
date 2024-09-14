@@ -11,6 +11,8 @@ public partial class NotificationDialog : UserControl, IDialogView
     public NotificationDialog()
     {
         InitializeComponent();
+        Width = 500;
+        Height = 150;
     }
 
     public object ViewModel => DataContext;
