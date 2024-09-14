@@ -7,12 +7,13 @@
              mc:Ignorable="d"
              MinWidth="640" MinHeight="480">
     <UserControl.Resources>
+        <SolidColorBrush x:Key="FancyColor" Color="#eee"/>
         <wizards:IsActiveColorConverter x:Key="IsActiveColorConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style x:Key="FancyBorder" TargetType="{x:Type Border}">
             <Setter Property="Margin" Value="2" />
             <Setter Property="Padding" Value="1" />
-            <Setter Property="BorderBrush" Value="#cccccc" />
+            <Setter Property="BorderBrush" Value="{StaticResource FancyColor}" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
     </UserControl.Resources>
@@ -31,12 +32,12 @@
 
         <TextBlock  Text="{Binding ActiveStep.Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
 
-        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource FancyBorder}">
-            <Grid >
+        <Border Grid.Row="1" Grid.Column="0">
+            <Grid>
                 <ItemsControl ItemsSource="{Binding Steps}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type wizards:IWizardStep}">
-                            <Border Style="{StaticResource FancyBorder}" BorderBrush="{Binding IsActive, Converter={StaticResource IsActiveColorConverter}}">
+                            <Border BorderBrush="{Binding IsActive, Converter={StaticResource IsActiveColorConverter}}" Padding="10,4" BorderThickness="1">
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
                                 </StackPanel>
