@@ -86,11 +86,11 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     public object? Owner { get; set; }
 
-    public ResizeMode ResizeMode => ResizeMode.NoResize;
+    public virtual ResizeMode ResizeMode => ResizeMode.NoResize;
 
-    public SizeToContent SizeToContent => SizeToContent.WidthAndHeight;
+    public virtual SizeToContent SizeToContent => SizeToContent.Manual;
 
-    public WindowStyle WindowStyle => WindowStyle.ToolWindow;
+    public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
     #endregion
 
