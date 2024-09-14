@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Runtime.Serialization;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -17,7 +18,7 @@ public class IsActiveColorConverter : IValueConverter
         {
             if (active)
             {
-                return new SolidColorBrush(Colors.OrangeRed);
+                return SystemParameters.WindowGlassBrush;
             }
             return new SolidColorBrush(Colors.Transparent);
         }

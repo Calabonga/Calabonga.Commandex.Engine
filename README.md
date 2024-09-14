@@ -28,6 +28,15 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.0.0-rc.14 2024-09-14
+
+* Main window MinHeight and MinWitdth are set
+* Wizard window MinHeight and MinWidth are set
+* Wizard window UX management properties make as virtual
+* Some controls sizing improved
+* Nugets dependencies updated
+* Windows accent color is set for `ActiveStep` on Wizard dialog.
+
 ### v1.0.0-rc.13 2024-09-13
 
 * Nugets versions updated

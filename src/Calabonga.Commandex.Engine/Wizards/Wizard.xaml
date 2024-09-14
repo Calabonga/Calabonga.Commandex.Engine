@@ -5,18 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wizards="clr-namespace:Calabonga.Commandex.Engine.Wizards"
              mc:Ignorable="d"
-             MinWidth="800" MinHeight="600">
-
+             MinWidth="640" MinHeight="480">
     <UserControl.Resources>
+        <SolidColorBrush x:Key="FancyColor" Color="#eee"/>
         <wizards:IsActiveColorConverter x:Key="IsActiveColorConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style x:Key="FancyBorder" TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource FancyColor}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
     </UserControl.Resources>
-
     <Grid Margin="8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto" MaxWidth="400" MinWidth="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="155"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -27,12 +32,12 @@
 
         <TextBlock  Text="{Binding ActiveStep.Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
 
-        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource FancyBorder}">
-            <Grid >
+        <Border Grid.Row="1" Grid.Column="0">
+            <Grid>
                 <ItemsControl ItemsSource="{Binding Steps}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type wizards:IWizardStep}">
-                            <Border Style="{StaticResource FancyBorder}" BorderBrush="{Binding IsActive, Converter={StaticResource IsActiveColorConverter}}">
+                            <Border BorderBrush="{Binding IsActive, Converter={StaticResource IsActiveColorConverter}}" Padding="10,4" BorderThickness="1">
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
                                 </StackPanel>
@@ -49,21 +54,24 @@
             </Grid>
         </Border>
 
-        <Button Grid.Row="2" Grid.Column="1"
-                Content="{Binding PreviousButtonText}" Command="{Binding PreviousStepCommand}"
-                HorizontalAlignment="Right" Width="150" />
-        <Button Grid.Row="2" Grid.Column="2" Margin="4,0,0,0"
-                Visibility="{Binding IsNotLast, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Content="{Binding NextButtonText}" Command="{Binding NextStepCommand}" 
-                HorizontalAlignment="Right" Width="150"
-                IsDefault="True"/>
+        <StackPanel Grid.Column="2" Grid.Row="2" Width="308" Orientation="Horizontal">
 
-        <Button Grid.Row="2" Grid.Column="2" Margin="4,0,0,0"
-                Visibility="{Binding ActiveStep.IsLast, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Content="{Binding FinishButtonText}" Command="{Binding FinishWizardCommand}" 
-                HorizontalAlignment="Right" Width="150"
-                IsDefault="True"/>
+            <Button Content="{Binding PreviousButtonText}" Command="{Binding PreviousStepCommand}"
+                    HorizontalAlignment="Right" Width="150" />
 
+            <Button  Margin="4,0,0,0"
+                     Visibility="{Binding IsNotLast, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     Content="{Binding NextButtonText}" Command="{Binding NextStepCommand}" 
+                     HorizontalAlignment="Right" Width="150"
+                     IsDefault="True"/>
+
+            <Button  Margin="4,0,0,0"
+                     Visibility="{Binding ActiveStep.IsLast, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     Content="{Binding FinishButtonText}" Command="{Binding FinishWizardCommand}" 
+                     HorizontalAlignment="Right" Width="150"
+                     IsDefault="True"/>
+
+        </StackPanel>
 
     </Grid>
 </UserControl>
