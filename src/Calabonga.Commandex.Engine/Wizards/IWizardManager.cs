@@ -3,7 +3,7 @@
 /// <summary>
 /// // Calabonga: Summary required (IWizardManager 2024-08-13 08:01)
 /// </summary>
-public interface IWizardManager<TPayload>
+public interface IWizardManager<TPayload> : IDisposable
 {
     void ActivateStep(WizardContext<TPayload> wizardContext);
 }

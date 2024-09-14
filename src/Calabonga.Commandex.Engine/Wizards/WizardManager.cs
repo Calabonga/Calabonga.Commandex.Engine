@@ -112,4 +112,6 @@ public class WizardManager<TPayload> : IWizardManager<TPayload>
         ((WizardStep)step).SetLast(index == _internalSteps.Count - 1);
         return step;
     }
+
+    public void Dispose() => _internalSteps.DeactivateAll();
 }
