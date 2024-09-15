@@ -3,7 +3,7 @@ using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Wizards;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-14 01:21)
@@ -69,6 +69,11 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
+
+    /// <summary>
+    ///  Tags about what the command is intended for
+    /// </summary>
+    public abstract string[] Tags { get; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

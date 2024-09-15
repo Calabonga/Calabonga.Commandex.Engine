@@ -1,7 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
 /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 07:55)
@@ -47,4 +47,9 @@ public interface ICommandexCommand : IDisposable
     /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
     /// </summary>
     object? GetResult();
+
+    /// <summary>
+    ///  Tags about what the command is intended for
+    /// </summary>
+    string[] Tags { get; }
 }

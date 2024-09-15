@@ -1,12 +1,13 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
+/// // Calabonga: Summary required (ResultCommandexCommand 2024-07-29 09:38)
 /// </summary>
-public abstract class EmptyCommandexCommand : ICommandexCommand
+/// <typeparam name="TResult"></typeparam>
+public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 {
     public string TypeName => GetType().Name;
 
@@ -22,7 +23,16 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
-    public object? GetResult() => null;
+    protected abstract TResult? Result { get; set; }
+
+    private void SetResult(TResult result) => Result = result;
+
+    public object GetResult() => Result ?? new object();
+
+    /// <summary>
+    ///  Tags about what the command is intended for
+    /// </summary>
+    public abstract string[] Tags { get; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

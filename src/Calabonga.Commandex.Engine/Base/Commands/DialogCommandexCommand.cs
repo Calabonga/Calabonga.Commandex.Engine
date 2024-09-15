@@ -2,7 +2,7 @@
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (DialogCommandexCommand 2024-07-30 07:14)
@@ -83,6 +83,11 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result : null;
+
+    /// <summary>
+    ///  Tags about what the command is intended for
+    /// </summary>
+    public abstract string[] Tags { get; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
