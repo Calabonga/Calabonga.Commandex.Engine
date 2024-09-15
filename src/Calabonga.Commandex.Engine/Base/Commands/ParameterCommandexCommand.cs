@@ -56,7 +56,7 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     /// <summary>
     ///  Tags about what the command is intended for
     /// </summary>
-    public abstract string[] Tags { get; }
+    public abstract string[]? Tags { get; }
 
     protected TParams? Parameter
     {

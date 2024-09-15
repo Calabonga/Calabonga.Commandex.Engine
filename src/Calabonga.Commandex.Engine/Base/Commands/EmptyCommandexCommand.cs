@@ -26,7 +26,7 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
     /// <summary>
     ///  Tags about what the command is intended for
     /// </summary>
-    public abstract string[] Tags { get; }
+    public abstract string[]? Tags { get; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
