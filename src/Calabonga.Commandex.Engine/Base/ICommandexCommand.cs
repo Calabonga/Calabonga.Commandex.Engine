@@ -4,7 +4,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
-/// Main interface for commandex command implementation.
+/// General interface for Command implementation for Commandex
 /// </summary>
 public interface ICommandexCommand : IDisposable
 {
@@ -44,12 +44,12 @@ public interface ICommandexCommand : IDisposable
     Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
     /// <summary>
-    /// Returns result from command as object
+    /// Returns result from command
     /// </summary>
     object? GetResult();
 
     /// <summary>
-    ///  Tags about what the command is intended for
+    /// Tags that describes what command created for
     /// </summary>
-    string[]? Tags { get; }
+    public string[]? Tags { get; }
 }

@@ -38,7 +38,7 @@ public interface IDialogService
     /// <typeparam name="TViewModel"></typeparam>
     OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>()
         where TView : IDialogView
-        where TViewModel : IDialogResult;
+        where TViewModel : IViewModel;
 
     /// <summary>
     /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)

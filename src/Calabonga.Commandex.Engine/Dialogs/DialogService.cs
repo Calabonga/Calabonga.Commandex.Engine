@@ -54,7 +54,7 @@ public class DialogService : IDialogService
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
-    public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IDialogResult
+    public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IViewModel
         => ShowDialogInternal<TView, TViewModel>(null);
 
     public OperationEmpty<ExecuteCommandexCommandException> ShowNotification(string message)
@@ -107,7 +107,7 @@ public class DialogService : IDialogService
 
             var viewModelResult = (IResult)viewModel;
             viewModelResult.Owner = dialog;
-            if (dialogParameter is not null && viewModelResult is IDialogResult viewModelDialogResult)
+            if (dialogParameter is not null && viewModelResult is IViewModel viewModelDialogResult)
             {
                 viewModelDialogResult.OnParameterSet(dialogParameter);
             }
@@ -161,9 +161,9 @@ public class DialogService : IDialogService
             DataContext = viewModelResult
         };
 
-        dialog.ResizeMode = ((IDialogResult)viewModelResult).ResizeMode;
-        dialog.SizeToContent = ((IDialogResult)viewModelResult).SizeToContent;
-        dialog.WindowStyle = ((IDialogResult)viewModelResult).WindowStyle;
+        dialog.ResizeMode = ((IViewModel)viewModelResult).ResizeMode;
+        dialog.SizeToContent = ((IViewModel)viewModelResult).SizeToContent;
+        dialog.WindowStyle = ((IViewModel)viewModelResult).WindowStyle;
         dialog.Content = control;
         dialog.Title = type.ToString();
         dialog.ShowDialog();

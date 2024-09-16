@@ -7,7 +7,7 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 /// <summary>
 /// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
 /// </summary>
-public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IDialogResult
+public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IViewModel
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
