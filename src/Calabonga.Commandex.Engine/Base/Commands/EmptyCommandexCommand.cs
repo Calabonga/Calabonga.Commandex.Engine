@@ -22,11 +22,15 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
-    public object? GetResult() => null;
     /// <summary>
-    ///  Tags about what the command is intended for
+    /// Returns result from command
     /// </summary>
-    public abstract string[]? Tags { get; }
+    public object? GetResult() => null;
+
+    /// <summary>
+    /// Tags that describes what command created for
+    /// </summary>
+    public virtual string[]? Tags { get; set; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

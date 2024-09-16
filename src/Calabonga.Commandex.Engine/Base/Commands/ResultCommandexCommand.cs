@@ -30,9 +30,9 @@ public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
     public object GetResult() => Result ?? new object();
 
     /// <summary>
-    ///  Tags about what the command is intended for
+    /// Tags that describes what command created for
     /// </summary>
-    public abstract string[]? Tags { get; }
+    public virtual string[]? Tags { get; set; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

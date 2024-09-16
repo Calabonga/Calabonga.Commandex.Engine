@@ -54,10 +54,13 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     public object? GetResult() => Parameter;
 
     /// <summary>
-    ///  Tags about what the command is intended for
+    /// Tags that describes what command created for
     /// </summary>
-    public abstract string[]? Tags { get; }
+    public virtual string[]? Tags { get; set; }
 
+    /// <summary>
+    /// Parameter for command
+    /// </summary>
     protected TParams? Parameter
     {
         get => _parameter ??= GetParameter();
