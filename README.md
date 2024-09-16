@@ -28,6 +28,15 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.0.0-rc.16 2024-09-16
+
+* UX refactored
+  * Menu added
+  * Shortcuts added
+  * Three type of the command list view added
+* `IDialogResult` renamed to `IViewModel`
+* New property `Tags` added to `ICommandexCommand` for future commands groups management
+
 ### v1.0.0-rc.15 2024-09-15
 
 * Restart Wizard command crash fixed.
