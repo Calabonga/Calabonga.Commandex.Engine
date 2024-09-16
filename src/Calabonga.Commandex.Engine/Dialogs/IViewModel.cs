@@ -3,7 +3,7 @@
 /// <summary>
 /// Dialog result interface
 /// </summary>
-public interface IDialogResult : IResult
+public interface IViewModel : IResult
 {
     /// <summary>
     /// Set parameter from <see cref="IDialogService"/>

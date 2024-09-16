@@ -1,7 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (ResultCommandexCommand 2024-07-29 09:38)
@@ -28,6 +28,11 @@ public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
     private void SetResult(TResult result) => Result = result;
 
     public object GetResult() => Result ?? new object();
+
+    /// <summary>
+    /// Tags that describes what command created for
+    /// </summary>
+    public virtual string[]? Tags { get; set; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

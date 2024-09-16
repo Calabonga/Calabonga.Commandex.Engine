@@ -5,9 +5,9 @@ using System.Windows;
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
+/// // Calabonga: Summary required (DefaultViewModel 2024-08-11 10:33)
 /// </summary>
-public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IViewModel
+public abstract class DefaultViewModel : ViewModelBase, IViewModel
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
@@ -28,16 +28,21 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
     /// <summary>
-    /// Dialog instance
+    /// Window instance that open this dialog
     /// </summary>
     [JsonIgnore]
     public object? Owner { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DefaultDialogResult 2024-09-13 10:30)
+    /// // Calabonga: Summary required (DefaultViewModel 2024-09-13 10:30)
     /// </summary>
     /// <param name="parameter"></param>
     public virtual void OnParameterSet(object? parameter) { }
+
+    /// <summary>
+    /// Custom dialog parameter for Developer needs
+    /// </summary>
+    public object? DialogParameter { get; set; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

@@ -1,10 +1,10 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
-/// // Calabonga: Summary required (ICommandexCommand 2024-07-31 07:55)
+/// General interface for Command implementation for Commandex
 /// </summary>
 public interface ICommandexCommand : IDisposable
 {
@@ -44,7 +44,12 @@ public interface ICommandexCommand : IDisposable
     Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Returns result from command
     /// </summary>
     object? GetResult();
+
+    /// <summary>
+    /// Tags that describes what command created for
+    /// </summary>
+    public string[]? Tags { get; }
 }

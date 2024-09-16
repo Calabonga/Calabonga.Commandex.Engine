@@ -1,5 +1,4 @@
-﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.OperationResults;
@@ -7,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
@@ -54,6 +53,14 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
 
     public object? GetResult() => Parameter;
 
+    /// <summary>
+    /// Tags that describes what command created for
+    /// </summary>
+    public virtual string[]? Tags { get; set; }
+
+    /// <summary>
+    /// Parameter for command
+    /// </summary>
     protected TParams? Parameter
     {
         get => _parameter ??= GetParameter();

@@ -1,7 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Commands;
+namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
 /// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
@@ -22,7 +22,15 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
+    /// <summary>
+    /// Returns result from command
+    /// </summary>
     public object? GetResult() => null;
+
+    /// <summary>
+    /// Tags that describes what command created for
+    /// </summary>
+    public virtual string[]? Tags { get; set; }
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
