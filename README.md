@@ -78,3 +78,7 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 ### v1.0.0-beta.7 2024-07-31
 
 * Первая публичная сборка в nuget
+
+## Видео (Video)
+
+В основном репозитории [Calabonga.Commandex.Shell](https://github.com/Calabonga/Calabonga.Commandex.Shell) есть несколько видео с инструкциями и разъяснениями, как использовать Commandex. А также видео о том, какие типы команд существуют и как для Commandex создавать команды разных типов.
