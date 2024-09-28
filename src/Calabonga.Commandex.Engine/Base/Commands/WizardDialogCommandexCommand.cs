@@ -6,7 +6,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-14 01:21)
+/// Wizard Dialog Commandex Command base class for command with some steps as wizard. Wizard command will open in dialog too.
 /// </summary>
 /// <typeparam name="TWizardDialogResult"></typeparam>
 public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : ICommandexCommand
@@ -19,17 +19,23 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     public abstract string CopyrightInfo { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Current command type
     /// </summary>
     public string TypeName => GetType().Name;
 
     /// <summary>
-    /// // Calabonga: Summary required (ICommandexCommand 2024-07-31 08:03)
+    /// Display command name in command list 
     /// </summary>
     public abstract string DisplayName { get; }
 
+    /// <summary>
+    /// Brief information about what command created for
+    /// </summary>
     public abstract string Description { get; }
 
+    /// <summary>
+    /// Current command version info for identification
+    /// </summary>
     public abstract string Version { get; }
 
     public Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync()
@@ -46,27 +52,30 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
     public virtual bool IsPushToShellEnabled => false;
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Wizard result
     /// </summary>
     private IWizardViewModel? Result { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Sets result for current wizard
     /// </summary>
+    /// <param name="result"></param>
+    /// <returns></returns>
     protected virtual TWizardDialogResult SetResult(TWizardDialogResult result) => result;
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Handler OnDialogClosed
     /// </summary>
+    /// <param name="result"></param>
     private void OnClosingDialogCallback(TWizardDialogResult result) => Result = SetResult(result);
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogCommandexCommand 2024-08-11 12:43)
+    /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
     public object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
 

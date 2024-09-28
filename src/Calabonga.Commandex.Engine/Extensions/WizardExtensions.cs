@@ -3,7 +3,7 @@
 namespace Calabonga.Commandex.Engine.Extensions;
 
 /// <summary>
-/// Wizard extensions
+/// Commandex Framework Engine extensions for <see cref="Wizard"/>
 /// </summary>
 public static class WizardExtensions
 {
