@@ -4,7 +4,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (ResultCommandexCommand 2024-07-29 09:38)
+/// Result Commandex Command base class for command that should return some result to shell.
 /// </summary>
 /// <typeparam name="TResult"></typeparam>
 public abstract class ResultCommandexCommand<TResult> : ICommandexCommand

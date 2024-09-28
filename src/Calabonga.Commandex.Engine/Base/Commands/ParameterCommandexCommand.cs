@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
+/// Parameter Commandex Command base class. The commands of this type can read and write parameter of type you designed.
 /// </summary>
 /// <typeparam name="TParams"></typeparam>
 public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
@@ -51,7 +51,7 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
-    public object? GetResult() => Parameter;
+    public object? GetResult() => _parameter;
 
     /// <summary>
     /// Tags that describes what command created for
@@ -59,25 +59,18 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     public virtual string[]? Tags { get; set; }
 
     /// <summary>
-    /// Parameter for command
+    /// Get parameter for command
     /// </summary>
-    protected TParams? Parameter
-    {
-        get => _parameter ??= GetParameter();
-        set
-        {
-            _parameter = value;
-            SetParameter();
-        }
-    }
+    protected TParams? ReadParameter() => _parameter ??= GetCommandParameter();
 
     /// <summary>
-    /// // Calabonga: Summary required (ParamsToResultCommandexCommand 2024-08-20 12:12)
+    /// 
     /// </summary>
-    protected void SaveParameter() => SetParameter();
+    /// <param name="parameter"></param>
+    protected void WriteParameter(TParams parameter) => SetCommandParameter(parameter);
 
     /// <summary>
-    /// // Calabonga: Summary required (ParamsToResultCommandexCommand 2024-08-20 01:00)
+    /// Delete parameter data from disk
     /// </summary>
     protected void ClearParameter() => ResetParameter();
 
@@ -89,21 +82,16 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
         }
     }
 
-    private void SetParameter()
+    private void SetCommandParameter(TParams parameter)
     {
-        if (_parameter is null)
-        {
-            return;
-        }
-
-        var data = JsonSerializer.SerializeToUtf8Bytes(_parameter);
+        _parameter = parameter;
+        var data = JsonSerializer.SerializeToUtf8Bytes(parameter);
         var base64 = Convert.ToBase64String(data);
         File.WriteAllText(_parameterPath, base64, Encoding.UTF8);
     }
 
-    private TParams? GetParameter()
+    private TParams? GetCommandParameter()
     {
-
         if (!File.Exists(_parameterPath))
         {
             return null;

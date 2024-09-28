@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Calabonga.Commandex.Engine.Extensions;
 
+/// <summary>
+/// Commandex Framework Engine extensions for <see cref="ServiceCollection"/>
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     /// <summary>

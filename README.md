@@ -28,6 +28,11 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.0.0-rc.17 2024-09-28
+
+* `ParameterCommandexCommand` getting parameter and setting parameter refactored. Property `Parameter` removed. For read data you can use `ReadParameter()` method. And for write - `WriteParameter()`.
+* Some summaries added/updated
+
 ### v1.0.0-rc.16 2024-09-16
 
 * UX refactored

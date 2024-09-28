@@ -1,11 +1,12 @@
 ﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Base.Commands;
 using System.Text.Json.Serialization;
 using System.Windows;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-08-11 10:33)
+/// Default Dialog result for view that should be used as UI for <see cref="DialogCommandexCommand{TDialogView,TDialogResult}"/>
 /// </summary>
 public abstract class DefaultDialogResult : ViewModelBase, IViewModel
 {
@@ -34,7 +35,7 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel
     public object? Owner { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DefaultDialogResult 2024-09-13 10:30)
+    /// Where the instance created from dependency container this method runs to inject parameter from dialog pipeline.
     /// </summary>
     /// <param name="parameter"></param>
     public virtual void OnParameterSet(object? parameter) { }
@@ -47,8 +48,5 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>
-    public virtual void Dispose()
-    {
-
-    }
+    public virtual void Dispose() { }
 }

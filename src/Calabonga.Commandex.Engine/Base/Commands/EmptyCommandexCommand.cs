@@ -4,7 +4,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (CommandexCommand 2024-07-29 09:38)
+/// Empty Commandex Command base class for command that returns nothing to shell
 /// </summary>
 public abstract class EmptyCommandexCommand : ICommandexCommand
 {

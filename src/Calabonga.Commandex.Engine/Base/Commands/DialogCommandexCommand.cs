@@ -5,7 +5,7 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Base.Commands;
 
 /// <summary>
-/// // Calabonga: Summary required (DialogCommandexCommand 2024-07-30 07:14)
+/// Base class for Dialog Commandex Command
 /// </summary>
 /// <typeparam name="TDialogView"></typeparam>
 /// <typeparam name="TDialogResult"></typeparam>
@@ -77,6 +77,7 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// <summary>
     /// Handler OnDialogClosed
     /// </summary>
+    /// <param name="result"></param>
     private void OnClosingDialogCallback(TDialogResult result) => Result = SetResult(result);
 
     /// <summary>

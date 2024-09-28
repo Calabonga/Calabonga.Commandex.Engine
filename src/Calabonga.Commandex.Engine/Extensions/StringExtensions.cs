@@ -3,7 +3,7 @@
 namespace Calabonga.Commandex.Engine.Extensions;
 
 /// <summary>
-/// // Calabonga: Summary required (StringExtensions 2024-08-20 01:22)
+/// Commandex Framework Engine extensions for <see cref="String"/>
 /// </summary>
 public static class StringExtensions
 {
