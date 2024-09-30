@@ -1,4 +1,4 @@
-﻿using Calabonga.Commandex.Engine.Base.Commands;
+﻿using Calabonga.Commandex.Engine.Commands;
 using System.Windows.Controls;
 
 namespace Calabonga.Commandex.Engine.Dialogs;

@@ -1,9 +1,10 @@
-﻿using Calabonga.Commandex.Engine.Dialogs;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Wizards;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Base.Commands;
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// Wizard Dialog Commandex Command base class for command with some steps as wizard. Wizard command will open in dialog too.

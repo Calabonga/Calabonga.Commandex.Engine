@@ -1,8 +1,9 @@
-﻿using Calabonga.Commandex.Engine.Dialogs;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Base.Commands;
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// Base class for Dialog Commandex Command
