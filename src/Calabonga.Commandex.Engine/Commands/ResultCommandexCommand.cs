@@ -1,12 +1,14 @@
-﻿using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 
-namespace Calabonga.Commandex.Engine.Base.Commands;
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
-/// Empty Commandex Command base class for command that returns nothing to shell
+/// Result Commandex Command base class for command that should return some result to shell.
 /// </summary>
-public abstract class EmptyCommandexCommand : ICommandexCommand
+/// <typeparam name="TResult"></typeparam>
+public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 {
     public string TypeName => GetType().Name;
 
@@ -22,10 +24,11 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
-    /// <summary>
-    /// Returns result from command
-    /// </summary>
-    public object? GetResult() => null;
+    protected abstract TResult? Result { get; set; }
+
+    private void SetResult(TResult result) => Result = result;
+
+    public object GetResult() => Result ?? new object();
 
     /// <summary>
     /// Tags that describes what command created for

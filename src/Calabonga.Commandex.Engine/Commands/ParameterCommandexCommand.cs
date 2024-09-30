@@ -1,4 +1,5 @@
-﻿using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.OperationResults;
@@ -6,7 +7,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
-namespace Calabonga.Commandex.Engine.Base.Commands;
+namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
 /// Parameter Commandex Command base class. The commands of this type can read and write parameter of type you designed.

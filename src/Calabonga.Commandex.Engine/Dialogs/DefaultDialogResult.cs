@@ -1,5 +1,5 @@
 ﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Base.Commands;
+using Calabonga.Commandex.Engine.Commands;
 using System.Text.Json.Serialization;
 using System.Windows;
 
