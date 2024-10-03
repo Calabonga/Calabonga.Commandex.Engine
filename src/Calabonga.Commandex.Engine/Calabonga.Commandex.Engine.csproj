@@ -7,13 +7,13 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.Commandex.Engine</Title>
 		<PackageId>Calabonga.Commandex.Engine</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.1.0-beta.1</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
 		<Copyright>Calabonga SOFT © 2024</Copyright>
 		<PackageTags>commandex;calabonga;wpf;appdefinitions;engine;core;</PackageTags>
-		<PackageReleaseNotes>First Release</PackageReleaseNotes>
+		<PackageReleaseNotes>Dialog window size management improved</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

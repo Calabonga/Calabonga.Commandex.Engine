@@ -29,6 +29,18 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
 
     /// <summary>
+    /// Default value <see cref="FrameworkElement.Width"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Width => 400;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Height => 300;
+
+    /// <summary>
     /// Window instance that open this dialog
     /// </summary>
     [JsonIgnore]
