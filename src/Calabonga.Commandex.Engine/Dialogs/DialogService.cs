@@ -112,10 +112,10 @@ public class DialogService : IDialogService
                 viewModelDialogResult.OnParameterSet(dialogParameter);
             }
 
-            if (viewModel is DefaultDialogResult defaultDialogResult)
+            if (viewModel is ISizable sizableViewModel)
             {
-                dialog.Width = defaultDialogResult.Width;
-                dialog.Height = defaultDialogResult.Height;
+                dialog.Width = sizableViewModel.Width;
+                dialog.Height = sizableViewModel.Height;
             }
 
             var title = viewModelResult.Title;

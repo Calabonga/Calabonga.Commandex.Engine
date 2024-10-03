@@ -8,7 +8,7 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 /// <summary>
 /// Default Dialog result for view that should be used as UI for <see cref="DialogCommandexCommand{TDialogView,TDialogResult}"/>
 /// </summary>
-public abstract class DefaultDialogResult : ViewModelBase, IViewModel
+public abstract class DefaultDialogResult : ViewModelBase, IViewModel, ISizable
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
