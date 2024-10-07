@@ -1,5 +1,7 @@
 # Calabonga.Commandex.Engine
 
+This is a [nuget-package](https://www.nuget.org/packages/Calabonga.Commandex.Engine/) for modular monolith application on WPF platform with plugins as modules.
+
 ## Calabonga.Commandex
 
 `Calabonga.Commandex` - Приложение на платформе WPF построенное с использованием CommunityToolkit.MVVM. 
