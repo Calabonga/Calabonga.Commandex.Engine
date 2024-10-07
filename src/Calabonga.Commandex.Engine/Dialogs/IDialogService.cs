@@ -19,7 +19,7 @@ public interface IDialogService
     /// <returns></returns>
     OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
-        where TViewModel : IResult;
+        where TViewModel : IDialog;
 
     /// <summary>
     /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)
@@ -29,7 +29,7 @@ public interface IDialogService
     /// <param name="dialogParameter"></param>
     OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter)
         where TView : IView
-        where TViewModel : IResult;
+        where TViewModel : IDialog;
 
     /// <summary>
     /// // Calabonga: Summary required (IDialogService 2024-08-03 07:56)
@@ -48,7 +48,7 @@ public interface IDialogService
     /// <param name="onClosingDialogCallback"></param>
     OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
         where TView : IView
-        where TViewModel : IResult;
+        where TViewModel : IDialog;
 
     /// <summary>
     /// Opens notification dialog

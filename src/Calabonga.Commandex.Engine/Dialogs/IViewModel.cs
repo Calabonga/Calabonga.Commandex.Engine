@@ -1,9 +1,11 @@
-﻿namespace Calabonga.Commandex.Engine.Dialogs;
+﻿using Calabonga.Commandex.Engine.Base;
+
+namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
 /// Dialog result interface
 /// </summary>
-public interface IViewModel : IResult
+public interface IViewModel : IDialog
 {
     /// <summary>
     /// Set parameter from <see cref="IDialogService"/>

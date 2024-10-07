@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Calabonga.Commandex.Engine.Dialogs;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
 /// Inherited object has Width and Height. For example, Window
