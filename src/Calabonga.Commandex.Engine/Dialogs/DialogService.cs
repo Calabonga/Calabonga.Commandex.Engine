@@ -80,7 +80,7 @@ public class DialogService : IDialogService
     {
         EventHandler closeEventHandler = null!;
 
-        var dialog = new DialogWindow { MinWidth = 400, MinHeight = 350 };
+        var dialog = new DialogWindow { MinWidth = 100, MinHeight = 50 };
 
         var handler = closeEventHandler;
         closeEventHandler = (sender, _) =>
@@ -110,6 +110,12 @@ public class DialogService : IDialogService
             if (dialogParameter is not null && viewModelResult is IViewModel viewModelDialogResult)
             {
                 viewModelDialogResult.OnParameterSet(dialogParameter);
+            }
+
+            if (viewModel is ISizable sizableViewModel)
+            {
+                dialog.Width = sizableViewModel.Width;
+                dialog.Height = sizableViewModel.Height;
             }
 
             var title = viewModelResult.Title;

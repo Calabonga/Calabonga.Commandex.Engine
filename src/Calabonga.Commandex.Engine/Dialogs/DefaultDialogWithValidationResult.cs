@@ -1,13 +1,15 @@
 ﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Commands;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Windows;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultDialogResult 2024-08-02 01:48)
+/// Default Dialog result with <see cref="ObservableValidator"/> for view that should be used as UI for <see cref="DialogCommandexCommand{TDialogView,TDialogResult}"/>
 /// </summary>
-public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IViewModel
+public abstract class DefaultDialogWithValidationResult : ViewModelWithValidatorBase, IViewModel, ISizable
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
@@ -26,6 +28,18 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     /// </summary>
     [JsonIgnore]
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Width"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Width => 400;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Height => 300;
 
     /// <summary>
     /// Dialog instance

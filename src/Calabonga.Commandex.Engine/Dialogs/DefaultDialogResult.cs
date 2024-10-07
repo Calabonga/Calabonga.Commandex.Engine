@@ -8,7 +8,7 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 /// <summary>
 /// Default Dialog result for view that should be used as UI for <see cref="DialogCommandexCommand{TDialogView,TDialogResult}"/>
 /// </summary>
-public abstract class DefaultDialogResult : ViewModelBase, IViewModel
+public abstract class DefaultDialogResult : ViewModelBase, IViewModel, ISizable
 {
     /// <summary>
     /// Default value <see cref="ResizeMode.NoResize"/>
@@ -27,6 +27,18 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel
     /// </summary>
     [JsonIgnore]
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Width"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Width => 400;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Height => 300;
 
     /// <summary>
     /// Window instance that open this dialog

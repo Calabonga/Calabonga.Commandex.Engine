@@ -28,6 +28,18 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.1.0 2024-10-07
+
+* Dialog window size management improved for ObservableValidator too. Now, you can set up a size of the dialog window. 
+
+### v1.1.0-beta.1 2024-10-03
+
+* Dialog window size management improved
+
+### v1.0.0 2024-10-01
+
+* First Release 
+
 ### v1.0.0-rc.17 2024-09-28
 
 * `ParameterCommandexCommand` getting parameter and setting parameter refactored. Property `Parameter` removed. For read data you can use `ReadParameter()` method. And for write - `WriteParameter()`.
