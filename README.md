@@ -28,6 +28,10 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## История изменений
 
+### v1.1.0 2024-10-07
+
+* Dialog window size management improved for ObservableValidator too. Now, you can set up a size of the dialog window. 
+
 ### v1.1.0-beta.1 2024-10-03
 
 * Dialog window size management improved
