@@ -52,7 +52,10 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
-    public object? GetResult() => _parameter;
+    /// <summary>
+    /// Returns result from command
+    /// </summary>
+    public virtual object? GetResult() => _parameter;
 
     /// <summary>
     /// Tags that describes what command created for
@@ -106,8 +109,5 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>
-    public virtual void Dispose()
-    {
-
-    }
+    public virtual void Dispose() { }
 }

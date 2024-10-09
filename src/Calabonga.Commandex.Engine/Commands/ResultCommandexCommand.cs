@@ -28,7 +28,10 @@ public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 
     private void SetResult(TResult result) => Result = result;
 
-    public object? GetResult() => Result;
+    /// <summary>
+    /// Returns result from command
+    /// </summary>
+    public virtual object? GetResult() => Result;
 
     /// <summary>
     /// Tags that describes what command created for

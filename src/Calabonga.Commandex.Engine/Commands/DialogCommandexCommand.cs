@@ -84,7 +84,7 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// <summary>
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
-    public object? GetResult() => IsPushToShellEnabled ? Result : null;
+    public virtual object? GetResult() => IsPushToShellEnabled ? Result : null;
 
     /// <summary>
     /// Tags that describes what command created for
