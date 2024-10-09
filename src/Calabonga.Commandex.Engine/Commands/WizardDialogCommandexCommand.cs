@@ -60,7 +60,7 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Wizard result
     /// </summary>
-    private IWizardViewModel? Result { get; set; }
+    protected IWizardViewModel? Result { get; set; }
 
     /// <summary>
     /// Sets result for current wizard

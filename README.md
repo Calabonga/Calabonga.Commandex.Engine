@@ -29,11 +29,14 @@ Engine and contracts library for Calabonga.Commandex. Contracts are using for de
 
 ## History of changes
 
+### v1.2.0 2024-10-09
+
 * Nugets dependencies versions updated
 * `ServiceCollection` extension created for DefaultResultProcessor registration in container
 * Base commands processing implementation updated for new type of the result creation available
 * `IResultProcessor` interface created as abstraction for pipeline processing
 * Some classes and interface was renamed
+* Some base commands property Result is marked as virtual
 
 ### v1.1.0 2024-10-07
 

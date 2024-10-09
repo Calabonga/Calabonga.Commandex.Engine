@@ -51,7 +51,7 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// <summary>
     /// Internal dialog result
     /// </summary>
-    private IViewModel? Result { get; set; }
+    protected IViewModel? Result { get; set; }
 
     /// <summary>
     /// Executes command
