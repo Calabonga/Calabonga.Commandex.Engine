@@ -24,11 +24,19 @@ It's a complex solution with a few repositories:
 * **[Calabonga.Commandex.Shell.Develop.Template](https://github.com/Calabonga/Calabonga.Commandex.Shell.Develop.Template)** → This is a Developer version of the Command Executer (`Calabonga.Commandex`). Which is created to runs commands of any type for any purposes. For example, to execute a stored procedure or just to co…
 
 * **[Calabonga.Commandex.Engine](https://github.com/Calabonga/Calabonga.Commandex.Engine)** → Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.
+* **[Calabonga.Commandex.Engine.Processors](https://github.com/Calabonga/Calabonga.Commandex.Engine.Processors)**
+Results Processors for Calabonga.Commandex.Shell commands execution results. This is an extended version of the just show string in the notification dialog.
  
 ## Calabonga.Commandex.Engine (en)
 Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.
 
-## История изменений
+## History of changes
+
+* Nugets dependencies versions updated
+* `ServiceCollection` extension created for DefaultResultProcessor registration in container
+* Base commands processing implementation updated for new type of the result creation available
+* `IResultProcessor` interface created as abstraction for pipeline processing
+* Some classes and interface was renamed
 
 ### v1.1.0 2024-10-07
 
