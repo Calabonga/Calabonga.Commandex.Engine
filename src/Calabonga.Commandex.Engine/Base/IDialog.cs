@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 
-namespace Calabonga.Commandex.Engine.Dialogs;
+namespace Calabonga.Commandex.Engine.Base;
 
 /// <summary>
 /// Default generic interface for command result
 /// </summary>
-public interface IResult : IDisposable
+public interface IDialog : IDisposable
 {
     /// <summary>
     /// Dialog result title

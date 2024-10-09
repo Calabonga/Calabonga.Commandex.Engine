@@ -1,6 +1,8 @@
-﻿using Calabonga.Commandex.Engine.Dialogs;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Wizards;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Calabonga.Commandex.Engine.Extensions;
 
@@ -9,6 +11,15 @@ namespace Calabonga.Commandex.Engine.Extensions;
 /// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Register a <see cref="IResultProcessor"/> for <see cref="ICommandexCommand"/> result post-processing.
+    /// </summary>
+    /// <typeparam name="TProcessing"></typeparam>
+    /// <param name="source"></param>
+    public static void AddResultProcessor<TProcessing>(this IServiceCollection source)
+        where TProcessing : class, IResultProcessor
+        => source.TryAddScoped<IResultProcessor, TProcessing>();
+
     /// <summary>
     /// Register a <see cref="IWizardStep{TWizardStepView,TWizardStepViewModel}"/>> for a <see cref="IWizardViewModel"/>
     /// </summary>

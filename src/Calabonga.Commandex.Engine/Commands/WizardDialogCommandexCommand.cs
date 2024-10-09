@@ -60,7 +60,7 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Wizard result
     /// </summary>
-    private IWizardViewModel? Result { get; set; }
+    protected IWizardViewModel? Result { get; set; }
 
     /// <summary>
     /// Sets result for current wizard
@@ -78,7 +78,7 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
-    public object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
+    public virtual object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
 
     /// <summary>
     /// Tags that describes what command created for

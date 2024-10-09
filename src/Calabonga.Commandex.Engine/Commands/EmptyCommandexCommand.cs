@@ -26,7 +26,7 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
     /// <summary>
     /// Returns result from command
     /// </summary>
-    public object? GetResult() => null;
+    public virtual object? GetResult() => null;
 
     /// <summary>
     /// Tags that describes what command created for

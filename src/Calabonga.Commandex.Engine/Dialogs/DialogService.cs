@@ -25,17 +25,17 @@ public class DialogService : IDialogService
 
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
-        where TViewModel : IResult
+        where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(dialogParameter, onClosingDialogCallback);
 
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter)
         where TView : IView
-        where TViewModel : IResult
+        where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(dialogParameter);
 
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(TViewModel model, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
-        where TViewModel : IResult
+        where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(model, onClosingDialogCallback);
 
     /// <summary>
@@ -46,7 +46,7 @@ public class DialogService : IDialogService
     /// <param name="onClosingDialogCallback"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
         where TView : IView
-        where TViewModel : IResult
+        where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(null, onClosingDialogCallback);
 
     /// <summary>
@@ -76,7 +76,7 @@ public class DialogService : IDialogService
     /// <returns></returns>
     private OperationEmpty<ExecuteCommandexCommandException> ShowDialogInternal<TView, TViewModel>(object? dialogParameter = null, Action<TViewModel>? onClosingDialogCallback = null)
         where TView : IView
-        where TViewModel : IResult
+        where TViewModel : IDialog
     {
         EventHandler closeEventHandler = null!;
 
@@ -105,7 +105,7 @@ public class DialogService : IDialogService
             userControl.DataContext = viewModel;
             dialog.Content = userControl;
 
-            var viewModelResult = (IResult)viewModel;
+            var viewModelResult = (IDialog)viewModel;
             viewModelResult.Owner = dialog;
             if (dialogParameter is not null && viewModelResult is IViewModel viewModelDialogResult)
             {
