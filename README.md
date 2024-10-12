@@ -21,6 +21,11 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v1.3.0 2024-10-12
+
+* The `SettingsPath` parameter was created to allow you to store the command's settings env-files in a separate folder
+* Summaries for some members were updated
+
 ### v1.2.0 2024-10-09
 
 * Nugets dependencies versions updated
