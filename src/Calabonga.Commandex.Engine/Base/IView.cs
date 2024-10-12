@@ -3,6 +3,4 @@
 /// <summary>
 /// General view interface as abstraction
 /// </summary>
-public interface IView
-{
-}
+public interface IView { }

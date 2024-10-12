@@ -11,6 +11,11 @@ public class AppSettings : IAppSettings
     public required string CommandsPath { get; init; }
 
     /// <summary>
+    /// Where Commandex will search a settings files for commands
+    /// </summary>
+    public required string SettingsPath { get; init; }
+
+    /// <summary>
     /// If True then search bar on the top of the commands list will be visible by default.
     /// </summary>
     public bool ShowSearchPanelOnStartup { get; init; }
