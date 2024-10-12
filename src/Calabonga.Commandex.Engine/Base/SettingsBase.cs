@@ -12,12 +12,12 @@ public abstract class SettingsBase
     {
         ShellSettings = shellSettings;
 
-        var path = shellSettings.CommandsPath.EndsWith('/') ? shellSettings.CommandsPath : $"{shellSettings.CommandsPath}/";
+        var settingsPath = shellSettings.SettingsPath.EndsWith('/') ? shellSettings.SettingsPath : $"{shellSettings.SettingsPath}/";
         var currentAssemblyName = settingsReader.GetEnvironmentFileName(GetType());
         var defaultConfigurationFileExtension = settingsReader.GetExtensionFileName();
-        var environmentFileName = $"{path}{currentAssemblyName}{defaultConfigurationFileExtension}";
+        var commandSettingsFile = $"{settingsPath}{currentAssemblyName}{defaultConfigurationFileExtension}";
 
-        Env.Load(environmentFileName);
+        Env.Load(commandSettingsFile);
     }
 
     /// <summary>

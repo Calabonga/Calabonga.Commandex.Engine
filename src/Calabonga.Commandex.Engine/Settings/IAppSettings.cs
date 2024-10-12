@@ -11,6 +11,11 @@ public interface IAppSettings
     string CommandsPath { get; }
 
     /// <summary>
+    /// Where Commandex will search a settings files for commands
+    /// </summary>
+    string SettingsPath { get; }
+
+    /// <summary>
     /// If True then search bar on the top of the commands list will be visible by default.
     /// </summary>
     bool ShowSearchPanelOnStartup { get; }
