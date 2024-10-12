@@ -63,21 +63,24 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     public virtual string[]? Tags { get; set; }
 
     /// <summary>
-    /// Get parameter for command
+    /// Gets parameter for command from storage
     /// </summary>
     protected TParams? ReadParameter() => _parameter ??= GetCommandParameter();
 
     /// <summary>
-    /// 
+    /// Writes parameter data to storage
     /// </summary>
     /// <param name="parameter"></param>
     protected void WriteParameter(TParams parameter) => SetCommandParameter(parameter);
 
     /// <summary>
-    /// Delete parameter data from disk
+    /// Deletes parameter data from disk
     /// </summary>
     protected void ClearParameter() => ResetParameter();
 
+    /// <summary>
+    /// Deletes file where parameters stored for current Command
+    /// </summary>
     private void ResetParameter()
     {
         if (File.Exists(_parameterPath))
@@ -86,6 +89,10 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
         }
     }
 
+    /// <summary>
+    /// Saves file with parameters data for current Command
+    /// </summary>
+    /// <param name="parameter"></param>
     private void SetCommandParameter(TParams parameter)
     {
         _parameter = parameter;
@@ -94,6 +101,10 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
         File.WriteAllText(_parameterPath, base64, Encoding.UTF8);
     }
 
+    /// <summary>
+    /// Loads parameters data for current storage
+    /// </summary>
+    /// <returns></returns>
     private TParams? GetCommandParameter()
     {
         if (!File.Exists(_parameterPath))

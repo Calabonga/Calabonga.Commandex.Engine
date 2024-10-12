@@ -17,6 +17,9 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
 
     protected WizardDialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
 
+    /// <summary>
+    /// Author or copyright information
+    /// </summary>
     public abstract string CopyrightInfo { get; }
 
     /// <summary>
@@ -39,6 +42,9 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// </summary>
     public abstract string Version { get; }
 
+    /// <summary>
+    /// Executes command
+    /// </summary>
     public Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync()
     {
         var result = _dialogService.ShowDialog<IWizardView, TWizardDialogResult>(result =>

@@ -6,7 +6,7 @@
 public interface IAppSettings
 {
     /// <summary>
-    /// Where Commandex will search the commands
+    /// Where Commandex will search a commands
     /// </summary>
     string CommandsPath { get; }
 
@@ -21,7 +21,7 @@ public interface IAppSettings
     string ArtifactsFolderName { get; }
 
     /// <summary>
-    /// Nuget artifacts feed URL. Default: https://api.nuget.org/v3/index.json
+    /// Nuget artifacts feed URL. Default is https://api.nuget.org/v3/index.json
     /// </summary>
     string NugetFeedUrl { get; }
 }

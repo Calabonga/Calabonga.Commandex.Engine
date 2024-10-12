@@ -10,22 +10,50 @@ namespace Calabonga.Commandex.Engine.Commands;
 /// <typeparam name="TResult"></typeparam>
 public abstract class ResultCommandexCommand<TResult> : ICommandexCommand
 {
+    /// <summary>
+    /// Current command type
+    /// </summary>
     public string TypeName => GetType().Name;
 
+    /// <summary>
+    /// Author or copyright information
+    /// </summary>
     public abstract string CopyrightInfo { get; }
 
+    /// <summary>
+    /// Returns True/False indicating that's data from command will push to shell
+    /// </summary>
     public virtual bool IsPushToShellEnabled => false;
 
+    /// <summary>
+    /// Display command name in command list 
+    /// </summary>
     public abstract string DisplayName { get; }
 
+    /// <summary>
+    /// Brief information about what command created for
+    /// </summary>
     public abstract string Description { get; }
 
+    /// <summary>
+    /// Current command version info for identification
+    /// </summary>
     public abstract string Version { get; }
 
+    /// <summary>
+    /// Executes command
+    /// </summary>
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
 
+    /// <summary>
+    /// Current command result
+    /// </summary>
     protected abstract TResult? Result { get; set; }
 
+    /// <summary>
+    /// Sets command result
+    /// </summary>
+    /// <param name="result"></param>
     private void SetResult(TResult result) => Result = result;
 
     /// <summary>
