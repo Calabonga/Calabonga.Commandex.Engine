@@ -1,8 +1,10 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
+using Calabonga.Utils.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
@@ -65,6 +67,17 @@ public class DialogService : IDialogService
 
     public OperationEmpty<ExecuteCommandexCommandException> ShowError(string message)
         => ShowDialogInternal(message, LogLevel.Error);
+
+    /// <summary>
+    /// Show dialog with confirmation
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationtype"></param>
+    /// <returns></returns>
+    public OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
+        string message, Action<ConfirmationDialogResult> onClosingDialogCallback, ConfirmationType confirmationtype = ConfirmationTypes.YesNo)
+        => ShowConfirmDialogInternal(message, onClosingDialogCallback, confirmationtype);
 
     /// <summary>
     /// Internal dialog launcher for generic dialog types.
@@ -149,8 +162,12 @@ public class DialogService : IDialogService
         var dialog = new DialogWindow();
         var handler = closeEventHandler;
 
-        closeEventHandler = (_, _) =>
+        closeEventHandler = (sender, _) =>
         {
+            var window = (DialogWindow)sender!;
+            var userControl = (UserControl)window.Content;
+            var viewModel = (NotificationDialogResult)userControl.DataContext;
+            viewModel?.Dispose();
             dialog.Closed -= handler;
         };
 
@@ -172,6 +189,60 @@ public class DialogService : IDialogService
         dialog.WindowStyle = ((IViewModel)viewModelResult).WindowStyle;
         dialog.Content = control;
         dialog.Title = type.ToString();
+        dialog.ShowDialog();
+
+        return Operation.Result();
+    }
+
+    /// <summary>
+    /// Internal confirmation dialog launcher for primitive type (string)
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationType"></param>
+    private OperationEmpty<ExecuteCommandexCommandException> ShowConfirmDialogInternal(
+        string message, Action<ConfirmationDialogResult> onClosingDialogCallback, ConfirmationType confirmationType = ConfirmationTypes.YesNo)
+    {
+        EventHandler closeEventHandler = null!;
+
+        var dialog = new DialogWindow();
+        var handler = closeEventHandler;
+
+        closeEventHandler = (sender, _) =>
+        {
+            var window = (DialogWindow)sender!;
+            var userControl = (UserControl)window.Content;
+            var viewModel = (ConfirmationDialogResult)userControl.DataContext;
+            onClosingDialogCallback.Invoke(viewModel);
+            viewModel.Dispose();
+            dialog.Closed -= handler;
+        };
+
+        dialog.Closed += closeEventHandler;
+
+        var items = EnumHelper<ConfirmationType>.GetValuesWithDisplayNamesByMask(confirmationType).ToList();
+
+        var buttons = items
+            .Select(x => new ConfirmationButton() { ConfirmationType = x.Key, Content = x.Value })
+            .ToList();
+
+        var viewModelResult = new ConfirmationDialogResult()
+        {
+            Title = message,
+            Owner = dialog,
+            Buttons = new ObservableCollection<ConfirmationButton>(buttons)
+        };
+
+        var control = new ConfirmationDialog
+        {
+            DataContext = viewModelResult
+        };
+
+        dialog.ResizeMode = ((IViewModel)viewModelResult).ResizeMode;
+        dialog.SizeToContent = ((IViewModel)viewModelResult).SizeToContent;
+        dialog.WindowStyle = ((IViewModel)viewModelResult).WindowStyle;
+        dialog.Content = control;
+        dialog.Title = "Confirmation";
         dialog.ShowDialog();
 
         return Operation.Result();
