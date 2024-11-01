@@ -15,8 +15,6 @@ public partial class NotificationDialog : UserControl, IDialogView
         Height = 150;
     }
 
-    public object ViewModel => DataContext;
-
     private void OnButtonOkClicked(object sender, RoutedEventArgs e)
     {
         var window = Parent as Window;

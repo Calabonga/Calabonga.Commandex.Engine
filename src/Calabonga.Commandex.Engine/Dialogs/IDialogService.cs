@@ -5,12 +5,12 @@ using Calabonga.OperationResults;
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (IDialogService 2024-07-29 04:10)
+/// DialogService interface
 /// </summary>
 public interface IDialogService
 {
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-09-11 05:54)
+    /// Shows dialog with dialog parameter and closing callback
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
@@ -22,7 +22,7 @@ public interface IDialogService
         where TViewModel : IDialog;
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)
+    /// Shows dialog with dialog parameter
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
@@ -32,7 +32,7 @@ public interface IDialogService
         where TViewModel : IDialog;
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-08-03 07:56)
+    /// Shows dialog
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
@@ -41,7 +41,7 @@ public interface IDialogService
         where TViewModel : IViewModel;
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)
+    /// Shows dialog with closing callback
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
@@ -67,4 +67,16 @@ public interface IDialogService
     /// </summary>
     /// <param name="message"></param>
     OperationEmpty<ExecuteCommandexCommandException> ShowError(string message);
+
+    /// <summary>
+    /// Show dialog with confirmation
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationType"></param>
+    /// <returns></returns>
+    OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
+        string message,
+        Action<ConfirmationDialogResult> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo);
 }

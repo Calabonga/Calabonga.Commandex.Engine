@@ -21,6 +21,38 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v1.4.0 2024-11-01
+
+New feature implemented `ConfirmationDialog`. Now you can ask your user some confirmations:
+
+``` csharp
+[RelayCommand]
+private void OpenLogsFolder()
+    => _dialogService.ShowConfirmation("Open logs folder?", result =>
+    {
+        if (result.ConfirmResult != ConfirmationType.Ok)
+        {
+            return;
+        }
+
+        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
+
+        if (!Path.Exists(path))
+        {
+            _dialogService.ShowNotification($"Folder not found: {path}");
+            return;
+        }
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = true,
+            Verb = "open"
+        });
+    }, ConfirmationTypes.OkCancel);
+```
+
+
 ### v1.3.0 2024-10-12
 
 * The `SettingsPath` parameter was created to allow you to store the command's settings env-files in a separate folder
