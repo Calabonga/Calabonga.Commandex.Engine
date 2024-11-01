@@ -15,8 +15,12 @@ namespace Calabonga.Commandex.Engine.Dialogs
             var window = Parent as Window;
             if (window is not null)
             {
-                GetModel().ConfirmResult = ConfirmationType.Cancel;
-                window.DialogResult = true;
+                if (sender is Button { Tag: ConfirmationType type })
+                {
+                    var model = GetModel();
+                    model.ConfirmResult = type;
+                    window.DialogResult = type is ConfirmationType.Ok or ConfirmationType.Yes or ConfirmationType.MayBe;
+                }
             }
             window?.Close();
         }
