@@ -77,6 +77,18 @@ public interface IDialogService
     /// <returns></returns>
     OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
         string message,
+        Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo);
+
+    /// <summary>
+    /// Show dialog with confirmation
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationType"></param>
+    /// <returns></returns>
+    OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
+        string message,
         Action<ConfirmationDialogResult> onClosingDialogCallback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo);
 }

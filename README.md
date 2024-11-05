@@ -21,6 +21,10 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v1.4.2 2024-11-05
+
+The result for `ConfirmationDialog` as Func result added (delegate). Now you can use async/await for confirmation.
+
 ### v1.4.1 2024-11-01
 
 New feature implemented `ConfirmationDialog`. Now you can ask your user some confirmations:
