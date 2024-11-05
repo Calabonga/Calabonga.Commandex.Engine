@@ -208,7 +208,7 @@ public class DialogService : IDialogService
     }
 
     /// <summary>
-    /// Internal confirmation dialog launcher for primitive type (string)
+    /// Internal confirmation dialog launcher for Action delegate type
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
@@ -217,42 +217,37 @@ public class DialogService : IDialogService
         string message,
         Action<ConfirmationDialogResult> onClosingDialogCallback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo)
-    {
-        EventHandler closeEventHandler = null!;
+        => CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
 
-        var dialog = new DialogWindow();
-
-        dialog.Content = new ConfirmationDialog { DataContext = CreateDataContext(message, confirmationType, dialog) };
-        dialog.Title = "Confirmation";
-
-        var handler = closeEventHandler;
-
-        closeEventHandler = (sender, _) =>
-        {
-            var window = (DialogWindow)sender!;
-            var userControl = (UserControl)window.Content;
-            var viewModel = (ConfirmationDialogResult)userControl.DataContext;
-            onClosingDialogCallback.Invoke(viewModel);
-            viewModel.Dispose();
-            dialog.Closed -= handler;
-        };
-
-        dialog.Closed += closeEventHandler;
-
-        dialog.ShowDialog();
-
-        return Operation.Result();
-    }
+    /// <summary>
+    /// Internal confirmation dialog launcher for Func delegate type
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationType"></param>
     private OperationEmpty<ExecuteCommandexCommandException> ShowConfirmDialogInternalFunc(
         string message,
         Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo)
+        => CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
+
+    /// <summary>
+    /// Open dialog with confirmation request
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="callback"></param>
+    /// <param name="confirmationType"></param>
+    /// <returns></returns>
+    private OperationEmpty<ExecuteCommandexCommandException> CreatedConfirmationDialog(
+        string message,
+        object callback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo)
     {
         EventHandler closeEventHandler = null!;
 
         var dialog = new DialogWindow();
 
-        dialog.Content = new ConfirmationDialog { DataContext = CreateDataContext(message, confirmationType, dialog) };
+        dialog.Content = new ConfirmationDialog { DataContext = CreateViewModelForDialogWindowDataContext(message, confirmationType, dialog) };
         dialog.Title = "Confirmation";
 
         var handler = closeEventHandler;
@@ -262,7 +257,15 @@ public class DialogService : IDialogService
             var window = (DialogWindow)sender!;
             var userControl = (UserControl)window.Content;
             var viewModel = (ConfirmationDialogResult)userControl.DataContext;
-            onClosingDialogCallback.Invoke(viewModel);
+
+            if (callback is Action<ConfirmationDialogResult> action)
+            {
+                action.Invoke(viewModel);
+            }
+            else
+            {
+                ((Func<ConfirmationDialogResult, Task>)callback).Invoke(viewModel);
+            }
             viewModel.Dispose();
             dialog.Closed -= handler;
         };
@@ -274,7 +277,14 @@ public class DialogService : IDialogService
         return Operation.Result();
     }
 
-    private static ConfirmationDialogResult CreateDataContext(string message, ConfirmationType confirmationType, DialogWindow dialog)
+    /// <summary>
+    /// Creates a ViewMode for dialog window as DataContext (MVVM)
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="confirmationType"></param>
+    /// <param name="dialog"></param>
+    /// <returns></returns>
+    private static ConfirmationDialogResult CreateViewModelForDialogWindowDataContext(string message, ConfirmationType confirmationType, DialogWindow dialog)
     {
         var items = EnumHelper<ConfirmationType>.GetValuesWithDisplayNamesByMask(confirmationType).ToList();
 
@@ -292,9 +302,6 @@ public class DialogService : IDialogService
         dialog.ResizeMode = ((IViewModel)viewModelResult).ResizeMode;
         dialog.SizeToContent = ((IViewModel)viewModelResult).SizeToContent;
         dialog.WindowStyle = ((IViewModel)viewModelResult).WindowStyle;
-
-
-
 
         return viewModelResult;
     }
