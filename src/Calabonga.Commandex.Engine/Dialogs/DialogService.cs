@@ -73,11 +73,24 @@ public class DialogService : IDialogService
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
+    /// <param name="confirmationType"></param>
+    /// <returns></returns>
+    public OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
+        string message,
+        Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo)
+        => ShowConfirmDialogInternalFunc(message, onClosingDialogCallback, confirmationType);
+
+    /// <summary>
+    /// Show dialog with confirmation
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="onClosingDialogCallback"></param>
     /// <param name="confirmationtype"></param>
     /// <returns></returns>
     public OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
         string message, Action<ConfirmationDialogResult> onClosingDialogCallback, ConfirmationType confirmationtype = ConfirmationTypes.YesNo)
-        => ShowConfirmDialogInternal(message, onClosingDialogCallback, confirmationtype);
+        => ShowConfirmDialogInternalAction(message, onClosingDialogCallback, confirmationtype);
 
     /// <summary>
     /// Internal dialog launcher for generic dialog types.
@@ -200,12 +213,18 @@ public class DialogService : IDialogService
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
     /// <param name="confirmationType"></param>
-    private OperationEmpty<ExecuteCommandexCommandException> ShowConfirmDialogInternal(
-        string message, Action<ConfirmationDialogResult> onClosingDialogCallback, ConfirmationType confirmationType = ConfirmationTypes.YesNo)
+    private OperationEmpty<ExecuteCommandexCommandException> ShowConfirmDialogInternalAction(
+        string message,
+        Action<ConfirmationDialogResult> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo)
     {
         EventHandler closeEventHandler = null!;
 
         var dialog = new DialogWindow();
+
+        dialog.Content = new ConfirmationDialog { DataContext = CreateDataContext(message, confirmationType, dialog) };
+        dialog.Title = "Confirmation";
+
         var handler = closeEventHandler;
 
         closeEventHandler = (sender, _) =>
@@ -220,6 +239,43 @@ public class DialogService : IDialogService
 
         dialog.Closed += closeEventHandler;
 
+        dialog.ShowDialog();
+
+        return Operation.Result();
+    }
+    private OperationEmpty<ExecuteCommandexCommandException> ShowConfirmDialogInternalFunc(
+        string message,
+        Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
+        ConfirmationType confirmationType = ConfirmationTypes.YesNo)
+    {
+        EventHandler closeEventHandler = null!;
+
+        var dialog = new DialogWindow();
+
+        dialog.Content = new ConfirmationDialog { DataContext = CreateDataContext(message, confirmationType, dialog) };
+        dialog.Title = "Confirmation";
+
+        var handler = closeEventHandler;
+
+        closeEventHandler = (sender, _) =>
+        {
+            var window = (DialogWindow)sender!;
+            var userControl = (UserControl)window.Content;
+            var viewModel = (ConfirmationDialogResult)userControl.DataContext;
+            onClosingDialogCallback.Invoke(viewModel);
+            viewModel.Dispose();
+            dialog.Closed -= handler;
+        };
+
+        dialog.Closed += closeEventHandler;
+
+        dialog.ShowDialog();
+
+        return Operation.Result();
+    }
+
+    private static ConfirmationDialogResult CreateDataContext(string message, ConfirmationType confirmationType, DialogWindow dialog)
+    {
         var items = EnumHelper<ConfirmationType>.GetValuesWithDisplayNamesByMask(confirmationType).ToList();
 
         var buttons = items
@@ -233,19 +289,13 @@ public class DialogService : IDialogService
             Buttons = new ObservableCollection<ConfirmationButton>(buttons)
         };
 
-        var control = new ConfirmationDialog
-        {
-            DataContext = viewModelResult
-        };
-
         dialog.ResizeMode = ((IViewModel)viewModelResult).ResizeMode;
         dialog.SizeToContent = ((IViewModel)viewModelResult).SizeToContent;
         dialog.WindowStyle = ((IViewModel)viewModelResult).WindowStyle;
-        dialog.Content = control;
-        dialog.Title = "Confirmation";
-        dialog.ShowDialog();
 
-        return Operation.Result();
+
+
+
+        return viewModelResult;
     }
-
 }

@@ -22,5 +22,3 @@ public partial class ConfirmationDialogResult : DefaultDialogResult
     public override void Dispose() { }
 
 }
-
-
