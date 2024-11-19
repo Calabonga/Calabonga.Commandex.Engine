@@ -5,7 +5,7 @@ using System.Windows;
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DefaultViewModel 2024-08-11 10:33)
+/// Default view model for default dialog with predefined parameters
 /// </summary>
 public abstract class DefaultViewModel : ViewModelBase, IViewModel
 {
@@ -34,7 +34,7 @@ public abstract class DefaultViewModel : ViewModelBase, IViewModel
     public object? Owner { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (DefaultViewModel 2024-09-13 10:30)
+    /// Fired when dialog started to provide parameters from owner.
     /// </summary>
     /// <param name="parameter"></param>
     public virtual void OnParameterSet(object? parameter) { }
@@ -47,8 +47,5 @@ public abstract class DefaultViewModel : ViewModelBase, IViewModel
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>
-    public virtual void Dispose()
-    {
-
-    }
+    public virtual void Dispose() { }
 }

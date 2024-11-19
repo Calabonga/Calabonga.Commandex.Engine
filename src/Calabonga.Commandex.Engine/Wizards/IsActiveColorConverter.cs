@@ -7,7 +7,7 @@ using System.Windows.Media;
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (StepDataTemplateSelector 2024-08-12 03:05)
+/// Wizard active step color converter
 /// </summary>
 [KnownType(typeof(IWizardStep))]
 public class IsActiveColorConverter : IValueConverter
