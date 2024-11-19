@@ -21,6 +21,11 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.0.0-beta.1 2024-11-19
+
+* Migration to NET9.0
+* Some summaries were updated (added)
+
 ### v1.4.2 2024-11-05
 
 The result for `ConfirmationDialog` as Func result added (delegate). Now you can use async/await for confirmation.

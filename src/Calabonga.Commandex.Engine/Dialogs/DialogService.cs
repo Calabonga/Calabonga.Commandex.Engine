@@ -10,7 +10,7 @@ using System.Windows.Controls;
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (DialogService 2024-08-03 07:58)
+/// Dialog service implementation for <see cref="IDialogService"/>
 /// </summary>
 public class DialogService : IDialogService
 {
@@ -25,23 +25,45 @@ public class DialogService : IDialogService
         _logger = logger;
     }
 
+    /// <summary>
+    /// Shows dialog with dialog parameter and closing callback
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="dialogParameter"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <returns></returns>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
         where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(dialogParameter, onClosingDialogCallback);
 
+    /// <summary>
+    /// Shows dialog with dialog parameter
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="dialogParameter"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter)
         where TView : IView
         where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(dialogParameter);
 
+    /// <summary>
+    /// Shows dialog with dialog parameter 
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="model"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <returns></returns>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(TViewModel model, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
         where TViewModel : IDialog
         => ShowDialogInternal<TView, TViewModel>(model, onClosingDialogCallback);
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-07-31 05:53)
+    /// Shows dialog with closing callback
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
@@ -52,19 +74,31 @@ public class DialogService : IDialogService
         => ShowDialogInternal<TView, TViewModel>(null, onClosingDialogCallback);
 
     /// <summary>
-    /// // Calabonga: Summary required (IDialogService 2024-08-03 07:56)
+    /// Shows dialog
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IViewModel
-        => ShowDialogInternal<TView, TViewModel>(null);
+        => ShowDialogInternal<TView, TViewModel>();
 
+    /// <summary>
+    /// Opens notification dialog
+    /// </summary>
+    /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowNotification(string message)
         => ShowDialogInternal(message, LogLevel.Notification);
 
+    /// <summary>
+    /// Opens warning dialog
+    /// </summary>
+    /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowWarning(string message)
         => ShowDialogInternal(message, LogLevel.Warning);
 
+    /// <summary>
+    /// Opens error dialog
+    /// </summary>
+    /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowError(string message)
         => ShowDialogInternal(message, LogLevel.Error);
 

@@ -3,7 +3,7 @@
 namespace Calabonga.Commandex.Engine.Dialogs;
 
 /// <summary>
-/// // Calabonga: Summary required (IDialogView 2024-07-29 04:07)
+/// Dialog view as a type of the <see cref="IView"/> 
 /// </summary>
 public interface IDialogView : IView
 {

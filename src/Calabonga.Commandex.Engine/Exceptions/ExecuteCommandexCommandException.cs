@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine.Exceptions;
 
 /// <summary>
-/// // Calabonga: Summary required (ExecuteCommandexCommandException 2024-08-04 07:09)
+/// Execute operation InvalidOperationException
 /// </summary>
 public class ExecuteCommandexCommandException : InvalidOperationException
 {

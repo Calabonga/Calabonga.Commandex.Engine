@@ -32,6 +32,18 @@ public interface IDialogService
         where TViewModel : IDialog;
 
     /// <summary>
+    /// Shows dialog with dialog parameter 
+    /// </summary>
+    /// <typeparam name="TView"></typeparam>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="model"></param>
+    /// <param name="onClosingDialogCallback"></param>
+    /// <returns></returns>
+    OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(TViewModel model, Action<TViewModel>? onClosingDialogCallback)
+        where TView : IView
+        where TViewModel : IDialog;
+
+    /// <summary>
     /// Shows dialog
     /// </summary>
     /// <typeparam name="TView"></typeparam>
