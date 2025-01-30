@@ -21,6 +21,14 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.1.0 2025-01-30
+
+* `ICommandexIdentity` abstraction added for user managing. This abstraction help to create an application user and store it on the `Shell`. Please see [Wiki samples](https://github.com/Calabonga/Calabonga.Commandex.Engine/wiki/ApplicationUser-on-the-modules).
+* `ISecureData` abstraction added for availability to store on the Shell side data about tokens (`access_token`, `refresh_token`).
+* `IIdentityManager` abstraction for dependency injection container. This can help to make availdable a logged user on the Shell for commands (plugins/modules).
+* Some summaries updated/added/improved.
+* Some refactoring made, syntax error fixed.
+
 ### v2.0.0 2024-11-19
 
 * Migration to NET9.0
@@ -60,7 +68,6 @@ private void OpenLogsFolder()
         });
     }, ConfirmationTypes.OkCancel);
 ```
-
 
 ### v1.3.0 2024-10-12
 
