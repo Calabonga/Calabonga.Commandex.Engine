@@ -5,6 +5,7 @@ using Calabonga.Utils.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Calabonga.Commandex.Engine.Dialogs;
@@ -174,8 +175,15 @@ public class DialogService : IDialogService
 
             if (viewModel is ISizable sizableViewModel)
             {
-                dialog.Width = sizableViewModel.Width;
-                dialog.Height = sizableViewModel.Height;
+                if (!sizableViewModel.IsMaximize)
+                {
+                    dialog.Width = sizableViewModel.Width;
+                    dialog.Height = sizableViewModel.Height;
+                }
+                else
+                {
+                    dialog.WindowState = WindowState.Maximized;
+                }
             }
 
             var title = viewModelResult.Title;
