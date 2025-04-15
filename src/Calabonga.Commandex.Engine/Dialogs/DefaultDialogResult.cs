@@ -41,6 +41,12 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel, ISizable
     public virtual double Height => 300;
 
     /// <summary>
+    /// Open windows maximizes and ignore <see cref="ISizable.Width"/> and <see cref="ISizable.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual bool IsMaximize => false;
+
+    /// <summary>
     /// Window instance that open this dialog
     /// </summary>
     [JsonIgnore]

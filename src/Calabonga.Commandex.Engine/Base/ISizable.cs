@@ -16,4 +16,9 @@ public interface ISizable
     /// Default value <see cref="FrameworkElement.Height"/>
     /// </summary>
     double Height { get; }
+
+    /// <summary>
+    /// Open windows maximizes and ignore <see cref="Width"/> and <see cref="Height"/>
+    /// </summary>
+    bool IsMaximize { get; }
 }

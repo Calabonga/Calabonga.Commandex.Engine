@@ -42,6 +42,12 @@ public abstract class DefaultDialogWithValidationResult : ViewModelWithValidator
     public virtual double Height => 300;
 
     /// <summary>
+    /// Open windows maximizes and ignore <see cref="ISizable.Width"/> and <see cref="ISizable.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual bool IsMaximize => false;
+
+    /// <summary>
     /// Dialog instance
     /// </summary>
     [JsonIgnore]
