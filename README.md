@@ -1,4 +1,4 @@
-# Calabonga.Commandex.Engine
+﻿# Calabonga.Commandex.Engine
 
 This is a [nuget-package](https://www.nuget.org/packages/Calabonga.Commandex.Engine/) for modular monolith application on WPF platform with plugins as modules. Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.
 
@@ -20,6 +20,12 @@ It's a complex solution with a few repositories:
 * **[Calabonga.Commandex.Engine.Processors](https://github.com/Calabonga/Calabonga.Commandex.Engine.Processors)** → Results Processors for Calabonga.Commandex.Shell commands execution results. This is an extended version of the just show string in the notification dialog.
 
 ## History of changes
+
+### v2.2.0 2025-04-15
+* Open dialog in the window maximized now available. See the override for DialogResult `IsMaximized`
+* Some summaries updated/added/improved.
+* Some refactoring made, syntax error fixed. 
+
 
 ### v2.1.0 2025-01-30
 

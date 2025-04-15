@@ -9,7 +9,7 @@ using System.Windows;
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardDialogViewModel 2024-08-11 01:55)
+/// Wizard dialog default ViewModel
 /// </summary>
 public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, IWizardViewModel,
     IRecipient<StepErrorsChangedMessage>,

@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (DemoWizardDialogViewModel 2024-08-13 11:45)
+/// Wizard context with soma payload
 /// </summary>
 public abstract class WizardContext<TPayload>
 {
