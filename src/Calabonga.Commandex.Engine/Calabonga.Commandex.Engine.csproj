@@ -7,13 +7,13 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.Commandex.Engine</Title>
 		<PackageId>Calabonga.Commandex.Engine</PackageId>
-		<Version>2.2.0</Version>
+		<Version>2.3.0</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
 		<Copyright>Calabonga SOFT © 2001 - $([System.DateTime]::Now.ToString(yyyy))</Copyright>
 		<PackageTags>commandex;calabonga;wpf;definitions;engine;core;plugins;mvvm;communitytoolkit;</PackageTags>
-		<PackageReleaseNotes>Identity managing abstraction added</PackageReleaseNotes>
+		<PackageReleaseNotes>ViewModelLocationProvider and ViewModelLocation created for Views and ViewModels binding automation.</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
