@@ -104,7 +104,7 @@ public class DialogService : IDialogService
         => ShowDialogInternal(message, LogLevel.Error);
 
     /// <summary>
-    /// Show dialog with confirmation
+    /// ShowAsync dialog with confirmation
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
@@ -117,7 +117,7 @@ public class DialogService : IDialogService
         => ShowConfirmDialogInternalFunc(message, onClosingDialogCallback, confirmationType);
 
     /// <summary>
-    /// Show dialog with confirmation
+    /// ShowAsync dialog with confirmation
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>

@@ -81,7 +81,7 @@ public interface IDialogService
     OperationEmpty<ExecuteCommandexCommandException> ShowError(string message);
 
     /// <summary>
-    /// Show dialog with confirmation
+    /// ShowAsync dialog with confirmation
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
@@ -93,7 +93,7 @@ public interface IDialogService
         ConfirmationType confirmationType = ConfirmationTypes.YesNo);
 
     /// <summary>
-    /// Show dialog with confirmation
+    /// ShowAsync dialog with confirmation
     /// </summary>
     /// <param name="message"></param>
     /// <param name="onClosingDialogCallback"></param>
