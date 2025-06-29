@@ -75,10 +75,13 @@ public class NotificationZone : Control
         }
 
         var w = Window.GetWindow(this);
-        var x = PresentationSource.FromVisual(w);
-        if (x == null)
+        if (w is not null)
         {
-            return;
+            var x = PresentationSource.FromVisual(w);
+            if (x == null)
+            {
+                return;
+            }
         }
 
         if (_items != null)
