@@ -21,7 +21,7 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
-### v2.4.0 2025-06-28
+### v2.5.0 2025-06-29
 
 Toast Notification implemented: Success, Information, Warning, Error. How it works? It's really easy.
 1. Inject `INotificationManager` into your ViewModel constructor:
@@ -58,7 +58,30 @@ Toast Notification implemented: Success, Information, Warning, Error. How it wor
      // or
      _notificationManager.Show(informationToast);
     ```
-4. Ypu can find any other options for show toast.
+4. There are two zone where you can show a toasts: 
+   * `Screen` - All toast notifications will show on the screen outside of the application. In this case you do not do anything. This case already works "out of the box".
+   * `NotificationZone` - All toast notification will show in the special control `NotificationZone` you should add on your XAML (`VisualTree`). You can do this something like shown below:
+    
+        Add namespace first
+        ```xml
+            xmlns:controls="clr-namespace:Calabonga.Commandex.Engine.ToastNotifications.Controls;assembly=Calabonga.Commandex.Engine"
+        ``` 
+        
+        Then add control `NotificationZone` with name "**NotificationZone**":
+        ```xml
+        <controls:NotificationZone x:Name="NotificationZone" ItemsCountMax="3" Position="TopRight" />
+        ```
+        
+        After than you should add a `NotificationZone` as a parameter for `Show()` method:
+        ```csharp
+        _notificationManager.Show(errorToast, "NotificationZone");
+        // or
+        _notificationManager.Show(successToast, "NotificationZone");
+        // or
+        _notificationManager.Show(warningToast , "NotificationZone");
+        // or
+        _notificationManager.Show(informationToast, "NotificationZone");
+        ```
 
 ### v2.3.0 2025-06-18
 

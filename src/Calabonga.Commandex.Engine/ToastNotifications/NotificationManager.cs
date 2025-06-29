@@ -39,16 +39,15 @@ public class NotificationManager : INotificationManager
                 Left = workArea.Left,
                 Top = workArea.Top,
                 Width = workArea.Width,
-                Height = workArea.Height,
-                Owner = Application.Current.MainWindow
+                Height = workArea.Height
             };
 
             _window.Show();
         }
 
-        foreach (var area in Areas.Where(a => a.Name == areaName))
+        foreach (var zone in Areas.Where(a => a.Name == areaName))
         {
-            area.ShowAsync(content, (TimeSpan)expirationTime, onClick, onClose).ConfigureAwait(false);
+            zone.ShowAsync(content, (TimeSpan)expirationTime, onClick, onClose).ConfigureAwait(false);
         }
     }
 

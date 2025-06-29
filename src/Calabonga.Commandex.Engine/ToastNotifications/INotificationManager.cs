@@ -1,4 +1,5 @@
 ﻿using Calabonga.Commandex.Engine.ToastNotifications.Controls;
+using System.Windows;
 
 namespace Calabonga.Commandex.Engine.ToastNotifications;
 
