@@ -21,6 +21,11 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.6.0 2025-07-02
+
+* Wizard Dialog ViewModel `ISizable` applied
+
+
 ### v2.5.0 2025-06-29
 
 Toast Notification implemented: Success, Information, Warning, Error. How it works? It's really easy.
