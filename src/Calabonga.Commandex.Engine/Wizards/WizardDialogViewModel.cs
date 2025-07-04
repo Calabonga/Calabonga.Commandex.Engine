@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 using System.Windows;
 
 namespace Calabonga.Commandex.Engine.Wizards;
@@ -11,7 +12,7 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// <summary>
 /// Wizard dialog default ViewModel
 /// </summary>
-public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, IWizardViewModel,
+public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, IWizardViewModel, ISizable,
     IRecipient<StepErrorsChangedMessage>,
     IRecipient<ManagerStepActivatedMessage>
     where TPayload : class, new()
@@ -91,6 +92,20 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     public virtual SizeToContent SizeToContent => SizeToContent.Manual;
 
     public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Width"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Width => 400;
+
+    /// <summary>
+    /// Default value <see cref="FrameworkElement.Height"/>
+    /// </summary>
+    [JsonIgnore]
+    public virtual double Height => 300;
+
+    public virtual bool IsMaximize => false;
 
     #endregion
 

@@ -21,6 +21,18 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.6.0 2025-07-04
+
+* Wizard Dialog ViewModel `ISizable` applied
+* `Calabonga.Utils.Extensions` nuget updated:
+    * SemVer utilites added
+    * There are new extensions for `DateTime` added:
+        * `.ToJiraString()` => `1d 4h 34m 23s`
+        * `.GetMonthStartDay()` => return the first day of the month
+        * `.GetMonthStartDay()` => return the first day of the month
+        * `.GetWeekStartDay()` => return the first day of the week
+        * `.GetWeekEndDay()` => return the last day of the week
+
 ### v2.5.0 2025-06-29
 
 Toast Notification implemented: Success, Information, Warning, Error. How it works? It's really easy.
