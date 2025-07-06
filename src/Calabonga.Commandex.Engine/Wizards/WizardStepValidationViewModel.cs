@@ -12,7 +12,7 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public abstract partial class WizardStepValidationViewModel<TPayload> : ViewModelWithValidatorBase, IWizardStepViewModel<TPayload>
 {
-    public WizardStepValidationViewModel()
+    protected WizardStepValidationViewModel()
     {
         ErrorsChanged += OnErrorChanged;
         ValidateAllProperties();

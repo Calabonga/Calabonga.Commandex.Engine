@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.Commandex.Engine</Title>
 		<PackageId>Calabonga.Commandex.Engine</PackageId>
-		<Version>2.7.0-beta.1</Version>
+		<Version>2.7.0-beta.2</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>

@@ -38,12 +38,21 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     private ObservableCollection<IWizardStep>? _steps;
     #endregion
 
-    #region property CanMoveOnStep
+    #region property CanDoNextStep
 
     /// <summary>
-    /// Property CanMoveOnStep
+    /// Property CanDoNextStep
     /// </summary>
-    [ObservableProperty] private bool _canMoveOnStep;
+    [ObservableProperty] private bool _canDoNextStep;
+
+    #endregion
+
+    #region property CanDoPreviousStep
+
+    /// <summary>
+    /// Property CanDoPreviousStep
+    /// </summary>
+    [ObservableProperty] private bool _canDoPreviousStep = true;
 
     #endregion
 
@@ -119,7 +128,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #region Commands
 
     #region PreviuosStepCommand
-    private bool CanPreviousStep() => Steps is not null && !CanMoveOnStep && Steps.Any() && _wizardContext.StepIndex > 0;
+    private bool CanPreviousStep() => Steps is not null && CanDoPreviousStep && Steps.Any() && _wizardContext.StepIndex > 0;
     [RelayCommand(CanExecute = nameof(CanPreviousStep))]
     private void PreviousStep()
     {
@@ -134,7 +143,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #endregion
 
     #region NextStepCommand
-    private bool CanNextStep => Steps is not null && CanMoveOnStep && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
+    private bool CanNextStep => Steps is not null && CanDoNextStep && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
     [RelayCommand(CanExecute = nameof(CanNextStep))]
     private void NextStep()
     {
@@ -175,7 +184,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// <param name="message">The message being received.</param>
     public void Receive(StepErrorsChangedMessage message)
     {
-        CanMoveOnStep = !message.HasErrors;
+        CanDoNextStep = !message.HasErrors;
         NextStepCommand.NotifyCanExecuteChanged();
         PreviousStepCommand.NotifyCanExecuteChanged();
     }
