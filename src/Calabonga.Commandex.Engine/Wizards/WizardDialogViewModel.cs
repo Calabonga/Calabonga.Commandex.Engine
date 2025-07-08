@@ -63,13 +63,6 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     private IWizardStep? _activeStep;
     #endregion
 
-    #region  property CurrentIndex
-    // [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
-    // [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
-    // [ObservableProperty]
-    // private int _currentIndex;
-    #endregion
-
     #region property IsLast and IsNotLast
 
     public bool IsNotLast => !ActiveStep?.IsLast ?? false;
