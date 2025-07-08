@@ -7,11 +7,11 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.Commandex.Engine</Title>
 		<PackageId>Calabonga.Commandex.Engine</PackageId>
-		<Version>2.8.0-beta.1</Version>
+		<Version>2.8.0-beta.2</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.</Description>
-		<Copyright>Calabonga SOFT © 2001 - $([System.DateTime]::Now.ToString(yyyy))</Copyright>
+		<Copyright>Calabonga SOFT © 2024 - $([System.DateTime]::Now.ToString(yyyy))</Copyright>
 		<PackageTags>commandex;calabonga;wpf;definitions;engine;core;plugins;mvvm;communitytoolkit;</PackageTags>
 		<PackageReleaseNotes>nugets dependencies updates</PackageReleaseNotes>
 		<PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Engine</PackageProjectUrl>
@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Calabonga.Utils.Extensions" Version="1.3.1" />
+		<PackageReference Include="Calabonga.Utils.Extensions" Version="1.4.0" />
 		<PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="2.0.0" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.4.0" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.4.0" />
