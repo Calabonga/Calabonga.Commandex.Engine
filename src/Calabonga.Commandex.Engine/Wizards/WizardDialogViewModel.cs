@@ -38,18 +38,29 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     private ObservableCollection<IWizardStep>? _steps;
     #endregion
 
+    #region property CanDoNextStep
+
+    /// <summary>
+    /// Property CanDoNextStep
+    /// </summary>
+    [ObservableProperty] private bool _canDoNextStep;
+
+    #endregion
+
+    #region property CanDoPreviousStep
+
+    /// <summary>
+    /// Property CanDoPreviousStep
+    /// </summary>
+    [ObservableProperty] private bool _canDoPreviousStep = true;
+
+    #endregion
+
     #region property ActiveStep
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Steps))]
     [NotifyPropertyChangedFor(nameof(IsNotLast))]
     private IWizardStep? _activeStep;
-    #endregion
-
-    #region  property CurrentIndex
-    // [NotifyCanExecuteChangedFor(nameof(PreviousStepCommand))]
-    // [NotifyCanExecuteChangedFor(nameof(NextStepCommand))]
-    // [ObservableProperty]
-    // private int _currentIndex;
     #endregion
 
     #region property IsLast and IsNotLast
@@ -83,8 +94,6 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #region Properties
 
-    public bool HasErrors { get; set; }
-
     public object? Owner { get; set; }
 
     public virtual ResizeMode ResizeMode => ResizeMode.NoResize;
@@ -112,7 +121,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #region Commands
 
     #region PreviuosStepCommand
-    private bool CanPreviousStep() => Steps is not null && !HasErrors && Steps.Any() && _wizardContext.StepIndex > 0;
+    private bool CanPreviousStep() => Steps is not null && CanDoPreviousStep && Steps.Any() && _wizardContext.StepIndex > 0;
     [RelayCommand(CanExecute = nameof(CanPreviousStep))]
     private void PreviousStep()
     {
@@ -127,7 +136,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #endregion
 
     #region NextStepCommand
-    private bool CanNextStep => Steps is not null && !HasErrors && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
+    private bool CanNextStep => Steps is not null && CanDoNextStep && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
     [RelayCommand(CanExecute = nameof(CanNextStep))]
     private void NextStep()
     {
@@ -168,7 +177,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// <param name="message">The message being received.</param>
     public void Receive(StepErrorsChangedMessage message)
     {
-        HasErrors = message.HasErrors;
+        CanDoNextStep = !message.HasErrors;
         NextStepCommand.NotifyCanExecuteChanged();
         PreviousStepCommand.NotifyCanExecuteChanged();
     }

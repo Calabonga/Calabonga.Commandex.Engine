@@ -22,6 +22,12 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.7.0 2025-07-08
+
+* Wizard dialog NextButton visibility fixed
+* Wizard CanMove split into `CanDoNextStep` and `CanDoPreviousStep`
+* Unused properties removed
+
 ### v2.6.0 2025-07-04
 
 * Wizard Dialog ViewModel `ISizable` applied
