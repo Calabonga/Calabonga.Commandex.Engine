@@ -22,6 +22,10 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### v2.8.1 2025-07-09
+
+* `Calabonga.Utils.Extensions` version updated
+
 ### v2.8.0 2025-07-08
 
 * `Calabonga.Utils.Extensions` version updated
