@@ -16,7 +16,10 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
 {
     private readonly IDialogService _dialogService;
 
-    protected DialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
+    protected DialogCommandexCommand(IDialogService dialogService)
+    {
+        _dialogService = dialogService;
+    }
 
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
