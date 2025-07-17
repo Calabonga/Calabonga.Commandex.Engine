@@ -86,10 +86,9 @@ public sealed class ZoneManager : IZoneManager
         activeView.DeactivateView();
         OnDeactivated(activeView);
 
-        zone.RemoveItem(activeView);
-
         if (disableFindPreviousView)
         {
+            zone.RemoveItem(activeView);
             return;
         }
 
@@ -107,8 +106,8 @@ public sealed class ZoneManager : IZoneManager
             return;
         }
 
+        zone.RemoveItem(activeView);
         ((Zone)zone).Activate(previous.Value, OnActivating);
-
         OnActivated(previous.Value);
     }
 
