@@ -1,5 +1,4 @@
-﻿using Calabonga.Commandex.Engine.Dialogs;
-using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
 using Microsoft.Extensions.Logging;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
@@ -96,6 +95,8 @@ public sealed class ZoneManager : IZoneManager
         if (lastNode is null)
         {
             _logger.LogError("[COMMANDEX ENGINE] Cannot find current View in the list of the nodes.");
+            zone.RemoveItem(activeView);
+
             return;
         }
 
@@ -103,6 +104,7 @@ public sealed class ZoneManager : IZoneManager
         if (previous is null)
         {
             _logger.LogError("[COMMANDEX ENGINE] Cannot find previous View in the list of the nodes.");
+            zone.RemoveItem(activeView);
             return;
         }
 
