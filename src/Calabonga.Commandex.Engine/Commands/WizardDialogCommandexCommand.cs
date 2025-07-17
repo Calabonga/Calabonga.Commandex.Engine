@@ -28,7 +28,13 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Current command type
     /// </summary>
-    public string TypeName => GetType().Name;
+    public string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Display command name in command list 
@@ -64,7 +70,13 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Wizard result

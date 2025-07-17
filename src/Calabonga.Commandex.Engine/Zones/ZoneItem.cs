@@ -32,10 +32,16 @@ public class ZoneItem
     /// <summary>
     /// Deactivates current zone item
     /// </summary>
-    public void DeactivateView() => IsActive = false;
+    public void DeactivateView()
+    {
+        IsActive = false;
+    }
 
     /// <summary>
     /// Activates current zone item
     /// </summary>
-    public void ActivateView() => IsActive = true;
+    public void ActivateView()
+    {
+        IsActive = true;
+    }
 }

@@ -113,5 +113,8 @@ public class WizardManager<TPayload> : IWizardManager<TPayload>
         return step;
     }
 
-    public void Dispose() => _internalSteps.DeactivateAll();
+    public void Dispose()
+    {
+        _internalSteps.DeactivateAll();
+    }
 }

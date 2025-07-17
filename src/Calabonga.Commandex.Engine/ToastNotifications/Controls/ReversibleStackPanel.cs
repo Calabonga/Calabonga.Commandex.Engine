@@ -9,8 +9,14 @@ public class ReversibleStackPanel : StackPanel
 
     public bool ReverseOrder
     {
-        get => (bool)GetValue(ReverseOrderProperty);
-        set => SetValue(ReverseOrderProperty, value);
+        get
+        {
+            return (bool)GetValue(ReverseOrderProperty);
+        }
+        set
+        {
+            SetValue(ReverseOrderProperty, value);
+        }
     }
 
     public static readonly DependencyProperty ReverseOrderProperty =

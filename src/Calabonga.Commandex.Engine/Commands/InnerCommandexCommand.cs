@@ -3,6 +3,8 @@ using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Zones;
 using Calabonga.OperationResults;
+using System;
+using System.Diagnostics;
 
 namespace Calabonga.Commandex.Engine.Commands;
 
@@ -23,12 +25,24 @@ public abstract class InnerCommandexCommand<TZoneView, TZoneViewModel> : IComman
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Current command type
     /// </summary>
-    public string TypeName => GetType().Name;
+    public string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Author of the current command
@@ -53,7 +67,13 @@ public abstract class InnerCommandexCommand<TZoneView, TZoneViewModel> : IComman
     /// <summary>
     /// The name of the zone where current command will be opened
     /// </summary>
-    private string ZoneName => _zoneManager.GetDefaultZoneName();
+    private string ZoneName
+    {
+        get
+        {
+            return _zoneManager.GetDefaultZoneName();
+        }
+    }
 
     /// <summary>
     /// Internal dialog result
@@ -62,7 +82,11 @@ public abstract class InnerCommandexCommand<TZoneView, TZoneViewModel> : IComman
 
     public Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync()
     {
-        ArgumentNullException.ThrowIfNull(ZoneName);
+        if (string.IsNullOrEmpty(ZoneName))
+        {
+            return Task.FromResult<OperationEmpty<ExecuteCommandexCommandException>>(Operation.Error(new ExecuteCommandexCommandException("ZoneName is not provided. Failed to find a zone.")));
+        }
+
         var result = _zoneManager.ActivateZone<TZoneView, TZoneViewModel>(ZoneName);
 
         return Task.FromResult(result);

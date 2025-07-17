@@ -33,7 +33,13 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Display command name in command list 

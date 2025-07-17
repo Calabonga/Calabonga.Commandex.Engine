@@ -11,7 +11,13 @@ namespace Calabonga.Commandex.Engine.Wizards;
 /// </summary>
 public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWizardStepViewModel<TPayload>
 {
-    public bool HasErrors => Errors.Any();
+    public bool HasErrors
+    {
+        get
+        {
+            return Errors.Any();
+        }
+    }
 
     [ObservableProperty]
     private ObservableCollection<string> _errors = [];

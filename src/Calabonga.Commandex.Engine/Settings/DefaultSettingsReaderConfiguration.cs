@@ -12,13 +12,17 @@ public class DefaultSettingsReaderConfiguration : ISettingsReaderConfiguration
     /// </summary>
     /// <returns></returns>
     public string GetEnvironmentFileName(Type type)
-        =>
-            type.Assembly.GetName().Name
-            ?? throw new InvalidOperationException("ISettingsReaderConfiguration reader not configured properly.");
+    {
+        return type.Assembly.GetName().Name
+               ?? throw new InvalidOperationException("ISettingsReaderConfiguration reader not configured properly.");
+    }
 
     /// <summary>
     /// Returns file extension name for file where settings stored
     /// </summary>
     /// <returns></returns>
-    public string GetExtensionFileName() => ".env";
+    public string GetExtensionFileName()
+    {
+        return ".env";
+    }
 }

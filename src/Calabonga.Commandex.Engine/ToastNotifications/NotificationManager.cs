@@ -52,17 +52,27 @@ public class NotificationManager : INotificationManager
     }
 
     internal static void AddArea(NotificationZone zone)
-        => Areas.Add(zone);
+    {
+        Areas.Add(zone);
+    }
 
     public static NotificationContent CreateInformationToast(string message, string title = "Information")
-        => ToastInformation.Create(message, title);
+    {
+        return ToastInformation.Create(message, title);
+    }
 
     public static NotificationContent CreateWarningToast(string message, string title = "Warning")
-        => WarningToast.Create(message, title);
+    {
+        return WarningToast.Create(message, title);
+    }
 
     public static NotificationContent CreateErrorToast(string message, string title = "Error")
-        => ErrorToast.Create(message, title);
+    {
+        return ErrorToast.Create(message, title);
+    }
 
     public static NotificationContent CreateSuccessToast(string message, string title = "Success")
-        => SuccessToast.Create(message, title);
+    {
+        return SuccessToast.Create(message, title);
+    }
 }

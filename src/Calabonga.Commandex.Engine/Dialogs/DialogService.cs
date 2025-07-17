@@ -37,7 +37,9 @@ public class DialogService : IDialogService
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
         where TViewModel : IDialog
-        => ShowDialogInternal<TView, TViewModel>(dialogParameter, onClosingDialogCallback);
+    {
+        return ShowDialogInternal<TView, TViewModel>(dialogParameter, onClosingDialogCallback);
+    }
 
     /// <summary>
     /// Shows dialog with dialog parameter
@@ -48,7 +50,9 @@ public class DialogService : IDialogService
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(object dialogParameter)
         where TView : IView
         where TViewModel : IDialog
-        => ShowDialogInternal<TView, TViewModel>(dialogParameter);
+    {
+        return ShowDialogInternal<TView, TViewModel>(dialogParameter);
+    }
 
     /// <summary>
     /// Shows dialog with dialog parameter 
@@ -61,7 +65,9 @@ public class DialogService : IDialogService
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(TViewModel model, Action<TViewModel>? onClosingDialogCallback)
         where TView : IView
         where TViewModel : IDialog
-        => ShowDialogInternal<TView, TViewModel>(model, onClosingDialogCallback);
+    {
+        return ShowDialogInternal<TView, TViewModel>(model, onClosingDialogCallback);
+    }
 
     /// <summary>
     /// Shows dialog with closing callback
@@ -72,7 +78,9 @@ public class DialogService : IDialogService
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
         where TView : IView
         where TViewModel : IDialog
-        => ShowDialogInternal<TView, TViewModel>(null, onClosingDialogCallback);
+    {
+        return ShowDialogInternal<TView, TViewModel>(null, onClosingDialogCallback);
+    }
 
     /// <summary>
     /// Shows dialog
@@ -80,28 +88,36 @@ public class DialogService : IDialogService
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IViewModel
-        => ShowDialogInternal<TView, TViewModel>();
+    {
+        return ShowDialogInternal<TView, TViewModel>();
+    }
 
     /// <summary>
     /// Opens notification dialog
     /// </summary>
     /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowNotification(string message)
-        => ShowDialogInternal(message, LogLevel.Notification);
+    {
+        return ShowDialogInternal(message, LogLevel.Notification);
+    }
 
     /// <summary>
     /// Opens warning dialog
     /// </summary>
     /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowWarning(string message)
-        => ShowDialogInternal(message, LogLevel.Warning);
+    {
+        return ShowDialogInternal(message, LogLevel.Warning);
+    }
 
     /// <summary>
     /// Opens error dialog
     /// </summary>
     /// <param name="message"></param>
     public OperationEmpty<ExecuteCommandexCommandException> ShowError(string message)
-        => ShowDialogInternal(message, LogLevel.Error);
+    {
+        return ShowDialogInternal(message, LogLevel.Error);
+    }
 
     /// <summary>
     /// ShowAsync dialog with confirmation
@@ -114,7 +130,9 @@ public class DialogService : IDialogService
         string message,
         Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo)
-        => ShowConfirmDialogInternalFunc(message, onClosingDialogCallback, confirmationType);
+    {
+        return ShowConfirmDialogInternalFunc(message, onClosingDialogCallback, confirmationType);
+    }
 
     /// <summary>
     /// ShowAsync dialog with confirmation
@@ -125,7 +143,9 @@ public class DialogService : IDialogService
     /// <returns></returns>
     public OperationEmpty<ExecuteCommandexCommandException> ShowConfirmation(
         string message, Action<ConfirmationDialogResult> onClosingDialogCallback, ConfirmationType confirmationtype = ConfirmationTypes.YesNo)
-        => ShowConfirmDialogInternalAction(message, onClosingDialogCallback, confirmationtype);
+    {
+        return ShowConfirmDialogInternalAction(message, onClosingDialogCallback, confirmationtype);
+    }
 
     /// <summary>
     /// Internal dialog launcher for generic dialog types.
@@ -259,7 +279,9 @@ public class DialogService : IDialogService
         string message,
         Action<ConfirmationDialogResult> onClosingDialogCallback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo)
-        => CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
+    {
+        return CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
+    }
 
     /// <summary>
     /// Internal confirmation dialog launcher for Func delegate type
@@ -271,7 +293,9 @@ public class DialogService : IDialogService
         string message,
         Func<ConfirmationDialogResult, Task> onClosingDialogCallback,
         ConfirmationType confirmationType = ConfirmationTypes.YesNo)
-        => CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
+    {
+        return CreatedConfirmationDialog(message, onClosingDialogCallback, confirmationType);
+    }
 
     /// <summary>
     /// Open dialog with confirmation request

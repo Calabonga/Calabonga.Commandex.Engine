@@ -21,7 +21,13 @@ public class Zone : IZone
     /// <summary>
     /// Views in current zone
     /// </summary>
-    public LinkedList<ZoneItem> Views => _views;
+    public LinkedList<ZoneItem> Views
+    {
+        get
+        {
+            return _views;
+        }
+    }
 
     /// <summary>
     /// Current zone name
@@ -65,7 +71,7 @@ public class Zone : IZone
     /// Returns Active view from the views for current Zone
     /// </summary>
     /// <returns></returns>
-    public ZoneItem? GetActiveZoneItem()
+    public ZoneItem? GetActiveView()
     {
         return _views.SingleOrDefault(x => x.IsActive);
     }

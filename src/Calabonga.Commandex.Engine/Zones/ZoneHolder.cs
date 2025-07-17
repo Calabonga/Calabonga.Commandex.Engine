@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.OperationResults;
+using System.Diagnostics;
+using System.Windows;
 
 namespace Calabonga.Commandex.Engine.Zones;
 
@@ -14,22 +17,32 @@ internal sealed class ZoneHolder
     /// </summary>
     /// <param name="element"></param>
     /// <param name="name"></param>
-    public void RegisterZone(DependencyObject element, string name) => _zones.Add(new Zone(name, element));
+    public void RegisterZone(DependencyObject element, string name)
+    {
+        _zones.Add(new Zone(name, element));
+    }
 
     /// <summary>
     /// Returns a zone if it registered
     /// </summary>
     /// <param name="zoneName"></param>
     /// <returns></returns>
-    public IZone GetZone(string zoneName)
+    public Operation<IZone, ExecuteCommandexCommandException> GetZone(string zoneName)
     {
-        ArgumentNullException.ThrowIfNull(zoneName);
+        if (string.IsNullOrEmpty(zoneName))
+        {
+            return Operation.Error(new ExecuteCommandexCommandException("ZoneName is not provided."));
+        }
 
         var zone = _zones.FirstOrDefault(x => x.Name == zoneName);
 
-        ArgumentNullException.ThrowIfNull(zone);
+        if (zone is not null)
+        {
+            return Operation.Result(zone);
+        }
 
-        return zone;
+        return Operation.Error(new ExecuteCommandexCommandException($"UIElement is not found with name {zoneName}"));
+
     }
 
     /// <summary>
@@ -79,7 +92,13 @@ internal sealed class ZoneHolder
     /// <summary>
     /// Instance of the <see cref="ZoneHolder"/>
     /// </summary>
-    public static ZoneHolder Instance => Lazy.Value;
+    public static ZoneHolder Instance
+    {
+        get
+        {
+            return Lazy.Value;
+        }
+    }
 
     #endregion
 }

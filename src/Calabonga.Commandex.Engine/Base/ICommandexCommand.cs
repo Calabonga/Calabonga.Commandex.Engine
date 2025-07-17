@@ -11,7 +11,13 @@ public interface ICommandexCommand : IDisposable
     /// <summary>
     /// Current command type
     /// </summary>
-    string TypeName => GetType().Name;
+    string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Author or copyright information

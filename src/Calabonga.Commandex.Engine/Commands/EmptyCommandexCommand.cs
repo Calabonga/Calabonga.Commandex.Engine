@@ -12,12 +12,24 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Current command type
     /// </summary>
-    public string TypeName => GetType().Name;
+    public string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Author or copyright information

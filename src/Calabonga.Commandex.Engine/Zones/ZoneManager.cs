@@ -1,5 +1,8 @@
-﻿using Calabonga.Commandex.Engine.Exceptions;
+﻿using Calabonga.Commandex.Engine.Dialogs;
+using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.OperationResults;
+using Microsoft.Extensions.Logging;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Calabonga.Commandex.Engine.Zones;
 
@@ -9,10 +12,14 @@ namespace Calabonga.Commandex.Engine.Zones;
 public sealed class ZoneManager : IZoneManager
 {
     private readonly IMvvmObjectFactory _mvvmFactory;
+    private readonly ILogger<ZoneManager> _logger;
 
-    public ZoneManager(IMvvmObjectFactory mvvmFactory)
+    public ZoneManager(
+        IMvvmObjectFactory mvvmFactory,
+        ILogger<ZoneManager> logger)
     {
         _mvvmFactory = mvvmFactory;
+        _logger = logger;
     }
 
     #region Events
@@ -43,37 +50,66 @@ public sealed class ZoneManager : IZoneManager
     /// <param name="viewModel"></param>
     public void Remove(IZoneViewModel viewModel)
     {
+        if (_logger.IsEnabled(LogLevel.Debug))
+        {
+            _logger.LogDebug("[COMMANDEX ENGINE] Removing view with viewModel {Type} from zone", viewModel.GetType().Name);
+        }
+
         ZoneHolder.Instance.RemoveFromZones(viewModel, OnDeactivating, OnDeactivated);
     }
 
-    public void GoBack()
+    public void GoBack(bool disableFindPreviousView = false)
     {
-        var zone = ZoneHolder.Instance.GetZone(GetDefaultZoneName());
+        if (_logger.IsEnabled(LogLevel.Debug))
+        {
+            _logger.LogDebug("[COMMANDEX ENGINE]Going back");
+        }
 
-        ArgumentNullException.ThrowIfNull(zone);
+        var getZone = ZoneHolder.Instance.GetZone(GetDefaultZoneName());
+        if (!getZone.Ok)
+        {
+            _logger.LogError(getZone.Error, "[COMMANDEX ENGINE] {ErrorMessage}", getZone.Error.Message);
 
-        var activeZoneItem = zone.GetActiveZoneItem();
+            return;
+        }
 
-        ArgumentNullException.ThrowIfNull(activeZoneItem);
+        var zone = getZone.Result;
+        var activeView = zone.GetActiveView();
+        if (activeView is null)
+        {
+            _logger.LogError(getZone.Error, getZone.Error.Message);
 
-        OnDeactivating(activeZoneItem);
-        activeZoneItem.DeactivateView();
-        OnDeactivated(activeZoneItem);
+            return;
+        }
 
-        var back = zone.Views.Last;
+        OnDeactivating(activeView);
+        activeView.DeactivateView();
+        OnDeactivated(activeView);
 
-        ArgumentNullException.ThrowIfNull(back);
+        zone.RemoveItem(activeView);
 
-        var previous = back.Previous;
+        if (disableFindPreviousView)
+        {
+            return;
+        }
 
-        ArgumentNullException.ThrowIfNull(previous);
+        var lastNode = getZone.Result.Views.Last;
+        if (lastNode is null)
+        {
+            _logger.LogError("[COMMANDEX ENGINE] Cannot find current View in the list of the nodes.");
+            return;
+        }
 
-        zone.RemoveItem(activeZoneItem);
+        var previous = lastNode.Previous;
+        if (previous is null)
+        {
+            _logger.LogError("[COMMANDEX ENGINE] Cannot find previous View in the list of the nodes.");
+            return;
+        }
 
         ((Zone)zone).Activate(previous.Value, OnActivating);
+
         OnActivated(previous.Value);
-
-
     }
 
     public string GetDefaultZoneName()
@@ -93,8 +129,15 @@ public sealed class ZoneManager : IZoneManager
         where TView : IZoneView
         where TViewModel : IZoneViewModel
     {
-        var zone = ZoneHolder.Instance.GetZone(zoneName);
-        var activeZone = zone.GetActiveZoneItem();
+        var getZone = ZoneHolder.Instance.GetZone(zoneName);
+        if (!getZone.Ok)
+        {
+            return Operation.Error(getZone.Error);
+        }
+
+        var zone = getZone.Result;
+
+        var activeZone = zone.GetActiveView();
 
         if (activeZone is not null && zoneName == zone.Name)
         {

@@ -47,7 +47,8 @@ public interface IZoneManager
     /// <summary>
     /// Activates previous view for current zone
     /// </summary>
-    void GoBack();
+    /// <param name="disableFindPreviousView"></param>
+    void GoBack(bool disableFindPreviousView = false);
 
     /// <summary>
     /// Returns default zone name

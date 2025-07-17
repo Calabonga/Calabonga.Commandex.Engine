@@ -18,7 +18,9 @@ public static class ServiceCollectionExtensions
     /// <param name="source"></param>
     public static void AddResultProcessor<TProcessing>(this IServiceCollection source)
         where TProcessing : class, IResultProcessor
-        => source.TryAddScoped<IResultProcessor, TProcessing>();
+    {
+        source.TryAddScoped<IResultProcessor, TProcessing>();
+    }
 
     /// <summary>
     /// Register a <see cref="IWizardStep{TWizardStepView,TWizardStepViewModel}"/>> for a <see cref="IWizardViewModel"/>
@@ -46,13 +48,18 @@ public static class ServiceCollectionExtensions
     /// <param name="source"></param>
     public static void AddWizard<TWizard>(this IServiceCollection source)
         where TWizard : IWizardViewModel
-        => source.AddTransient(typeof(TWizard));
+    {
+        source.AddTransient(typeof(TWizard));
+    }
 
     /// <summary>
     /// Register <see cref="IDialogService"/> component
     /// </summary>
     /// <param name="source"></param>
-    public static void AddDialogComponent(this IServiceCollection source) => source.AddTransient<IDialogService, DialogService>();
+    public static void AddDialogComponent(this IServiceCollection source)
+    {
+        source.AddTransient<IDialogService, DialogService>();
+    }
 
     /// <summary>
     /// Register <see cref="IWizardManager{TPayload}"/> component

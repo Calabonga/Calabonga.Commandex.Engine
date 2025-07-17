@@ -9,7 +9,10 @@ public class WizardStep : ObservableObject
 {
     public bool IsLast { get; private set; }
 
-    public void SetLast(bool value) => IsLast = value;
+    public void SetLast(bool value)
+    {
+        IsLast = value;
+    }
 }
 
 /// <summary>

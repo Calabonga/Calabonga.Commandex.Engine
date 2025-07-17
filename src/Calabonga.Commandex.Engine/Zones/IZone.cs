@@ -29,7 +29,7 @@ public interface IZone
     /// Returns Active view from the views for current Zone
     /// </summary>
     /// <returns></returns>
-    ZoneItem? GetActiveZoneItem();
+    ZoneItem? GetActiveView();
 
     /// <summary>
     /// Removes <see cref="ZoneItem"/>

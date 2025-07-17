@@ -22,6 +22,13 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### 3.0.0 2025-07-17
+
+* New type `InnerCommandexCommand<TView, TViewModel>` of the `CommandexCommand` created. This command type can be switched in the `ContentControl` (UIElement) named as `MainZone`. New `IZoneManager` can activate you command in the special zone in the Shell main window;
+* Some summaries added
+* Some summaries updated
+* Nuget-packages dependencies were updated
+
 ### v2.8.1 2025-07-09
 
 * `Calabonga.Utils.Extensions` version updated
