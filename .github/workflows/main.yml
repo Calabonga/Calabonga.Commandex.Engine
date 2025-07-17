@@ -1,4 +1,4 @@
-name: Nuget Package (NET9)
+name: Calabonga.Commandex.Engine Packaging
 
 on:
   push:
