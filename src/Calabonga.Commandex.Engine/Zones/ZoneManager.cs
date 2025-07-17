@@ -10,7 +10,10 @@ public sealed class ZoneManager : IZoneManager
 {
     private readonly IMvvmObjectFactory _mvvmFactory;
 
-    public ZoneManager(IMvvmObjectFactory mvvmFactory) => _mvvmFactory = mvvmFactory;
+    public ZoneManager(IMvvmObjectFactory mvvmFactory)
+    {
+        _mvvmFactory = mvvmFactory;
+    }
 
     #region Events
 
@@ -39,7 +42,9 @@ public sealed class ZoneManager : IZoneManager
     /// </summary>
     /// <param name="viewModel"></param>
     public void Remove(IZoneViewModel viewModel)
-        => ZoneHolder.Instance.RemoveFromZones(viewModel, OnDeactivating, OnDeactivated);
+    {
+        ZoneHolder.Instance.RemoveFromZones(viewModel, OnDeactivating, OnDeactivated);
+    }
 
     public void GoBack()
     {
@@ -47,13 +52,13 @@ public sealed class ZoneManager : IZoneManager
 
         ArgumentNullException.ThrowIfNull(zone);
 
-        var activeZone = zone.GetActive();
+        var activeZoneItem = zone.GetActiveZoneItem();
 
-        ArgumentNullException.ThrowIfNull(activeZone);
+        ArgumentNullException.ThrowIfNull(activeZoneItem);
 
-        OnDeactivating(activeZone);
-        activeZone.DeactivateView();
-        OnDeactivated(activeZone);
+        OnDeactivating(activeZoneItem);
+        activeZoneItem.DeactivateView();
+        OnDeactivated(activeZoneItem);
 
         var back = zone.Views.Last;
 
@@ -63,6 +68,7 @@ public sealed class ZoneManager : IZoneManager
 
         ArgumentNullException.ThrowIfNull(previous);
 
+        zone.RemoveItem(activeZoneItem);
 
         ((Zone)zone).Activate(previous.Value, OnActivating);
         OnActivated(previous.Value);
@@ -70,7 +76,10 @@ public sealed class ZoneManager : IZoneManager
 
     }
 
-    public string GetDefaultZoneName() => "MainZone";
+    public string GetDefaultZoneName()
+    {
+        return "MainZone";
+    }
 
     #endregion
 
@@ -85,7 +94,7 @@ public sealed class ZoneManager : IZoneManager
         where TViewModel : IZoneViewModel
     {
         var zone = ZoneHolder.Instance.GetZone(zoneName);
-        var activeZone = zone.GetActive();
+        var activeZone = zone.GetActiveZoneItem();
 
         if (activeZone is not null && zoneName == zone.Name)
         {
@@ -124,7 +133,10 @@ public sealed class ZoneManager : IZoneManager
         Activating?.Invoke(this, e);
     }
 
-    private void OnActivated(ZoneItem e) => Activated?.Invoke(this, e);
+    private void OnActivated(ZoneItem e)
+    {
+        Activated?.Invoke(this, e);
+    }
 
     private void OnDeactivating(ZoneItem e)
     {
@@ -132,8 +144,12 @@ public sealed class ZoneManager : IZoneManager
         {
             viewModel.OnDeactivate();
         }
+
         Deactivating?.Invoke(this, e);
     }
 
-    private void OnDeactivated(ZoneItem e) => Deactivated?.Invoke(this, e);
+    private void OnDeactivated(ZoneItem e)
+    {
+        Deactivated?.Invoke(this, e);
+    }
 }

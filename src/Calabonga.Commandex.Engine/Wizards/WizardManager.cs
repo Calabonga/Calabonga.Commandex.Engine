@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardManager 2024-08-13 08:01)
+/// Wizard Step Manager
 /// </summary>
 public class WizardManager<TPayload> : IWizardManager<TPayload>
 {
@@ -66,7 +66,7 @@ public class WizardManager<TPayload> : IWizardManager<TPayload>
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardManager 2024-08-13 05:16)
+    /// Resolve active step from DI-container
     /// </summary>
     /// <param name="wizardContext"></param>
     /// <exception cref="WizardInvalidOperationException"></exception>

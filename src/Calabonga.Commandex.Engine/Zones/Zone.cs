@@ -65,7 +65,10 @@ public class Zone : IZone
     /// Returns Active view from the views for current Zone
     /// </summary>
     /// <returns></returns>
-    public ZoneItem? GetActive() => _views.SingleOrDefault(x => x.IsActive);
+    public ZoneItem? GetActiveZoneItem()
+    {
+        return _views.SingleOrDefault(x => x.IsActive);
+    }
 
     /// <summary>
     /// Removes <see cref="ZoneItem"/>

@@ -3,6 +3,6 @@
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardView 2024-08-11 01:35)
+/// Wizard View abstraction
 /// </summary>
 public interface IWizardView : IView { }

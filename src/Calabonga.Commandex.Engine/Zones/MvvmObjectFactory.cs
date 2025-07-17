@@ -27,7 +27,7 @@ public class MvvmObjectFactory : IMvvmObjectFactory
         where TView : IZoneView
         where TViewModel : IZoneViewModel
     {
-        using var scope = _serviceProvider.CreateScope();
+        var scope = _serviceProvider.CreateScope();
 
         var view = scope.ServiceProvider.GetRequiredService<TView>();
         onViewCreated?.Invoke(view);
@@ -50,7 +50,7 @@ public class MvvmObjectFactory : IMvvmObjectFactory
     /// <returns></returns>
     public IZoneView Create(Type viewType, Type viewModelType, Action<object>? onViewCreated = null, Action<object>? onViewModelCreated = null)
     {
-        using var scope = _serviceProvider.CreateScope();
+        var scope = _serviceProvider.CreateScope();
         var view = (IZoneView)scope.ServiceProvider.GetRequiredService(viewType);
         onViewCreated?.Invoke(view);
 

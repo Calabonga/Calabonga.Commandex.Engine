@@ -76,18 +76,27 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// Sets current command result for Shell or other command
     /// </summary>
     /// <param name="result"></param>
-    protected virtual TDialogResult SetResult(TDialogResult result) => result;
+    protected virtual TDialogResult SetResult(TDialogResult result)
+    {
+        return result;
+    }
 
     /// <summary>
     /// Handler OnDialogClosed
     /// </summary>
     /// <param name="result"></param>
-    private void OnClosingDialogCallback(TDialogResult result) => Result = SetResult(result);
+    private void OnClosingDialogCallback(TDialogResult result)
+    {
+        Result = SetResult(result);
+    }
 
     /// <summary>
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
-    public virtual object? GetResult() => IsPushToShellEnabled ? Result : null;
+    public virtual object? GetResult()
+    {
+        return IsPushToShellEnabled ? Result : null;
+    }
 
     /// <summary>
     /// Tags that describes what command created for

@@ -9,16 +9,34 @@ namespace Calabonga.Commandex.Engine.Commands;
 /// </summary>
 public abstract class EmptyCommandexCommand : ICommandexCommand
 {
-    public string TypeName => GetType().Name;
-
-    public abstract string CopyrightInfo { get; }
-
+    /// <summary>
+    /// Returns True/False indicating that's data from command will push to shell
+    /// </summary>
     public virtual bool IsPushToShellEnabled => false;
 
+    /// <summary>
+    /// Current command type
+    /// </summary>
+    public string TypeName => GetType().Name;
+
+    /// <summary>
+    /// Author or copyright information
+    /// </summary>
+    public abstract string CopyrightInfo { get; }
+
+    /// <summary>
+    /// Display command name in command list 
+    /// </summary>
     public abstract string DisplayName { get; }
 
+    /// <summary>
+    /// Brief information about what command created for
+    /// </summary>
     public abstract string Description { get; }
 
+    /// <summary>
+    /// Current command version info for identification
+    /// </summary>
     public abstract string Version { get; }
 
     public abstract Task<OperationEmpty<ExecuteCommandexCommandException>> ExecuteCommandAsync();
@@ -26,7 +44,10 @@ public abstract class EmptyCommandexCommand : ICommandexCommand
     /// <summary>
     /// Returns result from command
     /// </summary>
-    public virtual object? GetResult() => null;
+    public virtual object? GetResult()
+    {
+        return null;
+    }
 
     /// <summary>
     /// Tags that describes what command created for

@@ -45,12 +45,12 @@ public interface IZoneManager
     void Remove(IZoneViewModel viewModel);
 
     /// <summary>
-    /// // Calabonga: Summary required (IZoneManager 2025-07-16 04:05)
+    /// Activates previous view for current zone
     /// </summary>
     void GoBack();
 
     /// <summary>
-    /// // Calabonga: Summary required (IZoneManager 2025-07-16 04:33)
+    /// Returns default zone name
     /// </summary>
     /// <returns></returns>
     string GetDefaultZoneName();

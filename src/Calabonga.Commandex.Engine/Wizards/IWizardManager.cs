@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardManager 2024-08-13 08:01)
+/// Activates a wizard step
 /// </summary>
 public interface IWizardManager<TPayload> : IDisposable
 {

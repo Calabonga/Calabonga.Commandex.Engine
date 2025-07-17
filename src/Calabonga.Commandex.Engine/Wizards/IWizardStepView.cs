@@ -1,7 +1,7 @@
 ﻿namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStepView 2024-08-14 01:24)
+/// Wizard Step View abstraction
 /// </summary>
 public interface IWizardStepView
 {

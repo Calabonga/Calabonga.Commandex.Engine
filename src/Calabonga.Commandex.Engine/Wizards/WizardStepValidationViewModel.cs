@@ -8,7 +8,7 @@ using System.ComponentModel;
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardStepViewModel 2024-08-11 07:32)
+/// WizardStepViewModel with validation (<see cref="ObservableValidator"/>) functionality.
 /// </summary>
 public abstract partial class WizardStepValidationViewModel<TPayload> : ViewModelWithValidatorBase, IWizardStepViewModel<TPayload>
 {
@@ -27,7 +27,15 @@ public abstract partial class WizardStepValidationViewModel<TPayload> : ViewMode
     [ObservableProperty]
     private ObservableCollection<string> _errors = [];
 
+    /// <summary>
+    /// Fires after step activated
+    /// </summary>
+    /// <param name="payload"></param>
     public virtual void OnEnter(TPayload? payload) { }
 
+    /// <summary>
+    /// Fires when step deactivated
+    /// </summary>
+    /// <param name="payload"></param>
     public virtual void OnLeave(TPayload? payload) { }
 }

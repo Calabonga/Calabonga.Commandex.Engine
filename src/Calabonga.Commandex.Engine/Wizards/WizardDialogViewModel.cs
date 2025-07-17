@@ -163,7 +163,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     protected virtual TPayload InitializeContext() => new TPayload();
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// Disposes current ViewModel
     /// </summary>
     public void Dispose()
     {
@@ -195,7 +195,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// Wizard initializer
     /// </summary>
     private void InitializeWizard()
     {

@@ -55,7 +55,10 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     /// <summary>
     /// Returns result from command
     /// </summary>
-    public virtual object? GetResult() => _parameter;
+    public virtual object? GetResult()
+    {
+        return _parameter;
+    }
 
     /// <summary>
     /// Tags that describes what command created for
@@ -65,18 +68,27 @@ public abstract class ParameterCommandexCommand<TParams> : ICommandexCommand
     /// <summary>
     /// Gets parameter for command from storage
     /// </summary>
-    protected TParams? ReadParameter() => _parameter ??= GetCommandParameter();
+    protected TParams? ReadParameter()
+    {
+        return _parameter ??= GetCommandParameter();
+    }
 
     /// <summary>
     /// Writes parameter data to storage
     /// </summary>
     /// <param name="parameter"></param>
-    protected void WriteParameter(TParams parameter) => SetCommandParameter(parameter);
+    protected void WriteParameter(TParams parameter)
+    {
+        SetCommandParameter(parameter);
+    }
 
     /// <summary>
     /// Deletes parameter data from disk
     /// </summary>
-    protected void ClearParameter() => ResetParameter();
+    protected void ClearParameter()
+    {
+        ResetParameter();
+    }
 
     /// <summary>
     /// Deletes file where parameters stored for current Command
