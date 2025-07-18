@@ -3,21 +3,19 @@ using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Exceptions;
 using Calabonga.Commandex.Engine.Zones;
 using Calabonga.OperationResults;
-using System;
-using System.Diagnostics;
 
 namespace Calabonga.Commandex.Engine.Commands;
 
 /// <summary>
-/// Inner Commandex Command base class for command working as a UserControl (integrated in main windows)
+/// Zone CommandexCommand base class for command working as a UserControl (integrated in main window)
 /// </summary>
-public abstract class InnerCommandexCommand<TZoneView, TZoneViewModel> : ICommandexCommand
+public abstract class ZoneCommandexCommand<TZoneView, TZoneViewModel> : ICommandexCommand
     where TZoneView : IZoneView
     where TZoneViewModel : IZoneViewModel
 {
     private readonly IZoneManager _zoneManager;
 
-    protected InnerCommandexCommand(IZoneManager zoneManager)
+    protected ZoneCommandexCommand(IZoneManager zoneManager)
     {
         _zoneManager = zoneManager;
     }
