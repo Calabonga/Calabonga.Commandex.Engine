@@ -70,28 +70,36 @@ public static class ViewModelLocationProvider
     /// </summary>
     /// <param name="viewModelFactory">The view model factory which provides the ViewModel type as a parameter.</param>
     public static void SetDefaultViewModelFactory(Func<Type, object> viewModelFactory)
-        => _defaultViewModelFactory = viewModelFactory;
+    {
+        _defaultViewModelFactory = viewModelFactory;
+    }
 
     /// <summary>
     /// Sets the default view model factory.
     /// </summary>
     /// <param name="viewModelFactory">The view model factory that provides the View instance and ViewModel type as parameters.</param>
     public static void SetDefaultViewModelFactory(Func<object, Type, object> viewModelFactory)
-        => _defaultViewModelFactoryWithViewParameter = viewModelFactory;
+    {
+        _defaultViewModelFactoryWithViewParameter = viewModelFactory;
+    }
 
     /// <summary>
     /// Sets the default view type to view model type resolver.
     /// </summary>
     /// <param name="viewTypeToViewModelTypeResolver">The view type to view model type resolver.</param>
     public static void SetDefaultViewTypeToViewModelTypeResolver(Func<Type, Type?> viewTypeToViewModelTypeResolver)
-        => _defaultViewTypeToViewModelTypeResolver = viewTypeToViewModelTypeResolver;
+    {
+        _defaultViewTypeToViewModelTypeResolver = viewTypeToViewModelTypeResolver;
+    }
 
     /// <summary>
     /// Sets the default ViewModel Type Resolver given the View instance. This can be used to evaluate the View for
     /// custom attributes or Attached Properties to determine the ViewModel Type.
     /// </summary> 
     public static void SetDefaultViewToViewModelTypeResolver(Func<object, Type?> viewToViewModelTypeResolver)
-        => _defaultViewToViewModelTypeResolver = viewToViewModelTypeResolver;
+    {
+        _defaultViewToViewModelTypeResolver = viewToViewModelTypeResolver;
+    }
 
     /// <summary>
     /// Automatically looks up the viewmodel that corresponds to the current view, using two strategies:
@@ -158,7 +166,9 @@ public static class ViewModelLocationProvider
     /// <typeparam name="T">The View</typeparam>
     /// <param name="factory">The ViewModel factory.</param>
     public static void Register<T>(Func<object> factory)
-        => Register(typeof(T).ToString(), factory);
+    {
+        Register(typeof(T).ToString(), factory);
+    }
 
     /// <summary>
     /// Registers the ViewModel factory for the specified view type name.
@@ -166,7 +176,9 @@ public static class ViewModelLocationProvider
     /// <param name="viewTypeName">The name of the view type.</param>
     /// <param name="factory">The ViewModel factory.</param>
     public static void Register(string viewTypeName, Func<object> factory)
-        => _factories[viewTypeName] = factory;
+    {
+        _factories[viewTypeName] = factory;
+    }
 
     /// <summary>
     /// Registers a ViewModel type for the specified view type.
@@ -187,5 +199,7 @@ public static class ViewModelLocationProvider
     /// <param name="viewTypeName">The View type name</param>
     /// <param name="viewModelType">The ViewModel type</param>
     public static void Register(string viewTypeName, Type viewModelType)
-        => _typeFactories[viewTypeName] = viewModelType;
+    {
+        _typeFactories[viewTypeName] = viewModelType;
+    }
 }

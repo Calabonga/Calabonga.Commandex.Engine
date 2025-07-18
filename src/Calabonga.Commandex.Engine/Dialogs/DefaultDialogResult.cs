@@ -14,37 +14,73 @@ public abstract class DefaultDialogResult : ViewModelBase, IViewModel, ISizable
     /// Default value <see cref="ResizeMode.NoResize"/>
     /// </summary>
     [JsonIgnore]
-    public virtual ResizeMode ResizeMode => ResizeMode.NoResize;
+    public virtual ResizeMode ResizeMode
+    {
+        get
+        {
+            return ResizeMode.NoResize;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="SizeToContent.WidthAndHeight"/>
     /// </summary>
     [JsonIgnore]
-    public virtual SizeToContent SizeToContent => SizeToContent.WidthAndHeight;
+    public virtual SizeToContent SizeToContent
+    {
+        get
+        {
+            return SizeToContent.WidthAndHeight;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="WindowStyle.ToolWindow"/>
     /// </summary>
     [JsonIgnore]
-    public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
+    public virtual WindowStyle WindowStyle
+    {
+        get
+        {
+            return WindowStyle.ToolWindow;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="FrameworkElement.Width"/>
     /// </summary>
     [JsonIgnore]
-    public virtual double Width => 400;
+    public virtual double Width
+    {
+        get
+        {
+            return 400;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="FrameworkElement.Height"/>
     /// </summary>
     [JsonIgnore]
-    public virtual double Height => 300;
+    public virtual double Height
+    {
+        get
+        {
+            return 300;
+        }
+    }
 
     /// <summary>
     /// Open windows maximizes and ignore <see cref="ISizable.Width"/> and <see cref="ISizable.Height"/>
     /// </summary>
     [JsonIgnore]
-    public virtual bool IsMaximize => false;
+    public virtual bool IsMaximize
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Window instance that open this dialog

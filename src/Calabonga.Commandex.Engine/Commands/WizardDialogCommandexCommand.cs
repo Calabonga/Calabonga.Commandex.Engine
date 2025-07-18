@@ -15,7 +15,10 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
 {
     private readonly IDialogService _dialogService;
 
-    protected WizardDialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
+    protected WizardDialogCommandexCommand(IDialogService dialogService)
+    {
+        _dialogService = dialogService;
+    }
 
     /// <summary>
     /// Author or copyright information
@@ -25,7 +28,13 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Current command type
     /// </summary>
-    public string TypeName => GetType().Name;
+    public string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Display command name in command list 
@@ -61,7 +70,13 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Wizard result
@@ -73,18 +88,27 @@ public abstract class WizardDialogCommandexCommand<TWizardDialogResult> : IComma
     /// </summary>
     /// <param name="result"></param>
     /// <returns></returns>
-    protected virtual TWizardDialogResult SetResult(TWizardDialogResult result) => result;
+    protected virtual TWizardDialogResult SetResult(TWizardDialogResult result)
+    {
+        return result;
+    }
 
     /// <summary>
     /// Handler OnDialogClosed
     /// </summary>
     /// <param name="result"></param>
-    private void OnClosingDialogCallback(TWizardDialogResult result) => Result = SetResult(result);
+    private void OnClosingDialogCallback(TWizardDialogResult result)
+    {
+        Result = SetResult(result);
+    }
 
     /// <summary>
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
-    public virtual object? GetResult() => IsPushToShellEnabled ? Result?.Payload : null;
+    public virtual object? GetResult()
+    {
+        return IsPushToShellEnabled ? Result?.Payload : null;
+    }
 
     /// <summary>
     /// Tags that describes what command created for

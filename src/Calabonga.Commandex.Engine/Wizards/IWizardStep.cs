@@ -1,37 +1,43 @@
 ﻿namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStep 2024-08-12 08:16)
+/// Wizard step abstraction
 /// </summary>
 public interface IWizardStep
 {
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20)
+    /// Wizard step name
     /// </summary>
     string Name { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20) 
+    /// Indicates a state of the step
     /// </summary>
     bool IsActive { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 08:11)
+    /// Indicates errors status
     /// </summary>
     bool HasErrors { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 03:12)
+    /// Content of the current step
     /// </summary>
     object? Content { get; }
 
+    /// <summary>
+    /// Order index in list of steps
+    /// </summary>
     int OrderIndex { get; }
 
+    /// <summary>
+    /// Indicates that current step is last one
+    /// </summary>
     bool IsLast { get; }
 }
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStep 2024-08-11 07:34)
+/// Wizard step generic abstraction
 /// </summary>
 /// <typeparam name="TWizardStepView"></typeparam>
 /// <typeparam name="TWizardStepViewModel"></typeparam>
@@ -40,12 +46,12 @@ public interface IWizardStep<out TWizardStepView, out TWizardStepViewModel> : IW
     where TWizardStepViewModel : IWizardStepViewModel
 {
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20)
+    /// Deactivates current step
     /// </summary>
     void Deactivate();
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 04:02) 
+    /// Activates current step
     /// </summary>
     /// <param name="content"></param>
     void Activate(object content);

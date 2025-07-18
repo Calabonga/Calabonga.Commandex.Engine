@@ -7,5 +7,8 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 /// </summary>
 public partial class DialogWindow : Window
 {
-    public DialogWindow() => InitializeComponent();
+    public DialogWindow()
+    {
+        InitializeComponent();
+    }
 }

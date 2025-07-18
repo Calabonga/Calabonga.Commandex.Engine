@@ -7,11 +7,17 @@ using System.Collections.ObjectModel;
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardStepViewModel 2024-08-11 07:32)
+/// WizardStep ViewModel abstraction with some base functionality
 /// </summary>
 public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWizardStepViewModel<TPayload>
 {
-    public bool HasErrors => Errors.Any();
+    public bool HasErrors
+    {
+        get
+        {
+            return Errors.Any();
+        }
+    }
 
     [ObservableProperty]
     private ObservableCollection<string> _errors = [];
@@ -33,6 +39,9 @@ public abstract partial class WizardStepViewModel<TPayload> : ViewModelBase, IWi
         WeakReferenceMessenger.Default.Send(new StepErrorsChangedMessage(hasErrors));
     }
 
+    /// <summary>
+    /// Indicate that wizard can go into previous step
+    /// </summary>
     public virtual bool CanGoBack { get; } = false;
 
     public virtual void OnEnter(TPayload? payload)

@@ -65,7 +65,13 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #region property IsLast and IsNotLast
 
-    public bool IsNotLast => !ActiveStep?.IsLast ?? false;
+    public bool IsNotLast
+    {
+        get
+        {
+            return !ActiveStep?.IsLast ?? false;
+        }
+    }
 
     #endregion
 
@@ -96,32 +102,72 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     public object? Owner { get; set; }
 
-    public virtual ResizeMode ResizeMode => ResizeMode.NoResize;
+    public virtual ResizeMode ResizeMode
+    {
+        get
+        {
+            return ResizeMode.NoResize;
+        }
+    }
 
-    public virtual SizeToContent SizeToContent => SizeToContent.Manual;
+    public virtual SizeToContent SizeToContent
+    {
+        get
+        {
+            return SizeToContent.Manual;
+        }
+    }
 
-    public virtual WindowStyle WindowStyle => WindowStyle.ToolWindow;
+    public virtual WindowStyle WindowStyle
+    {
+        get
+        {
+            return WindowStyle.ToolWindow;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="FrameworkElement.Width"/>
     /// </summary>
     [JsonIgnore]
-    public virtual double Width => 400;
+    public virtual double Width
+    {
+        get
+        {
+            return 400;
+        }
+    }
 
     /// <summary>
     /// Default value <see cref="FrameworkElement.Height"/>
     /// </summary>
     [JsonIgnore]
-    public virtual double Height => 300;
+    public virtual double Height
+    {
+        get
+        {
+            return 300;
+        }
+    }
 
-    public virtual bool IsMaximize => false;
+    public virtual bool IsMaximize
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     #endregion
 
     #region Commands
 
     #region PreviuosStepCommand
-    private bool CanPreviousStep() => Steps is not null && CanDoPreviousStep && Steps.Any() && _wizardContext.StepIndex > 0;
+    private bool CanPreviousStep()
+    {
+        return Steps is not null && CanDoPreviousStep && Steps.Any() && _wizardContext.StepIndex > 0;
+    }
+
     [RelayCommand(CanExecute = nameof(CanPreviousStep))]
     private void PreviousStep()
     {
@@ -136,7 +182,14 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     #endregion
 
     #region NextStepCommand
-    private bool CanNextStep => Steps is not null && CanDoNextStep && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
+    private bool CanNextStep
+    {
+        get
+        {
+            return Steps is not null && CanDoNextStep && Steps.Any() && (_wizardContext.StepIndex < Steps.Count - 1);
+        }
+    }
+
     [RelayCommand(CanExecute = nameof(CanNextStep))]
     private void NextStep()
     {
@@ -160,10 +213,13 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
 
     #endregion
 
-    protected virtual TPayload InitializeContext() => new TPayload();
+    protected virtual TPayload InitializeContext()
+    {
+        return new TPayload();
+    }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// Disposes current ViewModel
     /// </summary>
     public void Dispose()
     {
@@ -195,7 +251,7 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (WizardDialogViewModel 2024-08-13 01:11)
+    /// Wizard initializer
     /// </summary>
     private void InitializeWizard()
     {
@@ -206,8 +262,11 @@ public abstract partial class WizardDialogViewModel<TPayload> : ViewModelBase, I
     /// <summary>
     /// Returns payload model from wizard context.
     /// </summary>
-    public object? Payload => _wizardContext.Payload;
-
-
-
+    public object? Payload
+    {
+        get
+        {
+            return _wizardContext.Payload;
+        }
+    }
 }

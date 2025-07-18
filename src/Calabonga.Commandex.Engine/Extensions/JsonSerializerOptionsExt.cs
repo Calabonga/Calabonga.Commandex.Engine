@@ -12,11 +12,11 @@ public static class JsonSerializerOptionsExt
     /// <summary>
     /// Returns JsonSerializer instance with special settings
     /// </summary>
-    public static JsonSerializerOptions Cyrillic =>
-        new()
+    public static JsonSerializerOptions Cyrillic
+    {
+        get
         {
-            Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
-            WriteIndented = true,
-            PropertyNameCaseInsensitive = true
-        };
+            return new() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic), WriteIndented = true, PropertyNameCaseInsensitive = true };
+        }
+    }
 }

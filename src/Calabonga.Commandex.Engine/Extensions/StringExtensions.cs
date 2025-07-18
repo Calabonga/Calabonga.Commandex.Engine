@@ -9,9 +9,15 @@ public static class StringExtensions
 {
     private const string pascalPattern = "(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])";
 
-    public static string PascalToKebabCase(this string value) => TransformWithDotNotation(value, PascalToKebabCaseInternal);
+    public static string PascalToKebabCase(this string value)
+    {
+        return TransformWithDotNotation(value, PascalToKebabCaseInternal);
+    }
 
-    public static string PascalToSnakeCase(this string value) => TransformWithDotNotation(value, PascalToSnakeCaseInternal);
+    public static string PascalToSnakeCase(this string value)
+    {
+        return TransformWithDotNotation(value, PascalToSnakeCaseInternal);
+    }
 
     private static string TransformWithDotNotation(string value, Func<string, string> transformer)
     {
@@ -26,24 +32,32 @@ public static class StringExtensions
     }
 
     private static string PascalToKebabCaseInternal(string value)
-        => string.IsNullOrEmpty(value)
+    {
+        return string.IsNullOrEmpty(value)
             ? value
             : Regex.Replace(value, pascalPattern, "-$1", RegexOptions.Compiled).Trim().ToLower();
+    }
 
     private static string PascalToSnakeCaseInternal(string value)
-        => string.IsNullOrEmpty(value)
+    {
+        return string.IsNullOrEmpty(value)
             ? value
             : Regex.Replace(value, pascalPattern, "_$1", RegexOptions.Compiled).Trim().ToLower();
+    }
 
     public static string PascalToSnakeUpperCase(this string value)
-        => string.IsNullOrEmpty(value)
+    {
+        return string.IsNullOrEmpty(value)
             ? value
             : Regex.Replace(value, pascalPattern, "_$1", RegexOptions.Compiled).Trim().ToUpper();
+    }
 
     public static string PascalToKebabUpperCase(this string value)
-        => string.IsNullOrEmpty(value)
+    {
+        return string.IsNullOrEmpty(value)
             ? value
             : Regex.Replace(value, pascalPattern, "-$1", RegexOptions.Compiled).Trim().ToUpper();
+    }
 
     public static string ScreamingToPascalCase(this string value)
     {
@@ -59,5 +73,8 @@ public static class StringExtensions
         return string.Join(null, substrings);
     }
 
-    public static string SnakeToKebabCase(this string value) => value.Replace("_", "-");
+    public static string SnakeToKebabCase(this string value)
+    {
+        return value.Replace("_", "-");
+    }
 }

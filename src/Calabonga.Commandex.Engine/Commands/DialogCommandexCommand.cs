@@ -16,17 +16,32 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
 {
     private readonly IDialogService _dialogService;
 
-    protected DialogCommandexCommand(IDialogService dialogService) => _dialogService = dialogService;
+    protected DialogCommandexCommand(IDialogService dialogService)
+    {
+        _dialogService = dialogService;
+    }
 
     /// <summary>
     /// Returns True/False indicating that's data from command will push to shell
     /// </summary>
-    public virtual bool IsPushToShellEnabled => false;
+    public virtual bool IsPushToShellEnabled
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     /// <summary>
     /// Current command type
     /// </summary>
-    public string TypeName => GetType().Name;
+    public string TypeName
+    {
+        get
+        {
+            return GetType().Name;
+        }
+    }
 
     /// <summary>
     /// Author or copyright information
@@ -73,18 +88,27 @@ public abstract class DialogCommandexCommand<TDialogView, TDialogResult> : IComm
     /// Sets current command result for Shell or other command
     /// </summary>
     /// <param name="result"></param>
-    protected virtual TDialogResult SetResult(TDialogResult result) => result;
+    protected virtual TDialogResult SetResult(TDialogResult result)
+    {
+        return result;
+    }
 
     /// <summary>
     /// Handler OnDialogClosed
     /// </summary>
     /// <param name="result"></param>
-    private void OnClosingDialogCallback(TDialogResult result) => Result = SetResult(result);
+    private void OnClosingDialogCallback(TDialogResult result)
+    {
+        Result = SetResult(result);
+    }
 
     /// <summary>
     /// Returns result when <see cref="IsPushToShellEnabled"/> enabled
     /// </summary>
-    public virtual object? GetResult() => IsPushToShellEnabled ? Result : null;
+    public virtual object? GetResult()
+    {
+        return IsPushToShellEnabled ? Result : null;
+    }
 
     /// <summary>
     /// Tags that describes what command created for

@@ -3,7 +3,7 @@
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStepViewModel 2024-08-14 07:51)
+/// Wizard Step ViewModel abstraction
 /// </summary>
 public interface IWizardStepViewModel
 {
@@ -15,11 +15,19 @@ public interface IWizardStepViewModel
 }
 
 /// <summary>
-/// // Calabonga: Summary required (IWizardStepViewModel 2024-08-13 07:26)
+/// Wizard Step View abstraction with payload (result)
 /// </summary>
 public interface IWizardStepViewModel<in TPayload> : IWizardStepViewModel
 {
+    /// <summary>
+    /// Fires after step activated
+    /// </summary>
+    /// <param name="payload"></param>
     void OnEnter(TPayload? payload);
 
+    /// <summary>
+    /// Fires when step deactivated
+    /// </summary>
+    /// <param name="payload"></param>
     void OnLeave(TPayload? payload);
 }

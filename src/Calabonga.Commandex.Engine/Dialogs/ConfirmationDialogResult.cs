@@ -15,7 +15,13 @@ public partial class ConfirmationDialogResult : DefaultDialogResult
     /// <summary>
     /// Default value <see cref="WindowStyle.ToolWindow"/>
     /// </summary>
-    public override WindowStyle WindowStyle => WindowStyle.ToolWindow;
+    public override WindowStyle WindowStyle
+    {
+        get
+        {
+            return WindowStyle.ToolWindow;
+        }
+    }
 
     public ConfirmationType ConfirmResult { get; set; } = ConfirmationType.Cancel;
 

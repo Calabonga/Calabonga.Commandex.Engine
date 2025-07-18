@@ -6,9 +6,15 @@ namespace Calabonga.Commandex.Engine.ToastNotifications.Controls;
 
 public class NotificationZone : Control
 {
-    public NotificationZone() => NotificationManager.AddArea(this);
+    public NotificationZone()
+    {
+        NotificationManager.AddArea(this);
+    }
 
-    static NotificationZone() => DefaultStyleKeyProperty.OverrideMetadata(typeof(NotificationZone), new FrameworkPropertyMetadata(typeof(NotificationZone)));
+    static NotificationZone()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(NotificationZone), new FrameworkPropertyMetadata(typeof(NotificationZone)));
+    }
 
     public override void OnApplyTemplate()
     {
@@ -21,8 +27,14 @@ public class NotificationZone : Control
 
     public NotificationPosition Position
     {
-        get => (NotificationPosition)GetValue(PositionProperty);
-        set => SetValue(PositionProperty, value);
+        get
+        {
+            return (NotificationPosition)GetValue(PositionProperty);
+        }
+        set
+        {
+            SetValue(PositionProperty, value);
+        }
     }
 
     public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
@@ -37,8 +49,14 @@ public class NotificationZone : Control
 
     public int ItemsCountMax
     {
-        get => (int)GetValue(ItemsCountMaxProperty);
-        set => SetValue(ItemsCountMaxProperty, value);
+        get
+        {
+            return (int)GetValue(ItemsCountMaxProperty);
+        }
+        set
+        {
+            SetValue(ItemsCountMaxProperty, value);
+        }
     }
 
     public static readonly DependencyProperty ItemsCountMaxProperty = DependencyProperty.Register(

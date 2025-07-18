@@ -9,7 +9,10 @@ public class Notification : ContentControl
 {
     private TimeSpan _closingAnimationTime = TimeSpan.Zero;
 
-    static Notification() => DefaultStyleKeyProperty.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
+    static Notification()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
+    }
 
     public override void OnApplyTemplate()
     {
@@ -36,19 +39,37 @@ public class Notification : ContentControl
 
     public event RoutedEventHandler NotificationCloseInvoked
     {
-        add => AddHandler(NotificationCloseInvokedEvent, value);
-        remove => RemoveHandler(NotificationCloseInvokedEvent, value);
+        add
+        {
+            AddHandler(NotificationCloseInvokedEvent, value);
+        }
+        remove
+        {
+            RemoveHandler(NotificationCloseInvokedEvent, value);
+        }
     }
 
     public event RoutedEventHandler NotificationClosed
     {
-        add => AddHandler(NotificationClosedEvent, value);
-        remove => RemoveHandler(NotificationClosedEvent, value);
+        add
+        {
+            AddHandler(NotificationClosedEvent, value);
+        }
+        remove
+        {
+            RemoveHandler(NotificationClosedEvent, value);
+        }
     }
 
-    public static bool GetCloseOnClick(DependencyObject obj) => (bool)obj.GetValue(CloseOnClickProperty);
+    public static bool GetCloseOnClick(DependencyObject obj)
+    {
+        return (bool)obj.GetValue(CloseOnClickProperty);
+    }
 
-    public static void SetCloseOnClick(DependencyObject obj, bool value) => obj.SetValue(CloseOnClickProperty, value);
+    public static void SetCloseOnClick(DependencyObject obj, bool value)
+    {
+        obj.SetValue(CloseOnClickProperty, value);
+    }
 
     public static readonly DependencyProperty CloseOnClickProperty = DependencyProperty.RegisterAttached(
         "CloseOnClick",

@@ -23,5 +23,11 @@ public abstract partial class ViewModelWithValidatorBase : ObservableValidator
     /// <summary>
     ///  Indicates that current view model is ready and can respond to user requests.
     /// </summary>
-    public bool IsNotBusy => !IsBusy;
+    public bool IsNotBusy
+    {
+        get
+        {
+            return !IsBusy;
+        }
+    }
 }

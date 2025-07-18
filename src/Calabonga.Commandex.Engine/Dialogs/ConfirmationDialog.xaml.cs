@@ -8,7 +8,10 @@ namespace Calabonga.Commandex.Engine.Dialogs
     /// </summary>
     public partial class ConfirmationDialog : UserControl, IDialogView
     {
-        public ConfirmationDialog() => InitializeComponent();
+        public ConfirmationDialog()
+        {
+            InitializeComponent();
+        }
 
         private void OnButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -25,6 +28,9 @@ namespace Calabonga.Commandex.Engine.Dialogs
             window?.Close();
         }
 
-        private ConfirmationDialogResult GetModel() => (ConfirmationDialogResult)DataContext;
+        private ConfirmationDialogResult GetModel()
+        {
+            return (ConfirmationDialogResult)DataContext;
+        }
     }
 }

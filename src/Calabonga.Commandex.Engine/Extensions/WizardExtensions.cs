@@ -14,11 +14,13 @@ public static class WizardExtensions
     /// <param name="source"></param>
     /// <returns></returns>
     public static Type[] GetStepTypes(this IWizardStep<IWizardStepView, IWizardStepViewModel> source)
-        => source.GetType()
+    {
+        return source.GetType()
             .GetInterfaces()
             .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IWizardStep<,>))
             .SelectMany(i => i.GetGenericArguments())
             .ToArray();
+    }
 
     /// <summary>
     /// Deactivate all steps

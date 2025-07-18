@@ -3,17 +3,20 @@
 namespace Calabonga.Commandex.Engine.Wizards;
 
 /// <summary>
-/// // Calabonga: Summary required (WizardStep 2024-08-14 08:13)
+/// Wizard Step observable object
 /// </summary>
 public class WizardStep : ObservableObject
 {
     public bool IsLast { get; private set; }
 
-    public void SetLast(bool value) => IsLast = value;
+    public void SetLast(bool value)
+    {
+        IsLast = value;
+    }
 }
 
 /// <summary>
-///  // Calabonga: Summary required (IWizardStep 2024-08-12 11:03)
+/// Wizard Step generic observable object. Implementation <see cref="IWizardStep{TWizardStepView,TWizardStepViewModel}"/> interface.
 /// </summary>
 /// <typeparam name="TWizardStepView"></typeparam>
 /// <typeparam name="TWizardStepViewModel"></typeparam>
@@ -29,19 +32,22 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20)
+    /// Wizard step name
     /// </summary>
     public string Name { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 02:20) 
+    /// Indicates a state of the step
     /// </summary>
     public bool IsActive { get; private set; }
 
+    /// <summary>
+    /// Indicates errors status
+    /// </summary>
     public bool HasErrors { get; set; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 03:13)
+    /// Content of the current step
     /// </summary>
     public object? Content { get; private set; }
 
@@ -51,7 +57,7 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     public int OrderIndex { get; }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 07:58)
+    /// Deactivates current step
     /// </summary>
     public void Deactivate()
     {
@@ -60,7 +66,7 @@ public class WizardStep<TWizardStepView, TWizardStepViewModel>
     }
 
     /// <summary>
-    /// // Calabonga: Summary required (IWizardStep 2024-08-12 07:59)
+    /// Activates current step
     /// </summary>
     /// <param name="content"></param>
     public void Activate(object content)
