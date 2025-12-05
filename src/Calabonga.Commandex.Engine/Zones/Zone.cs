@@ -62,6 +62,11 @@ public class Zone : IZone
         return viewInZone;
     }
 
+    /// <summary>
+    /// Activates a zone on UI
+    /// </summary>
+    /// <param name="viewInZone"></param>
+    /// <param name="onActivating"></param>
     public void Activate(ZoneItem viewInZone, Action<ZoneItem> onActivating)
     {
         SetContent(viewInZone, onActivating);
