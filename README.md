@@ -22,6 +22,12 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### 4.0.0 2025-12-05
+
+* Migrated .NET10
+* Some summaries added
+* Nuget-packages dependencies were updated
+
 ### 3.0.0 2025-07-18
 
 * New type `ZoneCommandexCommand<TView, TViewModel>` of the `CommandexCommand` created. This command type can be switched in the `ContentControl` (UIElement) named as `MainZone`. New `IZoneManager` can activate you command in the special zone in the Shell main window;
