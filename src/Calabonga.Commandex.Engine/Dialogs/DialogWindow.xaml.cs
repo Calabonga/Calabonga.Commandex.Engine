@@ -5,7 +5,7 @@ namespace Calabonga.Commandex.Engine.Dialogs;
 /// <summary>
 /// Interaction logic for DialogWindow.xaml
 /// </summary>
-public partial class DialogWindow : Window
+public partial class DialogWindow : Window, IDialogWindow
 {
     public DialogWindow()
     {
