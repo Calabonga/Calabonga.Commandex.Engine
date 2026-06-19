@@ -161,13 +161,20 @@ public class DialogService : IDialogService
     {
         EventHandler closeEventHandler = null!;
 
-        var dialog = new DialogWindow { MinWidth = 100, MinHeight = 50 };
+        using var scope = _serviceProvider.CreateScope();
+
+        var dialog = scope.ServiceProvider.GetService<IDialogWindow>();
+        if (dialog is null)
+        {
+            dialog = new DialogWindow { MinWidth = 100, MinHeight = 50 };
+        }
+
 
         var handler = closeEventHandler;
         closeEventHandler = (sender, _) =>
         {
-            var window = (DialogWindow)sender!;
-            var userControl = (UserControl)window.Content;
+            var window = (IDialogWindow)sender!;
+            var userControl = (UserControl)window.Content!;
             var viewModel = (TViewModel)userControl.DataContext;
             onClosingDialogCallback?.Invoke(viewModel);
             viewModel.Dispose();
@@ -178,8 +185,6 @@ public class DialogService : IDialogService
 
         try
         {
-            using var scope = _serviceProvider.CreateScope();
-
             var viewModel = scope.ServiceProvider.GetRequiredService(typeof(TViewModel));
             var control = scope.ServiceProvider.GetRequiredService(typeof(TView));
             var userControl = (UserControl)control;

@@ -10,8 +10,6 @@ public class Zone : IZone
 {
     private readonly DependencyObject _control;
 
-    private readonly LinkedList<ZoneItem> _views = new();
-
     public Zone(string mapName, DependencyObject element)
     {
         Name = mapName;
@@ -21,13 +19,7 @@ public class Zone : IZone
     /// <summary>
     /// Views in current zone
     /// </summary>
-    public LinkedList<ZoneItem> Views
-    {
-        get
-        {
-            return _views;
-        }
-    }
+    public LinkedList<ZoneItem> Views { get; } = new();
 
     /// <summary>
     /// Current zone name
@@ -44,7 +36,7 @@ public class Zone : IZone
     /// <returns></returns>
     public ZoneItem CreateOrActivate<TZoneView>(TZoneView view, Action<ZoneItem> onActivating) where TZoneView : IZoneView
     {
-        var viewInZone = _views.SingleOrDefault(x => x.Type == view.GetType());
+        var viewInZone = Views.SingleOrDefault(x => x.Type == view.GetType());
 
         if (viewInZone is null)
         {
@@ -54,7 +46,7 @@ public class Zone : IZone
             }
 
             viewInZone = new ZoneItem(typeof(TZoneView), userControl);
-            _views.AddLast(viewInZone);
+            Views.AddLast(viewInZone);
         }
 
         SetContent(viewInZone, onActivating);
@@ -78,7 +70,7 @@ public class Zone : IZone
     /// <returns></returns>
     public ZoneItem? GetActiveView()
     {
-        return _views.SingleOrDefault(x => x.IsActive);
+        return Views.SingleOrDefault(x => x.IsActive);
     }
 
     /// <summary>
@@ -88,7 +80,7 @@ public class Zone : IZone
     public void RemoveItem(ZoneItem zoneItem)
     {
         zoneItem.DeactivateView();
-        _views.Remove(zoneItem);
+        Views.Remove(zoneItem);
         _control.SetValue(ContentControl.ContentProperty, null);
     }
 
