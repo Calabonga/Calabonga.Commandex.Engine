@@ -24,7 +24,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Calabonga.Utils.Extensions" Version="1.5.2" />
-		<PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="3.0.0-alpha.1" />
+		<PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="3.0.0" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.4.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.4.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
