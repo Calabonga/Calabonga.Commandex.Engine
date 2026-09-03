@@ -22,6 +22,9 @@ It's a complex solution with a few repositories:
 
 ## History of changes
 
+### 5.0.1 2026-09-02
+Fallback brushes AppBackgroundBrush / TextSecondaryBrush added to Engine's Generic.xaml so DialogWindow renders without host resource overrides.
+
 ### 5.0.0 2026-06-19
 
 * `IDialogWindow` abstraction added for dialog window customization. If you need to use custom window dialog, you should create windows, for example, `CustomDialogWindow` and register it in dependency container.
